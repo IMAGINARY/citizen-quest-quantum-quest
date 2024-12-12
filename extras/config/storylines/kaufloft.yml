@@ -1,8 +1,8 @@
 decision:
 #  en: 'Collect as much information on quantum computing as possible. How many "info sparks" can you collect?'
 #  de: "Sammeln Sie möglichst viele Informationen zum Thema Quantencomputing. Wie viele „Infofunken“ können Sie sammeln?"
-en: 'You feel hungry. Find a nearby caffee to buy breakfast!'
-de: "Du bist hungrig. Finde ein Café in der Nähe und kaufe dir ein Frühstück!"
+  en: 'You feel hungry. Find a nearby caffee to buy breakfast!'
+  de: "Du bist hungrig. Finde ein Café in der Nähe und kaufe dir ein Frühstück!"
 prompt:
   en: 'You fall asleep… and find yourself in a parallel universe, where quantum computing is part of everything. You have 8 minutes to collect as much information as possible about that technology before you wake up again. How many "info sparks" can you collect?'
   de: "Sie schlafen ein … und finden sich in einem Paralleluniversum wieder, in dem Quantencomputer Teil von allem sind. Sie haben 8 Minuten Zeit, um so viele Informationen wie möglich über diese Technologie zu sammeln, bevor Sie wieder aufwachen. Wie viele „Infofunken“ können Sie sammeln?"
