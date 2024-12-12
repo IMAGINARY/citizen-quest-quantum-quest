@@ -1,9 +1,9 @@
 decision:
-  en: "Help citizens revive the neighborhood by listening, finding good information, and communicating it clearly."
-  de: "Hilf den Bürger:innen bei der Wiederbelebung des Viertels, indem du zuhörst, gute Informationen findest und sie klar kommunizierst."
+  en: “Collect as much information on quantum computing as possible. How many “info sparks” can you collect?”
+  de: "..."
 prompt:
-  en: "The old Kaufloft Store building used to be the center of activities in the neighborhood, but it’s been vacant for seven years. Help citizens revive the neighborhood by listening, finding good information, and communicating it clearly."
-  de: "Das alte Kaufloft-Gebäude war früher das Zentrum aller Aktivitäten im Viertel, aber es steht seit sieben Jahren leer. Hilf den Bürger:innen bei der Wiederbelebung des Viertels, indem du zuhörst, gute Informationen findest und sie klar kommunizierst."
+  en: "You fall asleep… and find yourself in a parallel universe, where quantum computing is part of everything. You have 8 minutes to collect as much information as possible about that technology before you wake up again. How many “info sparks” can you collect?"
+  de: "..."
 npcs:
   mayor:
     name:
