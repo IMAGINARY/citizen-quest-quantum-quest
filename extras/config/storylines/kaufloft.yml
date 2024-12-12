@@ -227,13 +227,13 @@ npcs:
 
     dialogue:
       - type: sequence
-      items:
-      - text:
-          en: "Welcome to my Café! We accept payments as Q-Card and cash."
-          de: "Willkommen! Wir akzeptieren Q-Card und Bargeld."
-      - text:
-          en: "You need an ATM? I have no idea where here is one"
-          de: "Du brauchst einen Bankomat, keine Ahnung wo."
+        items:
+          - text:
+              en: "Welcome to my Café! We accept payments as Q-Card and cash."
+              de: "Willkommen! Wir akzeptieren Q-Card und Bargeld."
+          - text:
+              en: "You need an ATM? I have no idea where here is one"
+              de: "Du brauchst einen Bankomat, keine Ahnung wo."
 
           
   citizenDetached1:
