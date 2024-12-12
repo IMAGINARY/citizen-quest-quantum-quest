@@ -98,6 +98,9 @@ storylines:
   - kaufloft
 i18n:
   ui:
+    title:
+      en: 'Data Quest'
+      de: 'Data Quest'
     pressStart:
       en: "Press the button to start"
       de: "Start mit Knopfdruck"
