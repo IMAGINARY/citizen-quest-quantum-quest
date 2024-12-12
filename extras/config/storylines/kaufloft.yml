@@ -224,7 +224,6 @@ npcs:
       de: "Nachbarin"
     type: parksDirector
     spawn: { x: 3881, y: 3518 }
-
     dialogue:
       - type: sequence
         items:
@@ -232,10 +231,8 @@ npcs:
               en: "Welcome to my Café! We accept payments as Q-Card and cash."
               de: "Willkommen! Wir akzeptieren Q-Card und Bargeld."
           - text:
-              en: "You need an ATM? I have no idea where here is one"
-              de: "Du brauchst einen Bankomat, keine Ahnung wo."
-
-          
+              en: "You need an ATM? I have no idea where there is one."
+              de: "Du brauchst einen Bankomat, keine Ahnung wo."        
   citizenDetached1:
     name:
       en: "Tourist"
