@@ -1,9 +1,11 @@
-# Citizen Quest: Editorial Society
+# Citizen Quest: Quantum Quest
 
-A game about Journalistic Skills and Democracy.
+A game about the mathematics of Quantum Computing.
 
 Based on the interactive exhibit [Citizen Quest](https://github.com/IMAGINARY/citizen-quest),
 developed by [Imaginary](https://about.imaginary.org/) for [Futurium](https://futurium.de/de/citizen-quest).
+
+Part of the Quantum Arcade project by BMBF with partners MPI-MiS and Leipzig University (SCADS.AI).
 
 ## Building
 
