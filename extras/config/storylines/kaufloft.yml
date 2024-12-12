@@ -1,6 +1,8 @@
 decision:
-  en: 'Collect as much information on quantum computing as possible. How many "info sparks" can you collect?'
-  de: "Sammeln Sie möglichst viele Informationen zum Thema Quantencomputing. Wie viele „Infofunken“ können Sie sammeln?"
+#  en: 'Collect as much information on quantum computing as possible. How many "info sparks" can you collect?'
+#  de: "Sammeln Sie möglichst viele Informationen zum Thema Quantencomputing. Wie viele „Infofunken“ können Sie sammeln?"
+en: 'You feel hungry. Find a nearby caffee to buy breakfast!'
+de: "Du bist hungrig. Finde ein Café in der Nähe und kaufe dir ein Frühstück!"
 prompt:
   en: 'You fall asleep… and find yourself in a parallel universe, where quantum computing is part of everything. You have 8 minutes to collect as much information as possible about that technology before you wake up again. How many "info sparks" can you collect?'
   de: "Sie schlafen ein … und finden sich in einem Paralleluniversum wieder, in dem Quantencomputer Teil von allem sind. Sie haben 8 Minuten Zeit, um so viele Informationen wie möglich über diese Technologie zu sammeln, bevor Sie wieder aufwachen. Wie viele „Infofunken“ können Sie sammeln?"
@@ -15,8 +17,8 @@ npcs:
       - '_demolitionEnvTipster'
     dialogue:
       - text:
-          en: "The city government wants to have an active role in urban development."
-          de: "Die Stadtverwaltung möchte eine aktive Rolle in der Stadtentwicklung spielen."
+          en: "."
+          de: "."
   librarian:
     name:
       en: Librarian
@@ -222,10 +224,18 @@ npcs:
       de: "Nachbarin"
     type: parksDirector
     spawn: { x: 3881, y: 3518 }
+
     dialogue:
+      - type: sequence
+      items:
       - text:
-          en: "I have confidence in the new mayor."
-          de: "Ich habe Vertrauen in die neue Bürgermeisterin."
+          en: "Welcome to my Café! We accept payments as Q-Card and cash."
+          de: "Willkommen! Wir akzeptieren Q-Card und Bargeld."
+      - text:
+          en: "You need an ATM? I have no idea where here is one"
+          de: "Du brauchst einen Bankomat, keine Ahnung wo."
+
+          
   citizenDetached1:
     name:
       en: "Tourist"
