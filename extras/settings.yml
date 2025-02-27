@@ -1,0 +1,67 @@
+game:
+  devModeShortcuts: false
+  languages: ['en']
+town:
+  width: 2048
+  height: 768
+textures:
+  bundles:
+    - name: 'town-view'
+      assets:
+        - name: 'town-bg'
+          srcs: 'conference.png'
+        - name: 'town-collmap'
+          srcs: 'conference-collmap.png'
+        - name: 'player-1'
+          srcs: 'player-1.json'
+        - name: 'player-2'
+          srcs: 'player-2.json'
+        - name: 'player-3'
+          srcs: 'player-3.json'
+        - name: 'npcs-demo'
+          srcs: 'npcs-demo.json'
+        - name: 'mood-balloon'
+          srcs: 'mood-balloon.json'
+        - name: 'map-markers'
+          srcs: 'map-markers.json'
+        - name: 'icons'
+          srcs: 'icons.json'
+        - name: 'target-arrow'
+          srcs: 'target-arrow.png'
+        - name: 'guide-arrow'
+          srcs: 'guide-arrow.png'
+        - name: 'mardiDesk'
+          srcs: 'mardi-desk.png'
+        - name: 'coffeeTable'
+          srcs: 'coffee-table.png'
+        - name: 'libraryDesk'
+          srcs: 'library-desk.png'
+players:
+  1:
+    color: '#27a6a8'
+    spawn: { x: 100, y: 700 }
+storylines:
+  - lovedataweek
+i18n:
+  ui:
+    title:
+      en: 'Data 🩷 Quest'
+    pressStart:
+      en: "Press space to start"
+    decisionMade:
+      en: 'Thank you for playing! Here are your quest achievements:'
+    waitingToBegin:
+      en: 'Get ready! A new game will begin soon.'
+    waitingToEnd:
+      en: 'Waiting for the other players…'
+    pressToContinue:
+      en: 'Press space to continue'
+    defaultPrompt:
+      en: 'You are at a math conference and meet different mathematicians. Talk to the people with a :speech_bubble: to get quests about math data.'
+    includedInDecision:
+      en: 'Included in the decision'
+    inclusionBarTitle:
+      en: 'Who decides?'
+
+
+

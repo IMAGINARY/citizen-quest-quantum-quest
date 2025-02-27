@@ -1,0 +1,16 @@
+{
+  "name": "datalove-quest",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "degit": "^2.8.4"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist && degit github:IMAGINARY/citizen-quest#v1.3.0 --mode=git --force dist && cp -R ./extras/* ./dist && cd ./dist && npm install && npm run build && cd .."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IMAGINARY/datalove-quest.git"
+  },
+  "private": true
+}

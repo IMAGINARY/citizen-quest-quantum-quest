@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736.205 168.249">
+  <g id="a" data-name="Layer 2">
+    <rect x="484.318" y="88.072" width="79.852" height="78.677" rx="8.954" ry="8.954" fill="#9b9b9b" stroke="#2d2d2d" stroke-miterlimit="10" stroke-width="3"/>
+    <rect x="571.087" y="88.072" width="79.852" height="78.677" rx="8.954" ry="8.954" fill="#9b9b9b" stroke="#2d2d2d" stroke-miterlimit="10" stroke-width="3"/>
+    <rect x="1.5" y="88.072" width="425.832" height="78.677" rx="8.954" ry="8.954" fill="#9b9b9b" stroke="#2d2d2d" stroke-miterlimit="10" stroke-width="3"/>
+    <rect x="654.853" y="88.072" width="79.852" height="78.677" rx="8.954" ry="8.954" fill="#9b9b9b" stroke="#2d2d2d" stroke-miterlimit="10" stroke-width="3"/>
+    <rect x="569.586" y="2.804" width="79.852" height="78.677" rx="8.954" ry="8.954" fill="#9b9b9b" stroke="#2d2d2d" stroke-miterlimit="10" stroke-width="3"/>
+  </g>
+  <g id="b" data-name="Layer 3">
+    <rect x="582.001" y="84.549" width="55.974" height="63.02" rx="9.996" ry="9.996" fill="#e7e7e7" stroke-width="0"/>
+    <rect x="14.246" y="84.549" width="400.123" height="63.02" rx="9.996" ry="9.996" fill="#e7e7e7" stroke-width="0"/>
+    <rect x="492.538" y="84.549" width="55.974" height="63.02" rx="9.996" ry="9.996" fill="#e7e7e7" stroke-width="0"/>
+    <rect x="669.269" y="84.549" width="55.974" height="63.02" rx="9.996" ry="9.996" fill="#e7e7e7" stroke-width="0"/>
+    <rect x="582.295" width="55.974" height="63.02" rx="9.996" ry="9.996" fill="#e7e7e7" stroke-width="0"/>
+  </g>
+  <g id="c" data-name="Layer 4">
+    <g>
+      <line x1="701.108" y1="116.059" x2="680.343" y2="116.059" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="7"/>
+      <polygon points="698.453 106.984 714.169 116.059 698.453 125.134 698.453 106.984" stroke-width="0"/>
+    </g>
+    <g>
+      <line x1="515.773" y1="116.059" x2="536.538" y2="116.059" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="7"/>
+      <polygon points="518.428 125.134 502.712 116.059 518.428 106.984 518.428 125.134" stroke-width="0"/>
+    </g>
+    <g>
+      <line x1="611.013" y1="25.116" x2="611.013" y2="45.881" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="7"/>
+      <polygon points="601.938 27.772 611.013 12.055 620.088 27.772 601.938 27.772" stroke-width="0"/>
+    </g>
+    <g>
+      <line x1="611.013" y1="122.291" x2="611.013" y2="101.526" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="7"/>
+      <polygon points="620.088 119.636 611.013 135.352 601.938 119.636 620.088 119.636" stroke-width="0"/>
+    </g>
+  </g>
+</svg>

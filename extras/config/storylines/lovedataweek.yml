@@ -1,0 +1,646 @@
+decision:
+  en: "It is Love Data Week. You are at a math conference and meet different mathematicians. Interact with them and complete their quests."
+prompt:
+  en: "It is Love Data Week :love:. You are at a math conference and meet different mathematicians. Interact with them and complete their quests."
+# initFlags:
+  # - inc.mayor
+  # - inc.citizenPunk
+  # - inc.lawyer
+scenery:
+  mardiDesk:
+    spawn: { x: 363, y: 553 }
+  coffeeTable:
+    spawn: { x: 1327, y: 551 }
+  libraryDesk:
+    spawn: { x: 1902, y: 547 }
+npcs:
+  mayor:
+    name:
+      en: "Felicia Hausvillage"
+    spawn: { x: 819, y: 448 }
+    dialogue:
+    - type: sequence
+      items:
+        - text:
+            en: "I am a topologist."
+  robot:
+    name:
+      en: "Robot"
+    spawn: { x: 1079, y: 551 }
+    dialogue:
+      - type: random
+        items:
+          - text:
+              en: "“Mathematics is the queen and servant of sciences”, according to a quote by Carl F. Gauss."
+          - text:
+              en: "Is Mathematics even a science?"
+          - text:
+              en: "Research data are not only empirical records."
+          - text:
+              en: "In modern mathematical research, we can find many types of data."
+          - text:
+              en: "One key difference between mathematics and other sciences is the existence of proofs."
+          - text:
+              en: "Have you subscribed to the MaRDI newsletter, yet?"
+          - text:
+              en: "Mathematics is not especially well placed in terms of managing research data and software in comparison to other fields."
+          - text:
+              en: "Data must be accompanied by rich metadata that describes it."
+          - text:
+              en: "Storing and archiving research data is not a trivial matter and should be planned carefully."
+          - text:
+              en: "Information is data tagged with meaning."
+          - text:
+              en: "Reusing knowledge is ingrained in the practice of scientific research as the basis of verifiability."
+          - text:
+              en: "Access to research information is the most fundamental principle for spreading science across the scientific community and society."
+          - text:
+              en: "I :love: math!"
+            set: [ 'op.love.1' ]
+          - text:
+              en: "Your math is data!"
+  citizenBraid:
+    name:
+      en: "Tabea"
+    spawn: { x: 311, y: 538 }
+    dialogue:
+      - text:
+          en: "I work at the MaRDI help desk. I will help you with questions about data."
+  citizenPunk:
+    name:
+      en: "Carla Gaudi"
+    spawn: { x: 1212, y: 333 }
+    dialogue:
+      - text:
+          en: "I am a statistician and I love data :love:!"
+        set: [ 'op.love.2' ]
+  citizenPuan:
+    name:
+      en: "Jenny Ober-Lobo"
+    spawn: { x: 1929, y: 530 }
+    dialogue:
+      - text:
+          en: "I am a librarian."
+  citizenBlue:
+    name:
+      en: "Christiane"
+    type: citizenAqua
+    spawn: { x: 435, y: 538 }
+    dialogue:
+      - text:
+          en: "Do you know, there is a real MaRDI help desk at the MaRDI website? Check it out after the game."
+  dogTan:
+    name:
+      en: "Emmy"
+    spawn: { x: 549, y: 540 }
+    dialogue:
+      - text:
+          en: "Woof!"
+  lawyer:
+    name:
+      en: "Muhammad Quartz"
+    spawn: { x: 331, y: 333 }
+    dialogue:
+      - text:
+          en: "I am an algebraist."
+  coffeeMachine:
+    type: invisible
+    name:
+      en: "PercoLaTeX 3000™"
+    spawn: { x: 1229, y: 560 }
+    dialogue:
+      - type: first
+        items:
+          - text:
+              en: "Let's integrate some coffee into your day!"
+            responses:
+              - text:
+                  en: "Espresso"
+                then: brew
+              - text:
+                  en: "Latte"
+                then: brew
+              - text:
+                  en: "Cappuccino"
+                then: brew
+      - id: brew
+        type: sequence
+        items:
+          - text:
+              en: "Beep! Whirrrrrr..."
+          - text:
+              en: "Ssshhhhhhhh... drip, drip, drip."
+  webBrowser:
+    type: invisible
+    name:
+      en: "Web Browser"
+    spawn: { x: 1547, y: 322 }
+    dialogue:
+      - text:
+          en: "Where do you want to go?"
+        responses:
+          - text:
+              en: "MaRDI website (mardi4nfdi.de)"
+            thenText: "Welcome! We support you in all questions concerning mathematical research data. Get in touch with our team, we are happy to help!"
+quests:
+  favor:
+    npc: mayor
+    mood: interrogation
+    available:
+      dialogue:
+        - type: sequence
+          items:
+            - text:
+                en: "I am a topologist."
+            - text:
+                en: "I publish articles and draw example images. I have also programmed a tool to create visualizations."
+            - text:
+                en: "Would you help me find out, if this is considered data?"
+              responses:
+                - text:
+                    en: "No, sorry. I am busy writing an important proposal. Goodbye."
+                  thenText:
+                    en: "Bye, bye. Feel free to chat again anytime."
+                - text:
+                    en: "Sure, I will help you."
+                  thenText:
+                    en: "Thank you!"
+                  set: [ 'quest.favor.active' ]
+    stages:
+      - cond: 'COUNT("op.favor") >= 3'
+        prompt:
+          en: "You can let Felicia Hausvillage know."
+        target: mayor
+        dialogues:
+          mayor:
+            - text:
+                en: "Good to know: articles, drawings, and software tools are data."
+              set: [ 'quest.favor.done', 'pnt.love.favor' , 'op.quest.favor']
+          lawyer:
+            - text:
+                en: "You are looking for Felicia? I had a coffee with her a few minutes ago. She is over there."
+          citizenPunk:
+            - text:
+                en: "I am Carla, not Felicia! You are so confused!"
+          citizenBraid:
+            - text:
+                en: "If you want to know more about the types of research data in mathematics, check out the sixth issue of the MaRDI Newsletter. You will :love: it!"
+              set: [ 'op.love.4' ]
+          citizenBlue:
+            - text:
+                en: "You can download a cool postcard at the MaRDI website with an illustration for each of the research data types in mathematics."
+          citizenPuan:
+            - text:
+                en: "Have you been to the library at the MFO in Oberwolfach?"
+      - prompt:
+          en: "Find out if articles, drawings, and software tools are data."
+        counter:
+          expression: 'COUNT("op.favor")'
+          max: 3
+          icon: happy
+        dialogues:
+          mayor:
+            - text:
+                en: "I am not sure, if articles, drawings and software are considered data."
+          lawyer:
+            - text:
+                en: "I am an algebraist and I’m pretty sure, articles are data. To be 100% sure, ask at the library."
+          citizenBraid:
+            - text:
+                en: "Software is data. From small scripts that help in a particular problem to wide libraries that integrate into larger frameworks."
+              set: [ 'op.favor.citizenBraid' ]
+          citizenBlue:
+            - text:
+                en: "Visualizations and examples (including images, animations, and other types of graphics) are data. They have an enormous value for understanding and developing a theory and deserve a full research data curation."
+              set: [ 'op.favor.citizenHipster' ]
+          citizenPunk:
+            - text:
+                en: "I am a statistician. I don't think drawings are data. But I'm not sure. You should ask the MaRDI help desk. I usually don't like to be around too many people, but the MaRDIans are very nice! :love:"
+              set: [ 'op.love.6' ]
+          citizenPuan:
+            - text:
+                en: "Documents (articles, books) are data. Mathematical texts deserve the same treatment as other forms of structured data."
+              set: [ 'op.favor.citizenPuan' ]
+  publish:
+    npc: lawyer
+    mood: exclamation
+    required: exchange
+    available:
+      dialogue:
+        - type: sequence
+          items:
+            - text:
+                en: "Hi, I am an algebraist. I just published some of my software code."
+            - text:
+                en: "I used my ORCID iD and my Zenodo account."
+            - text:
+                en: "Would you like to have your own ORCID iD and Zenodo account?"
+              responses:
+                - text:
+                    en: "Sure, I will try to set it up right now."
+                  thenText:
+                    en: "Great! If you need more information about ORCID or Zenodo, ask at the MaRDI help desk."
+                  set: [ 'quest.publish.active' ]
+                - text:
+                    en: "No, sorry, I have no idea. I am too old for this fancy internet stuff."
+                  thenText:
+                    en: "You might want to check out the first issue of the MaRDI newsletter to get an introduction to the topic."
+                - text:
+                    en: "Actually, I already have both."
+                  thenText:
+                    en: "Congratulations!"
+                  set: [ 'quest.publish.active', 'found.publish.zenodo', 'found.publish.orcid', 'quest.publish.done', 'pnt.love.publish' , 'op.quest.publish' ]
+    stages:
+      - cond: 'found.publish.orcid & ^found.publish.zenodo'
+        prompt:
+          en: "You got an ORCID iD. Now you can create a Zenodo account to publish your paper."
+        dialogues:
+          webBrowser:
+            - text:
+                en: "Where do you want to go?"
+              responses:
+                - text:
+                    en: "MaRDI website (mardi4nfdi.de)"
+                  thenText: "Welcome! We support you in all questions concerning mathematical research data. Get in touch with our team, we are happy to help!"
+                - text:
+                    en: "ORCID (orcid.org)"
+                  then: orcid
+                - text:
+                    en: "Zenodo (zenodo.org)"
+                  then: zenodo
+            - id: orcid
+              text:
+                en: "You already have your own ORCID iD."
+            - id: zenodo
+              type: first
+              items:
+                - type: sequence
+                  items:
+                    - text:
+                        en: "Built by researchers, to ensure that everyone can join in Open Science. Sign up using your ORCID iD!"
+                    - text:
+                        en: "(a few moments later...)"
+                    - text:
+                        en: "Done! You now have a Zenodo account."
+                      set: [ 'found.publish.zenodo', 'quest.publish.done', 'pnt.love.publish' , 'op.quest.publish' ]
+          lawyer:
+            - text:
+                en: "Congratulations on your ORCID iD. You need to create a Zenodo account now."
+          citizenPunk:
+            - text:
+                en: "I am a statistician. Of course, I have a Zenodo account. But I am too busy to help you. Ask the robot."
+          robot:
+            - text:
+                en: "You can create a Zenodo account in a minute. Try the computer in the corner."
+          citizenBlue:
+            - type: sequence
+              items:
+                - text:
+                    en: "Zenodo is a general-purpose open repository. It allows researchers to deposit research papers, data sets, research software, reports, and any other research-related digital artefacts."
+                - text:
+                    en: "You can create your own Zenodo account using the computer in the corner."
+          citizenBraid:
+            - text:
+                en: "You already got your ORCID iD. However, if you are still wondering what it is: ORCID, wich stands for Open Researcher and Contributor ID, is a global, not-for-profit organization. It provides a persistent digital identifier (an ORCID iD) that you own and control, and that distinguishes you from every other researcher."
+          mayor:
+            - text:
+                en: "Congratulations to your ORCID iD. :love:"
+              set: ['op.love.5']
+          citizenPuan:
+            - text:
+                en: "I cannot help you at the moment. I need to prepare, classify and maintain our media collection."
+      - cond: '^found.publish.orcid & ^found.publish.zenodo'
+        prompt:
+          en: "Create an ORCID iD."
+        dialogues:
+          webBrowser:
+            - text:
+                en: "Where to?"
+              responses:
+                - text:
+                    en: "MaRDI website (mardi4nfdi.de)"
+                  thenText: "Welcome! We support you in all questions concerning mathematical research data. Get in touch with our team, we are happy to help!"
+                - text:
+                    en: "ORCID (orcid.org)"
+                  then: orcid
+                - text:
+                    en: "Zenodo (zenodo.org)"
+                  then: zenodo
+            - id: orcid
+              type: sequence
+              items:
+                - text:
+                    en: "Geting your unique ORCID identifier is free and only takes a minute, so register now!"
+                - text:
+                    en: "(a few moments later...)"
+                - text:
+                    en: "Done! You now have your own ORCID iD."
+                  set: [ 'found.publish.orcid' ]
+            - id: zenodo
+              text:
+                en: "You should create an ORCID iD first."
+          lawyer:
+            - text:
+                en: "You need to create an ORCID iD first."
+          robot:
+            - text:
+                en: "You can create an ORCID iD in a minute. Try the computer in the corner."
+          citizenBlue:
+            - text:
+                en: "Zenodo is a general-purpose open repository. It allows researchers to deposit research papers, data sets, research software, reports, and any other research related digital artefacts."
+          citizenPuan:
+            - text:
+                en: "I cannot help you at the moment. I need to prepare, classify and maintain our media collection."
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "ORCID, wich stands for Open Researcher and Contributor ID, is a global, not-for-profit organization. It provides a persistent digital identifier (an ORCID iD) that you own and control, and that distinguishes you from every other researcher."
+                - text:
+                    en: "You can use the computer in the corner to get your own ORCID iD."
+          mayor:
+            - text:
+                en: "I am a topologist. I got my own ORCID iD at the library. They also have great coffee. :love:"
+              set: ['op.love.8']
+          citizenPunk:
+            - text:
+                en: "Please, don't disturb me. I am coding..."
+  exchange:
+    npc: citizenPunk
+    mood: interrogation
+    available:
+      dialogue:
+        - type: sequence
+          items:
+            - text:
+                en: "Hi, I am a statistician."
+            - text:
+                en: "I have a discrete statistical model and I would like to understand its geometry. I know Dr. Quartz from the Al-Jabr Institute was working on this but I cannot find any of his code online."
+            - text:
+                en: "Can you help me get his research data?"
+              responses:
+                - text:
+                    en: "Sure, I will  try to find it for you."
+                  thenText:
+                    en: "Thank you! If you have no idea where to start, go to the MaRDI help desk."
+                  set: [ 'quest.exchange.active' ]
+                - text:
+                    en: "Why don't you ask him yourself? He is over there, close to the MaRDI help desk."
+                  thenText:
+                    en: "I am afraid of crowds. There are always so many colleagues around him. Come back if you change your mind and want to help me."
+    stages:
+      - cond: 'found.exchange.person & found.exchange.carla & found.exchange.quartz & found.exchange.help'
+        prompt:
+          en: "Tell Muhammad Quartz how to share his code."
+        target: lawyer
+        dialogues:
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "Thank you for letting me know about the different repository options."
+                - text:
+                    en: "I will upload my Julia code during lunch break. Then I will try to find Dr. Gaudi. Maybe we can collaborate in the future."
+                  responses:
+                    - text:
+                        en: "I am happy to introduce you to Dr. Gaudi."
+                      thenText:
+                        en: "Great, thank you!"
+                  set: [ 'quest.exchange.done' , 'pnt.love.exchange' , 'op.quest.exchange' ]
+          mayor:
+            - text:
+                en: "Ah, I know Muhammad, just talked to him during the coffee break."
+          citizenPunk:
+            - text:
+                en: "I really need Dr. Quartz's Julia code. Did you ask him yet to give it to me?"
+          citizenBlue:
+            - text:
+                en: "The Mathematical Research Data Initiative (MaRDI) is the consortium for mathematics in the German National Research Data Infrastructure (NFDI) program."
+          citizenPuan:
+            - text:
+                en: "Good quality research data is FAIR (Findable, Accessible, Interoperable, and Reusable)."
+          citizenBraid:
+            - text:
+                en: "MaRDI’s vision is building a community that embraces a FAIR data culture and research workflow."
+      - cond: 'found.exchange.person & found.exchange.carla & found.exchange.quartz & ^found.exchange.help'
+        prompt:
+          en: "Ask the MaRDI help desk for the best way to share code."
+        target: citizenBraid
+        dialogues:
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "There are several repositories you can use for your research data: institutional repositories from your university or institute, discipline-specific ones for your research area, or generic ones like Zenodo. "
+                  responses:
+                    - text:
+                        en: "Ok, thank you."
+                    - text:
+                        en: "Which of those is the best choice?"
+                      thenText:
+                        en: "If you are able to find a discipline-specific repository for your research data, this will be the best option for you. :love:"
+                      set: [ 'op.love.3' ]
+                  set: [ 'found.exchange.help' ]
+          mayor:
+            - text:
+                en: "Ah, I know Muhammad, just talked to him during the coffee break."
+          lawyer:
+            - text:
+                en: "Please ask at the MaRDI help desk, what is the best way to share my code. I know, they offer a course on managing research data."
+          citizenPunk:
+            - text:
+                en: "I really need Dr. Quartz's Julia code. Did you ask him yet to give it to me?"
+          citizenBlue:
+            - text:
+                en: "MaRDI is creating a huge Knowledge Graph to collect research data in mathematics and make it available through a single web portal."
+          citizenPuan:
+            - text:
+                en: "Research data in mathematics would include literature, databases, simulations, taxonomies, workflows, code, visualizations, etc. Even a single formula could be considered research data."
+      - cond: 'found.exchange.person & found.exchange.carla & ^found.exchange.quartz & ^found.exchange.help'
+        prompt:
+          en: "Ask Muhammad Quartz to make the code available."
+        target: lawyer
+        dialogues:
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "I work in Julia using OSCAR and Singular. The code is stored on my private laptop. If Dr. Gaudi is interested, I can make it available for her."
+                - text:
+                    en: "How should I share the data?"
+                  responses:
+                    - text:
+                        en: "Just print out the code. I will carry the stack of paper over to her."
+                      thenText:
+                        en: "I don't like that idea. Please ask at the MaRDI help desk for a better solution. I know, they offer a course on managing research data."
+                    - text:
+                        en: "I am not sure. I will ask at the MaRDI help desk."
+                      thenText:
+                        en: "That's a good idea. I know, they offer a course on managing research data."
+                    - text:
+                        en: "Upload your code to a trusted repository."
+                      thenText:
+                        en: "Please ask at the MaRDI help desk, which kind of repository I should choose. I know, they offer a course on managing research data."
+                  set: [ 'found.exchange.quartz' ]
+          mayor:
+            - text:
+                en: "Ah, I know Muhammad, just talked to him during the coffee break."
+          citizenPunk:
+            - text:
+                en: "I really need Dr. Quartz's code. Did you ask him yet to give it to me?"
+          citizenBlue:
+            - text:
+                en: "MaRDI is creating a huge Knowledge Graph to collect research data in mathematics and make it available through a single web portal."
+          citizenPuan:
+            - text:
+                en: "Access to research data is the basis for verifiability and reproducibility."
+          citizenBraid:
+            - text:
+                en: "MaRDI includes several task areas, such as Computer Algebra, Scientific Computing, Statistics and Machine Learning, and Cooperation with other disciplines."
+      - cond: 'found.exchange.person & ^found.exchange.carla & ^found.exchange.quartz & ^found.exchange.help'
+        prompt:
+          en: "Let Carla Gaudi know."
+        target: citizenPunk
+        dialogues:
+          citizenPunk:
+            - text:
+                en: "Thank you for letting me know. I would like to use Dr. Quartz's code to transform a parametrization into an algebraic variety to understand its geometry. Please ask him to give it to me!"
+              set: [ 'found.exchange.carla']
+          lawyer:
+            - text:
+                en: "Tell Dr. Gaudi about my paper. It is available online. Maybe she doesn't need the code?"
+          mayor:
+            - text:
+                en: "Ah, I know Muhammad, just talked to him during the coffee break."
+          citizenBlue:
+            - text:
+                en: "Many German universities and research institutes participate in the different task areas of MaRDI."
+          citizenPuan:
+            - text:
+                en: "I :love: the Black Forest, especially in carnival season!"
+              set: [ 'op.love.7' ]
+          citizenBraid:
+            - text:
+                en: "MaRDI is creating a huge Knowledge Graph to collect research data in mathematics and make it available through a single web portal."
+      - cond: '^found.exchange.person & ^found.exchange.carla & ^found.exchange.quartz & ^found.exchange.help'
+        prompt:
+          en: "Find the work by Dr. Quartz from the Al-Jabr Institute."
+        dialogues:
+          citizenPunk:
+            - text:
+                en: "You could meet him over there and ask him directly."
+          robot:
+            - text:
+                en: "I did a quick online search for you. He published a paper on implicitization and elimination techniques. However, the corresponding code is not included."
+              set: [ 'found.exchange.person' ]
+          citizenBlue:
+            - text:
+                en: "You could ask the robot to do an online search for you."
+          citizenPuan:
+            - text:
+                en: "Dr. Quartz published a paper on implicitization and elimination techniques. However, the corresponding code is not included, unfortunately."
+              set: [ 'found.exchange.person' ]
+          citizenBraid:
+            - text:
+                en: "You could ask at the library, if they have any papers or books on implicitization and elimination techniques by that author."
+          mayor:
+            - text:
+                en: "Ah, I know Muhammad, just talked to him during the coffee break."
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "Yes, I work on implicitization and elimination techniques and can transform a parametrization into an algebraic variety to understand its geometry. The code is stored on my private laptop, though."
+                - text:
+                    en: "I published a paper on the topic without including the code. Maybe this will help Dr. Gaudi?"
+                  set: [ 'found.exchange.person' ]
+ending:
+  dialogue:
+    - type: sequence
+      items:
+        - cond: 'COUNT("op.favor") >= 3'
+          class: 'citizensEmpowered'
+          type: sequence
+          items:
+            - text:
+                en: 'You found out about three types of mathematical research data. :love:'
+        - cond: 'COUNT("op.favor") < 3'
+          type: sequence
+          items:
+            - text:
+                en: "You did not answer Felicia's questions."
+        - cond: 'quest.publish.done'
+          class: 'citizensEmpowered'
+          type: sequence
+          items:
+            - text:
+                en: 'You created an ORCID iD and a Zenodo account. :love:'
+        - cond: '^found.publish.orcid & ^found.publish.zenodo'
+          type: sequence
+          items:
+            - text:
+                en: "You did not complete Muhammad's quest."
+        - cond: 'found.publish.orcid & ^found.publish.zenodo'
+          class: 'citizensEmpowered'
+          type: sequence
+          items:
+            - text:
+                en: "You created an ORCID iD but not a Zenodo account."
+        - cond: 'quest.exchange.done'
+          class: 'citizensEmpowered'
+          type: sequence
+          items:
+            - text:
+                en: "You helped Carla to get the code from Muhammad. :love:"
+        - cond: '^quest.exchange.done'
+          type: sequence
+          items:
+            - text:
+                en: "You did not complete Carla's quest."
+        - cond: 'COUNT("op.quest") = 0'
+          type: sequence
+          items:
+            - text:
+                en: "You did not complete any of the three quests. Try again!"
+        - cond: 'COUNT("op.quest") = 1'
+          type: sequence
+          items:
+            - text:
+                en: "You completed one of the three quests :love:."
+        - cond: 'COUNT("op.quest") = 2'
+          type: sequence
+          items:
+            - text:
+                en: "You completed two of the three quests :love::love:."
+        - cond: 'COUNT("op.quest") = 3'
+          type: sequence
+          items:
+            - text:
+                en: "Congratulations, you completed all of the three quests! :love::love::love:"
+        - cond: 'COUNT("op.love") = 0'
+          text:
+            en: "You didn't find any of the eight :love: hidden in the dialogues."
+        - cond: 'COUNT("op.love") = 1'
+          text:
+            en: "You found one of the eight :love: hidden in the dialogues."
+        - cond: 'COUNT("op.love") = 2'
+          text:
+            en: "You found two of the eight :love: hidden in the dialogues."
+        - cond: 'COUNT("op.love") = 3'
+          text:
+            en: "You found three of the eight :love: hidden in the dialogues."
+        - cond: 'COUNT("op.love") = 4'
+          text:
+            en: "You found four of the eight :love: hidden in the dialogues."
+        - cond: 'COUNT("op.love") = 5'
+          text:
+            en: "You found five of the eight :love: hidden in the dialogues."
+        - cond: 'COUNT("op.love") = 6'
+          text:
+            en: "You found six of the eight :love: hidden in the dialogues."
+        - cond: 'COUNT("op.love") = 7'
+          text:
+            en: "You found seven of the eight :love: hidden in the dialogues."
+        - cond: 'COUNT("op.love") = 8'
+          text:
+            en: "You found all of the eight :love: hidden in the dialogues."
