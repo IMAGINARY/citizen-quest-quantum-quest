@@ -45,7 +45,7 @@ storylines:
 i18n:
   ui:
     title:
-      en: 'Data 🩷 Quest'
+      en: 'Quantum 🩷 Quest'
     pressStart:
       en: "Press space to start"
     decisionMade:
@@ -57,7 +57,7 @@ i18n:
     pressToContinue:
       en: 'Press space to continue'
     defaultPrompt:
-      en: 'You are at a math conference and meet different mathematicians. Talk to the people with a :speech_bubble: to get quests about math data.'
+      en: 'You wake up in the future where quantum computing has become a commonly used tool in science and technology. Interact with people in this new world and complete quests to learn how it works.'
     includedInDecision:
       en: 'Included in the decision'
     inclusionBarTitle:

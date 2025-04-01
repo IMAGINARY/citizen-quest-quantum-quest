@@ -1,14 +1,14 @@
 decision:
   en: "It is Love Data Week. You are at a math conference and meet different mathematicians. Interact with them and complete their quests."
 prompt:
-  en: "It is Love Data Week :love:. You are at a math conference and meet different mathematicians. Interact with them and complete their quests."
+  en: "You wake up in the future where quantum computing has become a commonly used tool in science and technology. Interact with people in this new world and complete quests to learn how it works."
 # initFlags:
   # - inc.mayor
   # - inc.citizenPunk
   # - inc.lawyer
 scenery:
   mardiDesk:
-    spawn: { x: 363, y: 553 }
+    spawn: { x: 361, y: 553 }
   coffeeTable:
     spawn: { x: 1327, y: 551 }
   libraryDesk:
@@ -80,7 +80,7 @@ npcs:
     spawn: { x: 1929, y: 530 }
     dialogue:
       - text:
-          en: "I am a librarian."
+          en: "I am a banker."
   citizenBlue:
     name:
       en: "Christiane"
@@ -151,21 +151,19 @@ quests:
         - type: sequence
           items:
             - text:
-                en: "I am a topologist."
+                en: "I've lost everything. I don't know what to do."
             - text:
-                en: "I publish articles and draw example images. I have also programmed a tool to create visualizations."
-            - text:
-                en: "Would you help me find out, if this is considered data?"
+                en: "My identity was stolen. Account emptied. Flat gone. All my data just disappeared. As if I had never existed."
               responses:
                 - text:
-                    en: "No, sorry. I am busy writing an important proposal. Goodbye."
-                  thenText:
-                    en: "Bye, bye. Feel free to chat again anytime."
-                - text:
-                    en: "Sure, I will help you."
-                  thenText:
-                    en: "Thank you!"
+                    en: "I'm so sorry. Can I help?"
+                  thenText: 
+                    en: "That would be amazing. Can you find out how to protect my data? Maybe the bank can help."
                   set: [ 'quest.favor.active' ]
+                - text:
+                    en: "I don't have time for this."
+                  thenText:
+                    en: "Ok."
     stages:
       - cond: 'COUNT("op.favor") >= 3'
         prompt:
@@ -222,149 +220,133 @@ quests:
                 en: "Documents (articles, books) are data. Mathematical texts deserve the same treatment as other forms of structured data."
               set: [ 'op.favor.citizenPuan' ]
   publish:
-    npc: lawyer
+    npc: robot
     mood: exclamation
-    required: exchange
+    # required: exchange
     available:
       dialogue:
         - type: sequence
           items:
             - text:
-                en: "Hi, I am an algebraist. I just published some of my software code."
-            - text:
-                en: "I used my ORCID iD and my Zenodo account."
-            - text:
-                en: "Would you like to have your own ORCID iD and Zenodo account?"
+                en: "Welcome to our cafe, we have lots of tasty croissants. We only accept QCards for payment. I see you don't have one, would you like to get one to pay for your croissant?"
               responses:
                 - text:
-                    en: "Sure, I will try to set it up right now."
+                    en: "Yes, I want a QCard, where can I get one?"
                   thenText:
-                    en: "Great! If you need more information about ORCID or Zenodo, ask at the MaRDI help desk."
+                    en: "Go to the bank on the corner, they will help you."
                   set: [ 'quest.publish.active' ]
                 - text:
-                    en: "No, sorry, I have no idea. I am too old for this fancy internet stuff."
+                    en: "I'm not hungry, thank you."
                   thenText:
-                    en: "You might want to check out the first issue of the MaRDI newsletter to get an introduction to the topic."
-                - text:
-                    en: "Actually, I already have both."
-                  thenText:
-                    en: "Congratulations!"
-                  set: [ 'quest.publish.active', 'found.publish.zenodo', 'found.publish.orcid', 'quest.publish.done', 'pnt.love.publish' , 'op.quest.publish' ]
+                    en: "Ok, have a nice day."
     stages:
-      - cond: 'found.publish.orcid & ^found.publish.zenodo'
+      - cond: 'found.publish.qcard'
         prompt:
-          en: "You got an ORCID iD. Now you can create a Zenodo account to publish your paper."
+          en: "Buy your croissant with a QCard."
         dialogues:
-          webBrowser:
+          robot:
             - text:
-                en: "Where do you want to go?"
-              responses:
+                en: "Congrats on getting your QCard. Here is your tasty croissant."
+              set: ['quest.publish.done', 'pnt.love.publish']
+      - cond: '^found.publish.qcard'
+        prompt:
+          en: "Get a QCard from the bank."
+        dialogues:
+          citizenPuan:
+            - type: sequence
+              items:
                 - text:
-                    en: "MaRDI website (mardi4nfdi.de)"
-                  thenText: "Welcome! We support you in all questions concerning mathematical research data. Get in touch with our team, we are happy to help!"
-                - text:
-                    en: "ORCID (orcid.org)"
-                  then: orcid
-                - text:
-                    en: "Zenodo (zenodo.org)"
-                  then: zenodo
-            - id: orcid
-              text:
-                en: "You already have your own ORCID iD."
-            - id: zenodo
+                    en: "Welcome to the bank. I can help with getting a QCard, this payment system was built when classical encryption was broken by Quantum Computing."
+                  responses:
+                    - text:
+                        en: "What is encryption?"
+                      then: encryption
+                    - text:
+                        en: "What is quantum computing?"
+                      then: quantum
+                    - text:
+                        en: "Ok, can I have one?"
+                      thenText: "Yes, of course, but first you need to show me you understand the technology you're receiving."
+                      then: quiz-quantum
+            - id: encryption
               type: first
               items:
                 - type: sequence
                   items:
                     - text:
-                        en: "Built by researchers, to ensure that everyone can join in Open Science. Sign up using your ORCID iD!"
+                        en: "Imagine you want to send a letter to a friend, but you don’t want anyone else to read it. So, you use a special code to scramble the words."
                     - text:
-                        en: "(a few moments later...)"
+                        en: "Your friend, who knows the secret code, can unscramble it and read the message. But if someone else tries to look at it, all they’ll see is nonsense."
                     - text:
-                        en: "Done! You now have a Zenodo account."
-                      set: [ 'found.publish.zenodo', 'quest.publish.done', 'pnt.love.publish' , 'op.quest.publish' ]
-          lawyer:
-            - text:
-                en: "Congratulations on your ORCID iD. You need to create a Zenodo account now."
-          citizenPunk:
-            - text:
-                en: "I am a statistician. Of course, I have a Zenodo account. But I am too busy to help you. Ask the robot."
-          robot:
-            - text:
-                en: "You can create a Zenodo account in a minute. Try the computer in the corner."
-          citizenBlue:
-            - type: sequence
+                        en: "Computers do the same thing with data. They use mathematical formulas to turn information into a secret code. Only people (or computers) with the right “key” can unlock and read it. This keeps things like passwords, messages, and bank details safe from hackers!"
+                    - text:
+                        en: "What would you like to do now?"
+                      responses: 
+                        - text:
+                            en: "What is Quantum Computing?"
+                          then: quantum
+                        - text:
+                            en: "Can I have a QCard now?"
+                          thenText: "Yes, of course, but first you need to show me you understand the technology you're receiving."
+                          then: quiz-quantum
+            - id: quantum
+              type: first
+              items:
+                - type: sequence
+                  items:
+                    - text:
+                        en: "Quantum computing uses quantum bits to perform calculations that traditional computers can't efficiently handle."
+                    - text:
+                        en: "Instead of regular bits (which can be either 0 or 1), quantum computers use qubits, which can be 0, 1, or both at the same time (thanks to superposition). They can also be entangled, meaning their states are connected no matter how far apart they are."
+                    - text:
+                        en: "This allows quantum computers to solve certain problems—like cracking codes or simulating molecules—way faster than classical computers. They’re still in early stages, but if they keep improving, they could revolutionize fields like medicine, AI, and cybersecurity!"
+                    - text:
+                        en: "What would you like to do now?"
+                      responses: 
+                        - text:
+                            en: "What is Encryption?"
+                          then: encryption
+                        - text:
+                            en: "Can I have a QCard now?"
+                          thenText: "Yes, of course, but first you need to show me you understand the technology you're receiving."
+                      then: quiz-quantum
+            - id: quiz-quantum
+              type: first
               items:
                 - text:
-                    en: "Zenodo is a general-purpose open repository. It allows researchers to deposit research papers, data sets, research software, reports, and any other research-related digital artefacts."
-                - text:
-                    en: "You can create your own Zenodo account using the computer in the corner."
-          citizenBraid:
-            - text:
-                en: "You already got your ORCID iD. However, if you are still wondering what it is: ORCID, wich stands for Open Researcher and Contributor ID, is a global, not-for-profit organization. It provides a persistent digital identifier (an ORCID iD) that you own and control, and that distinguishes you from every other researcher."
-          mayor:
-            - text:
-                en: "Congratulations to your ORCID iD. :love:"
-              set: ['op.love.5']
-          citizenPuan:
-            - text:
-                en: "I cannot help you at the moment. I need to prepare, classify and maintain our media collection."
-      - cond: '^found.publish.orcid & ^found.publish.zenodo'
-        prompt:
-          en: "Create an ORCID iD."
-        dialogues:
-          webBrowser:
-            - text:
-                en: "Where to?"
-              responses:
-                - text:
-                    en: "MaRDI website (mardi4nfdi.de)"
-                  thenText: "Welcome! We support you in all questions concerning mathematical research data. Get in touch with our team, we are happy to help!"
-                - text:
-                    en: "ORCID (orcid.org)"
-                  then: orcid
-                - text:
-                    en: "Zenodo (zenodo.org)"
-                  then: zenodo
-            - id: orcid
-              type: sequence
+                    en: "What is quantum computing?"
+                  responses:
+                    - text:
+                        en: "When computers do calculations by jumping between parallel universes."
+                      thenText: "Not quite... Try again."
+                      then: quiz-quantum
+                    - text:
+                        en: "Using quantum bits to perform calculations that traditional computers can't efficiently handle."
+                      thenText: "Nice! One more question."
+                      then: quiz-encryption
+                      set: [ 'completed.quiz.quantum' ]
+                    - text:
+                        en: "A way to keep things like passwords, messages, and bank details safe from hackers."
+                      thenText: "That sounds like encryption... Try again."
+                      then: quiz-quantum
+            - id: quiz-encryption
+              type: first
               items:
                 - text:
-                    en: "Geting your unique ORCID identifier is free and only takes a minute, so register now!"
-                - text:
-                    en: "(a few moments later...)"
-                - text:
-                    en: "Done! You now have your own ORCID iD."
-                  set: [ 'found.publish.orcid' ]
-            - id: zenodo
-              text:
-                en: "You should create an ORCID iD first."
-          lawyer:
-            - text:
-                en: "You need to create an ORCID iD first."
-          robot:
-            - text:
-                en: "You can create an ORCID iD in a minute. Try the computer in the corner."
-          citizenBlue:
-            - text:
-                en: "Zenodo is a general-purpose open repository. It allows researchers to deposit research papers, data sets, research software, reports, and any other research related digital artefacts."
-          citizenPuan:
-            - text:
-                en: "I cannot help you at the moment. I need to prepare, classify and maintain our media collection."
-          citizenBraid:
-            - type: sequence
-              items:
-                - text:
-                    en: "ORCID, wich stands for Open Researcher and Contributor ID, is a global, not-for-profit organization. It provides a persistent digital identifier (an ORCID iD) that you own and control, and that distinguishes you from every other researcher."
-                - text:
-                    en: "You can use the computer in the corner to get your own ORCID iD."
-          mayor:
-            - text:
-                en: "I am a topologist. I got my own ORCID iD at the library. They also have great coffee. :love:"
-              set: ['op.love.8']
-          citizenPunk:
-            - text:
-                en: "Please, don't disturb me. I am coding..."
+                    en: "What is encryption?"
+                  responses:
+                    - text:
+                        en: "When you write a message in really bad handwriting."
+                      thenText: "Not quite... Try again."
+                      then: quiz-encryption
+                    - text:
+                        en: "A way to keep things like passwords, messages, and bank details safe from hackers."
+                      thenText: "Nice! Here's your QCard."
+                      set: [ 'found.publish.qcard' ]
+                    - text:
+                        en: "When you hide your files in a seret vault deep underground"
+                      thenText: "Not quite... Try again."
+                      then: quiz-encryption
   exchange:
     npc: citizenPunk
     mood: interrogation
@@ -373,21 +355,19 @@ quests:
         - type: sequence
           items:
             - text:
-                en: "Hi, I am a statistician."
+                en: "I've lost everything. I don't know what to do."
             - text:
-                en: "I have a discrete statistical model and I would like to understand its geometry. I know Dr. Quartz from the Al-Jabr Institute was working on this but I cannot find any of his code online."
-            - text:
-                en: "Can you help me get his research data?"
+                en: "My identity was stolen. Account emptied. Flat gone. All my data just disappeared. As if I had never existed."
               responses:
                 - text:
-                    en: "Sure, I will  try to find it for you."
-                  thenText:
-                    en: "Thank you! If you have no idea where to start, go to the MaRDI help desk."
+                    en: "I'm so sorry. Can I help?"
+                  thenText: 
+                    en: "That would be amazing. Can you find out how to protect my data? Maybe the bank can help."
                   set: [ 'quest.exchange.active' ]
                 - text:
-                    en: "Why don't you ask him yourself? He is over there, close to the MaRDI help desk."
+                    en: "I don't have time for this."
                   thenText:
-                    en: "I am afraid of crowds. There are always so many colleagues around him. Come back if you change your mind and want to help me."
+                    en: "Ok."
     stages:
       - cond: 'found.exchange.person & found.exchange.carla & found.exchange.quartz & found.exchange.help'
         prompt:
@@ -524,7 +504,7 @@ quests:
                 en: "MaRDI is creating a huge Knowledge Graph to collect research data in mathematics and make it available through a single web portal."
       - cond: '^found.exchange.person & ^found.exchange.carla & ^found.exchange.quartz & ^found.exchange.help'
         prompt:
-          en: "Find the work by Dr. Quartz from the Al-Jabr Institute."
+          en: "Go to the bank to find out how personal data is protected."
         dialogues:
           citizenPunk:
             - text:
