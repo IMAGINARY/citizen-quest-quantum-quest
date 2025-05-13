@@ -25,7 +25,7 @@ npcs:
             en: "I am a topologist."
   robot:
     name:
-      en: "Robot"
+      en: "Barista"
     spawn: { x: 1079, y: 551 }
     dialogue:
       - type: random
@@ -61,14 +61,14 @@ npcs:
               en: "Your math is data!"
   citizenBraid:
     name:
-      en: "Tabea"
+      en: "local student"
     spawn: { x: 311, y: 538 }
     dialogue:
       - text:
           en: "I work at the MaRDI help desk. I will help you with questions about data."
   citizenPunk:
     name:
-      en: "Carla Gaudi"
+      en: "post-office clerk"
     spawn: { x: 1212, y: 333 }
     dialogue:
       - text:
@@ -76,14 +76,14 @@ npcs:
         set: [ 'op.love.2' ]
   citizenPuan:
     name:
-      en: "Jenny Ober-Lobo"
+      en: "Banker"
     spawn: { x: 1929, y: 530 }
     dialogue:
       - text:
           en: "I am a banker."
   citizenBlue:
     name:
-      en: "Christiane"
+      en: "mysterious wise person"
     type: citizenAqua
     spawn: { x: 435, y: 538 }
     dialogue:
@@ -98,11 +98,11 @@ npcs:
           en: "Woof!"
   lawyer:
     name:
-      en: "Muhammad Quartz"
+      en: "doorman"
     spawn: { x: 331, y: 333 }
     dialogue:
       - text:
-          en: "I am an algebraist."
+          en: "I take care of this huuuge apartment building."
   coffeeMachine:
     type: invisible
     name:
@@ -355,185 +355,119 @@ quests:
         - type: sequence
           items:
             - text:
-                en: "I've lost everything. I don't know what to do."
-            - text:
-                en: "My identity was stolen. Account emptied. Flat gone. All my data just disappeared. As if I had never existed."
+                en: "Oh, hey, could you help me out, please? We’ve got a premium express package for the apartment complex down the street that must be delivered today, but our staff all called in sick."
               responses:
                 - text:
-                    en: "I'm so sorry. Can I help?"
-                  thenText: 
-                    en: "That would be amazing. Can you find out how to protect my data? Maybe the bank can help."
+                    en: "Sure, I can help out."
+                  thenText:
+                    en: "Thank you so much! Just so you know, the package only has a name, and no apartment number, but I'm sure you can figure it out."
                   set: [ 'quest.exchange.active' ]
                 - text:
-                    en: "I don't have time for this."
+                    en: "Sorry, I don’t think I can do this. I’m not in the delivery business."
                   thenText:
-                    en: "Ok."
+                    en: "I understand. We'll try to find someone else."
     stages:
-      - cond: 'found.exchange.person & found.exchange.carla & found.exchange.quartz & found.exchange.help'
+      - cond: 'found.exchange.person & found.exchange.carla & found.exchange.quartz'
         prompt:
-          en: "Tell Muhammad Quartz how to share his code."
-        target: lawyer
-        dialogues:
-          lawyer:
-            - type: sequence
-              items:
-                - text:
-                    en: "Thank you for letting me know about the different repository options."
-                - text:
-                    en: "I will upload my Julia code during lunch break. Then I will try to find Dr. Gaudi. Maybe we can collaborate in the future."
-                  responses:
-                    - text:
-                        en: "I am happy to introduce you to Dr. Gaudi."
-                      thenText:
-                        en: "Great, thank you!"
-                  set: [ 'quest.exchange.done' , 'pnt.love.exchange' , 'op.quest.exchange' ]
-          mayor:
-            - text:
-                en: "Ah, I know Muhammad, just talked to him during the coffee break."
-          citizenPunk:
-            - text:
-                en: "I really need Dr. Quartz's Julia code. Did you ask him yet to give it to me?"
-          citizenBlue:
-            - text:
-                en: "The Mathematical Research Data Initiative (MaRDI) is the consortium for mathematics in the German National Research Data Infrastructure (NFDI) program."
-          citizenPuan:
-            - text:
-                en: "Good quality research data is FAIR (Findable, Accessible, Interoperable, and Reusable)."
-          citizenBraid:
-            - text:
-                en: "MaRDI’s vision is building a community that embraces a FAIR data culture and research workflow."
-      - cond: 'found.exchange.person & found.exchange.carla & found.exchange.quartz & ^found.exchange.help'
-        prompt:
-          en: "Ask the MaRDI help desk for the best way to share code."
+          en: "Deliver the package!"
         target: citizenBraid
         dialogues:
           citizenBraid:
             - type: sequence
               items:
                 - text:
-                    en: "There are several repositories you can use for your research data: institutional repositories from your university or institute, discipline-specific ones for your research area, or generic ones like Zenodo. "
+                    en: "I hear you have a package for me! I'm quite excited to open it, because it's entangled with a package my friend has."
+                - text:
+                    en: "Do you know what entanglement is?"
                   responses:
                     - text:
-                        en: "Ok, thank you."
+                        en: "When a ball of yarn has lots of knots in it."
                     - text:
-                        en: "Which of those is the best choice?"
+                        en: "When the states of two objects are connected, even when separated by vast distances."
                       thenText:
-                        en: "If you are able to find a discipline-specific repository for your research data, this will be the best option for you. :love:"
+                        en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know someting about what's in my friend's box. Thanks for your help!"
                       set: [ 'op.love.3' ]
-                  set: [ 'found.exchange.help' ]
-          mayor:
-            - text:
-                en: "Ah, I know Muhammad, just talked to him during the coffee break."
-          lawyer:
-            - text:
-                en: "Please ask at the MaRDI help desk, what is the best way to share my code. I know, they offer a course on managing research data."
-          citizenPunk:
-            - text:
-                en: "I really need Dr. Quartz's Julia code. Did you ask him yet to give it to me?"
-          citizenBlue:
-            - text:
-                en: "MaRDI is creating a huge Knowledge Graph to collect research data in mathematics and make it available through a single web portal."
-          citizenPuan:
-            - text:
-                en: "Research data in mathematics would include literature, databases, simulations, taxonomies, workflows, code, visualizations, etc. Even a single formula could be considered research data."
-      - cond: 'found.exchange.person & found.exchange.carla & ^found.exchange.quartz & ^found.exchange.help'
+                  set: [ 'quest.exchange.done' ]
+      - cond: 'found.exchange.person & found.exchange.carla & ^found.exchange.quartz'
         prompt:
-          en: "Ask Muhammad Quartz to make the code available."
+          en: "Prove your new knowledge to the doorman."
         target: lawyer
         dialogues:
           lawyer:
             - type: sequence
               items:
                 - text:
-                    en: "I work in Julia using OSCAR and Singular. The code is stored on my private laptop. If Dr. Gaudi is interested, I can make it available for her."
-                - text:
-                    en: "How should I share the data?"
+                    en: "So, what kind of search do you think would be most effective?"
                   responses:
                     - text:
-                        en: "Just print out the code. I will carry the stack of paper over to her."
+                        en: "A very smart dog sniffing the package and leading us the right way."
                       thenText:
-                        en: "I don't like that idea. Please ask at the MaRDI help desk for a better solution. I know, they offer a course on managing research data."
+                        en: "I like this idea, can you find a dog nearby?"
                     - text:
-                        en: "I am not sure. I will ask at the MaRDI help desk."
+                        en: "Shouting the name very loud."
                       thenText:
-                        en: "That's a good idea. I know, they offer a course on managing research data."
+                        en: "...please don't, my ears are very sensitive."
                     - text:
-                        en: "Upload your code to a trusted repository."
+                        en: "A quantum algorithm called Grover's Search"
+                      then: quiz-grover
+            - id: quiz-grover
+              type: first
+              items:
+                - text:
+                    en: "Oooh, sounds like you did your research, can you tell me how it works?"
+                  responses:
+                    - text:
+                        en: "It checks every option simultaneously."
                       thenText:
-                        en: "Please ask at the MaRDI help desk, which kind of repository I should choose. I know, they offer a course on managing research data."
-                  set: [ 'found.exchange.quartz' ]
-          mayor:
-            - text:
-                en: "Ah, I know Muhammad, just talked to him during the coffee break."
-          citizenPunk:
-            - text:
-                en: "I really need Dr. Quartz's code. Did you ask him yet to give it to me?"
-          citizenBlue:
-            - text:
-                en: "MaRDI is creating a huge Knowledge Graph to collect research data in mathematics and make it available through a single web portal."
-          citizenPuan:
-            - text:
-                en: "Access to research data is the basis for verifiability and reproducibility."
-          citizenBraid:
-            - text:
-                en: "MaRDI includes several task areas, such as Computer Algebra, Scientific Computing, Statistics and Machine Learning, and Cooperation with other disciplines."
-      - cond: 'found.exchange.person & ^found.exchange.carla & ^found.exchange.quartz & ^found.exchange.help'
+                        en: "A lot of people think that! But it actually works a little differently..."
+                        then: quiz-grover
+                    - text:
+                        en: "It takes a shorter path through the state space than a classical computer."
+                      thenText:
+                        en: "Nice! I'll run the search for you now. The recipient of your package should come down in a second."
+                      set: [ 'found.exchange.quartz' ]
+      - cond: 'found.exchange.person & ^found.exchange.carla & ^found.exchange.quartz'
         prompt:
-          en: "Let Carla Gaudi know."
-        target: citizenPunk
+          en: "Find out what kind of search algorithm can help you deliver this package."
+        target: citizenBlue
         dialogues:
-          citizenPunk:
-            - text:
-                en: "Thank you for letting me know. I would like to use Dr. Quartz's code to transform a parametrization into an algebraic variety to understand its geometry. Please ask him to give it to me!"
-              set: [ 'found.exchange.carla']
-          lawyer:
-            - text:
-                en: "Tell Dr. Gaudi about my paper. It is available online. Maybe she doesn't need the code?"
-          mayor:
-            - text:
-                en: "Ah, I know Muhammad, just talked to him during the coffee break."
           citizenBlue:
-            - text:
-                en: "Many German universities and research institutes participate in the different task areas of MaRDI."
-          citizenPuan:
-            - text:
-                en: "I :love: the Black Forest, especially in carnival season!"
-              set: [ 'op.love.7' ]
-          citizenBraid:
-            - text:
-                en: "MaRDI is creating a huge Knowledge Graph to collect research data in mathematics and make it available through a single web portal."
-      - cond: '^found.exchange.person & ^found.exchange.carla & ^found.exchange.quartz & ^found.exchange.help'
+            - type: sequence
+              items:
+                - text:
+                    en: "Hey there, you look stressed, can I help you?"
+                  responses:
+                    - text:
+                        en: "Yes, can I get a back massage?"
+                      thenText:
+                        en: "Sadly, I don't have that capacity."
+                    - text:
+                        en: "Yes, I'm trying to learn about a search algorithm."
+                      thenText:
+                        en: "Ah! Grover's search, a great new development. Imagine a space filled with options, this quantum algorithm can take a shorter path through the space than a classical computer. Like how a bird can take a shortcut in a city that a taxi-cab can't."
+                      set: ['found.exchange.carla']
+      - cond: '^found.exchange.person & ^found.exchange.carla & ^found.exchange.quartz'
         prompt:
-          en: "Go to the bank to find out how personal data is protected."
+          en: "Find the apartment complex."
+        target: lawyer
         dialogues:
-          citizenPunk:
-            - text:
-                en: "You could meet him over there and ask him directly."
-          robot:
-            - text:
-                en: "I did a quick online search for you. He published a paper on implicitization and elimination techniques. However, the corresponding code is not included."
-              set: [ 'found.exchange.person' ]
-          citizenBlue:
-            - text:
-                en: "You could ask the robot to do an online search for you."
-          citizenPuan:
-            - text:
-                en: "Dr. Quartz published a paper on implicitization and elimination techniques. However, the corresponding code is not included, unfortunately."
-              set: [ 'found.exchange.person' ]
-          citizenBraid:
-            - text:
-                en: "You could ask at the library, if they have any papers or books on implicitization and elimination techniques by that author."
-          mayor:
-            - text:
-                en: "Ah, I know Muhammad, just talked to him during the coffee break."
           lawyer:
             - type: sequence
               items:
                 - text:
-                    en: "Yes, I work on implicitization and elimination techniques and can transform a parametrization into an algebraic variety to understand its geometry. The code is stored on my private laptop, though."
+                    en: "Hey there. Delivering something? Just so you know, for the privacy of our residents, our mailboxes are labeled only by apartment numbers, not names."
                 - text:
-                    en: "I published a paper on the topic without including the code. Maybe this will help Dr. Gaudi?"
-                  set: [ 'found.exchange.person' ]
+                    en: "Do you know which apartment you're delivering to?"
+                  responses:
+                    - text:
+                        en: "The fanciest one."
+                      thenText:
+                        en: "I'm not sure which that is..."
+                    - text:
+                        en: "Oh no, I only have a name."
+                      thenText:
+                        en: "I have a special search program that matches names and numbers, but I'll only let you use it if you can tell me what it's called and how it works."
+                      set: ['found.exchange.person']
 ending:
   dialogue:
     - type: sequence
