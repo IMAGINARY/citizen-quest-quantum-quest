@@ -1,5 +1,5 @@
 decision:
-  en: "It is Love Data Week. You are at a math conference and meet different mathematicians. Interact with them and complete their quests."
+  en: "You wake up in the future where quantum computing has become a commonly used tool in science and technology."
 prompt:
   en: "You wake up in the future where quantum computing has become a commonly used tool in science and technology. Interact with people in this new world and complete quests to learn how it works."
 # initFlags:
@@ -31,34 +31,11 @@ npcs:
       - type: random
         items:
           - text:
-              en: "“Mathematics is the queen and servant of sciences”, according to a quote by Carl F. Gauss."
+              en: "I love working here because I'm surrounded by my favorite snacks all day."
           - text:
-              en: "Is Mathematics even a science?"
+              en: "croissaint croissaint croissaint"
           - text:
-              en: "Research data are not only empirical records."
-          - text:
-              en: "In modern mathematical research, we can find many types of data."
-          - text:
-              en: "One key difference between mathematics and other sciences is the existence of proofs."
-          - text:
-              en: "Have you subscribed to the MaRDI newsletter, yet?"
-          - text:
-              en: "Mathematics is not especially well placed in terms of managing research data and software in comparison to other fields."
-          - text:
-              en: "Data must be accompanied by rich metadata that describes it."
-          - text:
-              en: "Storing and archiving research data is not a trivial matter and should be planned carefully."
-          - text:
-              en: "Information is data tagged with meaning."
-          - text:
-              en: "Reusing knowledge is ingrained in the practice of scientific research as the basis of verifiability."
-          - text:
-              en: "Access to research information is the most fundamental principle for spreading science across the scientific community and society."
-          - text:
-              en: "I :love: math!"
-            set: [ 'op.love.1' ]
-          - text:
-              en: "Your math is data!"
+              en: "coffee coffee coffee"
   citizenBraid:
     name:
       en: "local student"
@@ -68,7 +45,7 @@ npcs:
           en: "I work at the MaRDI help desk. I will help you with questions about data."
   citizenPunk:
     name:
-      en: "post-office clerk"
+      en: "Post-Office Clerk"
     spawn: { x: 1212, y: 333 }
     dialogue:
       - text:
@@ -83,7 +60,7 @@ npcs:
           en: "I am a banker."
   citizenBlue:
     name:
-      en: "mysterious wise person"
+      en: "Mysterious Wise Person"
     type: citizenAqua
     spawn: { x: 435, y: 538 }
     dialogue:
@@ -98,7 +75,7 @@ npcs:
           en: "Woof!"
   lawyer:
     name:
-      en: "doorman"
+      en: "Doorman"
     spawn: { x: 331, y: 333 }
     dialogue:
       - text:
@@ -355,7 +332,7 @@ quests:
         - type: sequence
           items:
             - text:
-                en: "Oh, hey, could you help me out, please? We’ve got a premium express package for the apartment complex down the street that must be delivered today, but our staff all called in sick."
+                en: "We’ve got a premium express package for the apartment complex down the street that must be delivered today, but our staff all called in sick. Could you help me out, please? "
               responses:
                 - text:
                     en: "Sure, I can help out."
@@ -367,28 +344,57 @@ quests:
                   thenText:
                     en: "I understand. We'll try to find someone else."
     stages:
-      - cond: 'found.exchange.person & found.exchange.carla & found.exchange.quartz'
+      - cond: '^spoke.to.doorman & ^understood.grover.search & ^passed.grover.search.quiz'
         prompt:
-          en: "Deliver the package!"
-        target: citizenBraid
+          en: "Find the apartment complex."
+        target: lawyer
         dialogues:
-          citizenBraid:
+          lawyer:
             - type: sequence
               items:
                 - text:
-                    en: "I hear you have a package for me! I'm quite excited to open it, because it's entangled with a package my friend has."
+                    en: "Hey there. Delivering something? Just so you know, for the privacy of our residents, our mailboxes are labeled only by apartment numbers, not names."
                 - text:
-                    en: "Do you know what entanglement is?"
+                    en: "Do you know which apartment you're delivering to?"
                   responses:
                     - text:
-                        en: "When a ball of yarn has lots of knots in it."
-                    - text:
-                        en: "When the states of two objects are connected, even when separated by vast distances."
+                        en: "The fanciest one."
                       thenText:
-                        en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know someting about what's in my friend's box. Thanks for your help!"
-                      set: [ 'op.love.3' ]
-                  set: [ 'quest.exchange.done' ]
-      - cond: 'found.exchange.person & found.exchange.carla & ^found.exchange.quartz'
+                        en: "I'm not sure which that is..."
+                    - text:
+                        en: "Oh no, I only have a name."
+                      thenText:
+                        en: "I have a special search program that matches names and numbers. I'll let you use it if you can tell me what it's called and how it works."
+                      set: ['spoke.to.doorman']
+      - cond: 'spoke.to.doorman & ^understood.grover.search & ^passed.grover.search.quiz'
+        prompt:
+          en: "Find out what kind of search algorithm can help you deliver this package."
+        target: citizenBlue
+        dialogues:
+          citizenBlue:
+            - type: sequence
+              items:
+                - text:
+                    en: "Hey there, you look stressed, can I help you?"
+                  responses:
+                    - text:
+                        en: "Yes, can I get a back massage?"
+                      thenText:
+                        en: "Sadly, I don't have that capacity."
+                    - text:
+                        en: "Yes, I'm trying to learn about a search algorithm."
+                      then: grover-explanation  
+            - id: grover-explanation  
+              type: sequence
+              items:
+                - text:
+                   en: "Ah! Grover's search—what an exciting breakthrough. Imagine you're looking for a specific point in a huge space."
+                - text:
+                   en: "A classical computer would have to check many points one by one, like a taxi weaving through city streets."
+                - text:
+                   en: "But Grover's quantum algorithm can take a kind of 'shortcut,' exploring the space more efficiently—like a bird flying straight to its destination instead of following the roads."
+                  set: [ 'understood.grover.search' ]
+      - cond: 'spoke.to.doorman & understood.grover.search & ^passed.grover.search.quiz'
         prompt:
           en: "Prove your new knowledge to the doorman."
         target: lawyer
@@ -400,7 +406,7 @@ quests:
                     en: "So, what kind of search do you think would be most effective?"
                   responses:
                     - text:
-                        en: "A very smart dog sniffing the package and leading us the right way."
+                        en: "A smart dog sniffing the package and leading us the right way."
                       thenText:
                         en: "I like this idea, can you find a dog nearby?"
                     - text:
@@ -425,49 +431,29 @@ quests:
                         en: "It takes a shorter path through the state space than a classical computer."
                       thenText:
                         en: "Nice! I'll run the search for you now. The recipient of your package should come down in a second."
-                      set: [ 'found.exchange.quartz' ]
-      - cond: 'found.exchange.person & ^found.exchange.carla & ^found.exchange.quartz'
+                      set: [ 'passed.grover.search.quiz' ]
+      - cond: 'spoke.to.doorman & understood.grover.search & passed.grover.search.quiz'
         prompt:
-          en: "Find out what kind of search algorithm can help you deliver this package."
-        target: citizenBlue
+          en: "Deliver the package!"
+        target: citizenBraid
         dialogues:
-          citizenBlue:
+          citizenBraid:
             - type: sequence
               items:
                 - text:
-                    en: "Hey there, you look stressed, can I help you?"
+                    en: "I hear you have a package for me! I'm quite excited to open it, because it's entangled with a package my friend has."
+                - text:
+                    en: "Do you know what entanglement is?"
                   responses:
                     - text:
-                        en: "Yes, can I get a back massage?"
+                        en: "When a ball of yarn has lots of knots in it."
                       thenText:
-                        en: "Sadly, I don't have that capacity."
+                        en: "Haha, I hope that's not what's in my box..."
                     - text:
-                        en: "Yes, I'm trying to learn about a search algorithm."
+                        en: "When the states of two objects are connected, even when separated by vast distances."
                       thenText:
-                        en: "Ah! Grover's search, a great new development. Imagine a space filled with options, this quantum algorithm can take a shorter path through the space than a classical computer. Like how a bird can take a shortcut in a city that a taxi-cab can't."
-                      set: ['found.exchange.carla']
-      - cond: '^found.exchange.person & ^found.exchange.carla & ^found.exchange.quartz'
-        prompt:
-          en: "Find the apartment complex."
-        target: lawyer
-        dialogues:
-          lawyer:
-            - type: sequence
-              items:
-                - text:
-                    en: "Hey there. Delivering something? Just so you know, for the privacy of our residents, our mailboxes are labeled only by apartment numbers, not names."
-                - text:
-                    en: "Do you know which apartment you're delivering to?"
-                  responses:
-                    - text:
-                        en: "The fanciest one."
-                      thenText:
-                        en: "I'm not sure which that is..."
-                    - text:
-                        en: "Oh no, I only have a name."
-                      thenText:
-                        en: "I have a special search program that matches names and numbers, but I'll only let you use it if you can tell me what it's called and how it works."
-                      set: ['found.exchange.person']
+                        en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know something about what's in my friend's box. Thanks for your help!"
+                      set: [ 'quest.exchange.done' ]
 ending:
   dialogue:
     - type: sequence
