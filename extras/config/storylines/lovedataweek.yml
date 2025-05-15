@@ -1,7 +1,7 @@
 decision:
-  en: "You wake up in the future where quantum computing has become a commonly used tool in science and technology."
+  en: "You wake up in the future where quantum computing has become a normal part of life."
 prompt:
-  en: "You wake up in the future where quantum computing has become a commonly used tool in science and technology. Interact with people in this new world and complete quests to learn how it works."
+  en: "You wake up in the future where quantum computing has become a normal part of life. Interact with people in this new world and complete quests to learn how it works."
 scenery:
   mardiDesk:
     spawn: { x: 361, y: 553 }
@@ -29,12 +29,12 @@ npcs:
           - text:
               en: "I love working here because I'm surrounded by my favorite snacks all day."
           - text:
-              en: "croissaint croissaint croissaint"
+              en: "QCroissant QCroissant QCroissant"
           - text:
-              en: "coffee coffee coffee"
+              en: "QCoffee QCoffee QCoffee"
   citizenBraid:
     name:
-      en: "local student"
+      en: "Local Student"
     spawn: { x: 311, y: 538 }
     dialogue:
       - text:
@@ -182,7 +182,8 @@ quests:
                   responses:
                     - text:
                         en: "It's made of billions of tiny switches that can be either off or on"
-                      thenText: "True! So, information is recorded as sequences of 0's and 1's."
+                      thenText: 
+                        en: "True! So, information is recorded as sequences of 0's and 1's."
                       then: quantum-basic-explanation
                     - text:
                         en: "A tiny hamster runs on a wheel inside your laptop. The faster it spins, the faster your Google loads."
@@ -192,7 +193,7 @@ quests:
                 - text:
                     en: "The basic building blocks of quantum computers, called 'qubits', can be set to 0 or 1, but can also exist in an in-between state, called 'superposition'."
                 - text:
-                    en: "In superposition, a qubit has some probability of being 1 or and some probability of being 0 when you measure it."
+                    en: "In superposition, a qubit has some probability of being 1 and some probability of being 0 when you measure it."
                 - text:
                     en: "We can pass our qubits through operators called 'gates' to change this probability distribution."
                   set: [ 'learn.about.gates' ]
@@ -218,7 +219,8 @@ quests:
                       set: [ 'passed.gate.quiz' ]
                     - text:
                         en: "Flips all your 0's to 1's"
-                      thenText: "Close, but not quite!"
+                      thenText: 
+                        en: "Close, but not quite!"
       - cond: 'visit.computer.center & learn.about.gates & passed.gate.quiz & ^passed.circuit.quiz & ^passed.second.circuit.quiz'
         prompt:
           en: "Learn how to build a quantum circuit."
@@ -251,14 +253,17 @@ quests:
                   responses:
                     - text:
                         en: "The NOT gate, of course!"
-                      thenText: "Nice, simple and clear."
+                      thenText: 
+                        en: "Nice, simple and clear."
                       then: next-gate
                     - text:
                         en: "Throw it away, I don't need it."
-                      thenText: "Alright, more coins for me then."
+                      thenText: 
+                        en: "Alright, more coins for me then."
                     - text:
                         en: "The Hadamard gate sounds like it could help me out."
-                      thenText: "Certainly, but in this case, I think the NOT gate is your best bet."
+                      thenText: 
+                        en: "Certainly, but in this case, I think the NOT gate is your best bet."
             - id: next-gate
               type: sequence
               items:
@@ -271,69 +276,74 @@ quests:
                   responses:
                     - text:
                         en: "I'll stick with the NOT gate, that worked last time."
-                      thenText: "I don't think the NOT gate will help you out here."
+                      thenText: 
+                        en: "I don't think the NOT gate will help you out here."
                     - text:
                         en: "The Hadamard gate, for sure."
-                      thenText: "Nice, it's back to it's initial state, heads! I think you've got the hang of gates now."
-                      # set: [ 'passed.circuit.quiz' ]
-                      set: ['quest.simulation.done']
+                      thenText: 
+                        en: "Nice, it's back to it's initial state, heads! I think you've got the hang of gates now."
+                      set: [ 'passed.circuit.quiz' ]
+                      # set: ['quest.simulation.done']
                     - text:
                         en: "uhhhh I ate the coin..."
-                      thenText: "uhhh spit it out?"
-      # - cond: 'visit.computer.center & learn.about.gates & passed.gate.quiz & passed.circuit.quiz & ^passed.second.circuit.quiz'
-      #   prompt:
-      #     en: "Return to computer technician with new quantum circuit knowledge."
-      #   target: mayor
-      #   dialogues:
-      #     mayor:
-      #       - type: sequence
-      #         items:
-      #           - text:
-      #               en: "So, you're feeling ready to handle a quantum computer?"
-      #           - text:
-      #               en: "Can you tell me, if I start with a tails up coin (or a qubit in state 0), and hit it with HHX, what will I get?"
-      #             responses:
-      #               - text:
-      #                   en: "10€"
-      #                 thenText:
-      #                   en: "I'm not giving you 10€."
-      #               - text:
-      #                   en: "Heads up."
-      #                   thenText: "Nice! You know your stuff. I trust you to use this quantum computer."
-      #                   set: ['passed.second.circuit.quiz']
-      #               - text:
-      #                   en: "Superposition."
-      #                   thenText: "Hmm, not quite." 
-      # - cond: 'visit.computer.center & learn.about.gates & passed.gate.quiz & passed.circuit.quiz & passed.second.circuit.quiz'
-      #   prompt:
-      #     en: "Tell the student you have a solution for their frozen simulation."
-      #   target: citizenBraid
-      #   dialogues:
-      #     citizenBraid:
-      #       - type: sequence
-      #         items:
-      #           - text:
-      #               en: "You're back! What did you learn?"
-      #             responses:
-      #               - text:
-      #                   en: "A magic trick."
-      #                 thenText:
-      #                   en: "Oh, ok, but my simulation is still frozen..."
-      #               - text:
-      #                   en: "A quantum computer can more efficiently simulate a quantum system."
-      #                   then: final-offer
-      #       - id: final-offer
-      #         type: sequence
-      #         items:
-      #           - text:
-      #               en: "That makes sense, how can I use one?"
-      #             responses:
-      #               - text:
-      #                   en: "I can go with you tomorrow afternoon. I learned all about building quantum circuits."
-      #                   set: ['quest.simulation.done']
-      #               - text:
-      #                   en: "There is a wise wizard in the forest who can teach you."
-      #                   set: ['quest.simulation.done']
+                      thenText: 
+                        en: "uhhh spit it out?"
+      - cond: 'visit.computer.center & learn.about.gates & passed.gate.quiz & passed.circuit.quiz & ^passed.second.circuit.quiz'
+        prompt:
+          en: "Return to computer technician with new quantum circuit knowledge."
+        target: mayor
+        dialogues:
+          mayor:
+            - type: sequence
+              items:
+                - text:
+                    en: "So, you're feeling ready to handle a quantum computer?"
+                - text:
+                    en: "Can you tell me, if I start with a tails up coin (or a qubit in state 0), and hit it with HHX, what will I get?"
+                  responses:
+                    - text:
+                        en: "10€"
+                      thenText:
+                        en: "I'm not giving you 10€."
+                    - text:
+                        en: "Heads up."
+                      thenText: 
+                        en: "Nice! You know your stuff. I trust you to use this quantum computer."
+                      set: ['passed.second.circuit.quiz']
+                    - text:
+                        en: "Superposition."
+                      thenText: 
+                          en: "Hmm, not quite." 
+      - cond: 'visit.computer.center & learn.about.gates & passed.gate.quiz & passed.circuit.quiz & passed.second.circuit.quiz'
+        prompt:
+          en: "Tell the student you have a solution for their frozen simulation."
+        target: citizenBraid
+        dialogues:
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "You're back! What did you learn?"
+                  responses:
+                    - text:
+                        en: "A magic trick."
+                      thenText:
+                        en: "Oh, ok, but my simulation is still frozen..."
+                    - text:
+                        en: "A quantum computer can more efficiently simulate a quantum system."
+                      then: final-offer
+            - id: final-offer
+              type: sequence
+              items:
+                - text:
+                    en: "That makes sense, how can I use one?"
+                  responses:
+                    - text:
+                        en: "I can go with you tomorrow afternoon. I learned all about building quantum circuits."
+                      set: ['quest.simulation.done', 'pnt.love.simulation']
+                    - text:
+                        en: "There is a wise wizard in the forest who can teach you."
+                      set: ['quest.simulation.done', 'pnt.love.simulation']
   cafe:
     npc: robot
     mood: exclamation
@@ -342,7 +352,7 @@ quests:
         - type: sequence
           items:
             - text:
-                en: "Welcome to our cafe, we have lots of tasty croissants. We only accept QCards for payment. I see you don't have one, would you like to get one to pay for your croissant?"
+                en: "Welcome to our QCafe, we have lots of tasty QCroissants. We only accept QCards for payment. I see you don't have one, would you like to get one to pay for your QCroissant?"
               responses:
                 - text:
                     en: "Yes, I want a QCard, where can I get one?"
@@ -354,26 +364,28 @@ quests:
                   thenText:
                     en: "Ok, have a nice day."
     stages:
-      - cond: '^got.qcard'
+      - cond: '^learned.encryption & ^learned.shors.algorithm & ^got.qcard'
         prompt:
-          en: "Get a QCard from the bank."
+          en: "Visit the bank."
+        target: citizenPuan
         dialogues:
           citizenPuan:
             - type: sequence
               items:
                 - text:
-                    en: "Welcome to the bank. I can help with getting a QCard, this payment system was built when classical encryption was broken by Quantum Computing."
+                    en: "Welcome to the bank. I can help with getting a QCard, this payment system was built when classical encryption was broken by quantum computing."
                   responses:
                     - text:
                         en: "What is encryption?"
                       then: encryption
                     - text:
-                        en: "What is quantum computing?"
-                      then: quantum
-                    - text:
                         en: "Ok, can I have one?"
-                      thenText: "Yes, of course, but first you need to show me you understand the technology you're receiving."
-                      then: quiz-quantum
+                      thenText: 
+                        en: "Yes, of course, but first you need to show me you understand the technology you're receiving."
+                      then: quiz-encryption
+                    - text:
+                        en: "I don't trust banks, I would rather forage for mushrooms."
+                      thenText: "I like mushrooms too, but I also love a QCroissant every once in a while. I'll be here if you change your mind."
             - id: encryption
               type: first
               items:
@@ -384,82 +396,91 @@ quests:
                     - text:
                         en: "Your friend, who knows the secret code, can unscramble it and read the message. But if someone else tries to look at it, all they’ll see is nonsense."
                     - text:
-                        en: "Computers do the same thing with data. They use mathematical formulas to turn information into a secret code. Only people (or computers) with the right “key” can unlock and read it. This keeps things like passwords, messages, and bank details safe from hackers!"
+                        en: "Computers do the same thing with data. They use mathematical formulas to turn information into a secret code. This keeps things like passwords, messages, and bank details safe from hackers!"
                     - text:
-                        en: "What would you like to do now?"
-                      responses: 
-                        - text:
-                            en: "What is Quantum Computing?"
-                          then: quantum
-                        - text:
-                            en: "Can I have a QCard now?"
-                          thenText: "Yes, of course, but first you need to show me you understand the technology you're receiving."
-                          then: quiz-quantum
-            - id: quantum
-              type: first
-              items:
-                - type: sequence
-                  items:
-                    - text:
-                        en: "Quantum computing uses quantum bits to perform calculations that traditional computers can't efficiently handle."
-                    - text:
-                        en: "Instead of regular bits (which can be either 0 or 1), quantum computers use qubits, which can be 0, 1, or both at the same time (thanks to superposition). They can also be entangled, meaning their states are connected no matter how far apart they are."
-                    - text:
-                        en: "This allows quantum computers to solve certain problems—like cracking codes or simulating molecules—way faster than classical computers. They’re still in early stages, but if they keep improving, they could revolutionize fields like medicine, AI, and cybersecurity!"
-                    - text:
-                        en: "What would you like to do now?"
-                      responses: 
-                        - text:
-                            en: "What is Encryption?"
-                          then: encryption
-                        - text:
-                            en: "Can I have a QCard now?"
-                          thenText: "Yes, of course, but first you need to show me you understand the technology you're receiving."
-                      then: quiz-quantum
-            - id: quiz-quantum
-              type: first
-              items:
-                - text:
-                    en: "What is quantum computing?"
-                  responses:
-                    - text:
-                        en: "When computers do calculations by jumping between parallel universes."
-                      thenText: "Not quite... Try again."
-                      then: quiz-quantum
-                    - text:
-                        en: "Using quantum bits to perform calculations that traditional computers can't efficiently handle."
-                      thenText: "Nice! One more question."
+                        en: "Did you get all that? Can you tell me what encryption is?"
                       then: quiz-encryption
-                      set: [ 'completed.quiz.quantum' ]
-                    - text:
-                        en: "A way to keep things like passwords, messages, and bank details safe from hackers."
-                      thenText: "That sounds like encryption... Try again."
-                      then: quiz-quantum
             - id: quiz-encryption
-              type: first
+              type: sequence
               items:
                 - text:
                     en: "What is encryption?"
                   responses:
                     - text:
                         en: "When you write a message in really bad handwriting."
-                      thenText: "Not quite... Try again."
+                      thenText: 
+                        en: "Not quite... Try again."
                       then: quiz-encryption
                     - text:
                         en: "A way to keep things like passwords, messages, and bank details safe from hackers."
-                      thenText: "Nice! Here's your QCard."
-                      set: [ 'got.qcard' ]
+                      thenText: 
+                        en: "Nice! The most common form of encryption was broken by quantum computing, so we use new techniques now."
+                      then: prompt-to-learn-shors-algorithm
                     - text:
-                        en: "When you hide your files in a secret vault deep underground"
-                      thenText: "Not quite... Try again."
+                        en: "When you hide your files in a secret vault deep underground."
+                      thenText: 
+                        en: "Not quite... Try again."
                       then: quiz-encryption
-      - cond: 'got.qcard'
+            - id: prompt-to-learn-shors-algorithm
+              type: sequence
+              items:
+                - text:
+                    en: "I'll give you this QCard to keep your data safe if you can tell me about the famous algorithm that prompted its creation."
+                  set: [ 'learned.encryption' ]  
+      - cond: 'learned.encryption & ^learned.shors.algorithm & ^got.qcard'
         prompt:
-          en: "Buy your croissant with a QCard."
+          en: "Learn about the algorithm that broke classical encryption."
+        target: citizenBlue
+        dialogues:
+          citizenBlue:
+          - type: sequence
+            items:
+              - text:
+                  en: "I know a lot about the quantum world, are you seeking knowledge?"
+                responses:
+                  - text:
+                      en: I'm looking for a QCroissant, I'm very hungry, do you have one?
+                    thenText:
+                      en: "Not in my pocket, but there are freshly baked QCroissants every day down the road!"
+                  - text:
+                      en: "Yes! Can you tell me about the algorithm that broke classical encryption?"
+                    then: shor-explanation
+          - id: shor-explanation
+            type: sequence
+            items:
+              - text:
+                  en: "Certainly! In the past, we protected information by relying on the fact that it's very difficult to figure out the prime factors of a large number."
+              - text:
+                  en: "But then came Peter Shor, who figured out that a quantum computer can do this lightning fast."
+              - text:
+                  en: "So we developed post-quantum encryption -- new techniques to keep sensitive data safe."
+                set: ['learned.shors.algorithm']
+      - cond: 'learned.encryption & learned.shors.algorithm & ^got.qcard'
+        prompt:
+          en: "Prove your quantum algorithm knowledge to get a QCard"
+        target: citizenPuan
+        dialogues:
+          citizenPuan:
+            - text:
+                en: "So, how was classical encryption broken?"
+              responses:
+                - text:
+                    en: "With a really big hammer."
+                  thenText:
+                    en: "Uh, no... Maybe you're not ready to handle this technology."
+                - text:
+                    en: "By Shor's prime factorization algorithm."
+                  thenText:
+                    en: "Yes! Nice research work, here's your QCard."
+                  set: ['got.qcard']
+      - cond: 'learned.encryption & learned.shors.algorithm & got.qcard'
+        prompt:
+          en: "Buy your QCroissant with a QCard."
+        target: robot
         dialogues:
           robot:
             - text:
-                en: "Congrats on getting your QCard. Here is your tasty croissant."
+                en: "Congrats on getting your QCard. Here is your tasty QCroissant."
               set: ['quest.cafe.done', 'pnt.love.cafe']
   delivery:
     npc: citizenPunk
@@ -590,50 +611,61 @@ quests:
                         en: "When the states of two objects are connected, even when separated by vast distances."
                       thenText:
                         en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know something about what's in my friend's box. Thanks for your help!"
-                      set: [ 'quest.delivery.done' ]
+                      then: cupcake
+            - id: cupcake
+              type: sequence
+              items:
+                - text:
+                   en: "In this case, we got two beautiful pink cupcakes, one with strawberry filling, one with tuna fish. As soon as I bite into mine, I'll know the fate of my friend too."
+                - text:
+                    en: "Do you want to take the first bite?"
+                  responses:
+                    - text:
+                        en: "No, I'd like to avoid the risk of tuna fish cupcake..."
+                      thenText: "*munch* Your loss! This strawberry cupcake is delicious."
+                      set: [ 'quest.delivery.done', 'pnt.love.delivery' ]
+                    - text:
+                        en: "Yes, please!"
+                      thenText: "From the look on your face, seems like we got lucky! A delicious strawberry cupcake for us, and my friend should be munching on tuna any minute now..."
+                      set: [ 'quest.delivery.done', 'pnt.love.delivery' ]
 ending:
   dialogue:
     - type: sequence
       items:
-        - cond: 'COUNT("op.favor") >= 3'
-          class: 'citizensEmpowered'
-          type: sequence
-          items:
-            - text:
-                en: 'You found out about three types of mathematical research data. :love:'
-        - cond: 'COUNT("op.favor") < 3'
-          type: sequence
-          items:
-            - text:
-                en: "You did not answer Felicia's questions."
         - cond: 'quest.cafe.done'
           class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
-                en: 'You created an ORCID iD and a Zenodo account. :love:'
-        - cond: '^found.cafe.orcid & ^found.cafe.zenodo'
-          type: sequence
-          items:
-            - text:
-                en: "You did not complete Muhammad's quest."
-        - cond: 'found.cafe.orcid & ^found.cafe.zenodo'
+                en: 'You learned about encryption :love:'
+        - cond: '^quest.cafe.done'
           class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
-                en: "You created an ORCID iD but not a Zenodo account."
+                en: 'You did not learn about encryption.'
         - cond: 'quest.delivery.done'
           class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
-                en: "You helped Carla to get the code from Muhammad. :love:"
+                en: "You learned about Grover's search :love:"
         - cond: '^quest.delivery.done'
           type: sequence
           items:
             - text:
-                en: "You did not complete Carla's quest."
+                en: "You did not learn about Grover's search."
+        - cond: 'quest.simulation.done'
+          class: 'citizensEmpowered'
+          type: sequence
+          items:
+            - text:
+                en: "You learned how quantum computers are unique and powerful. :love:"
+        - cond: '^quest.simulation.done'
+          type: sequence
+          items:
+            - text:
+                en: "You did not learn about how quantum computers are unique and powerful."
         - cond: 'COUNT("op.quest") = 0'
           type: sequence
           items:
@@ -654,30 +686,3 @@ ending:
           items:
             - text:
                 en: "Congratulations, you completed all of the three quests! :love::love::love:"
-        - cond: 'COUNT("op.love") = 0'
-          text:
-            en: "You didn't find any of the eight :love: hidden in the dialogues."
-        - cond: 'COUNT("op.love") = 1'
-          text:
-            en: "You found one of the eight :love: hidden in the dialogues."
-        - cond: 'COUNT("op.love") = 2'
-          text:
-            en: "You found two of the eight :love: hidden in the dialogues."
-        - cond: 'COUNT("op.love") = 3'
-          text:
-            en: "You found three of the eight :love: hidden in the dialogues."
-        - cond: 'COUNT("op.love") = 4'
-          text:
-            en: "You found four of the eight :love: hidden in the dialogues."
-        - cond: 'COUNT("op.love") = 5'
-          text:
-            en: "You found five of the eight :love: hidden in the dialogues."
-        - cond: 'COUNT("op.love") = 6'
-          text:
-            en: "You found six of the eight :love: hidden in the dialogues."
-        - cond: 'COUNT("op.love") = 7'
-          text:
-            en: "You found seven of the eight :love: hidden in the dialogues."
-        - cond: 'COUNT("op.love") = 8'
-          text:
-            en: "You found all of the eight :love: hidden in the dialogues."
