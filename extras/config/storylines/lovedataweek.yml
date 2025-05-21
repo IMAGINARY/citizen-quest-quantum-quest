@@ -347,7 +347,6 @@ quests:
                         en: "A recipe which takes qubits and transforms their states."
                       thenText:
                         en: "Yes, nice analogy! I can tell you a bit more about the technical details."
-                      set: ['quest.computer.done' , 'pnt.love.computer']
                       then: gates-explanation
                     - text:
                         en: "When you spin around really fast."
@@ -366,12 +365,12 @@ quests:
                         en: "How does the 'NOT' gate affect a qubit in superposition state?"
                       thenText:
                         en: "Great question! We can use a different kind of gate to handle the superposition state which doesn't exist in classical computing."
-                        then: quantum-gates
+                      then: quantum-gates
                     - text:
                         en: "Like flipping a coin?"
                       thenText:
                         en: "Yes! But qubits can be in more than just a 'heads' or 'tails' state like a coin, remember superposition?"
-                        then: quantum-gates     
+                      then: quantum-gates     
             - id: quantum-gates             
               type: sequence
               items:
