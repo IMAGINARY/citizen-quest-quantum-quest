@@ -29,16 +29,16 @@ npcs:
           - text:
               en: "I love working here because I'm surrounded by my favorite snacks all day."
           - text:
-              en: "QCroissant QCroissant QCroissant"
+              en: "Qroissant Qroissant Qroissant"
           - text:
-              en: "QCoffee QCoffee QCoffee"
+              en: "Qoffee Qoffee Qoffee"
   citizenBraid:
     name:
       en: "Local Student"
     spawn: { x: 311, y: 538 }
     dialogue:
       - text:
-          en: "I'm passionate about quantum computing and want to fill my brain to the brim with knowledge!"
+          en: "I want to fill my brain with knowledge!"
   citizenPunk:
     name:
       en: "Post-Office Clerk"
@@ -56,7 +56,7 @@ npcs:
           en: "You can trust me with your money."
   citizenBlue:
     name:
-      en: "Mysterious Wise Person"
+      en: "Wise Person"
     type: citizenAqua
     spawn: { x: 435, y: 538 }
     dialogue:
@@ -132,7 +132,7 @@ quests:
                     en: "Thank you!"
                   set: [ 'quest.simulation.active' ]
     stages:
-      - cond: '^visit.computer.center & ^understood.grover.search & ^passed.gate.quiz & ^passed.circuit.quiz & ^passed.second.circuit.quiz'
+      - cond: '^visit.computer.center & ^qubit.intro & ^learn.superposition'
         prompt:
           en: "Visit the computer center."
         target: mayor
@@ -141,209 +141,268 @@ quests:
             - type: sequence
               items:
                 - text:
-                    en: "A frozen computer with just one extra atom? I've seen this before. You need a quantum computer to efficiently simulate a quantum system."
+                    en: "Ah yes, classical computers struggle to simulate quantum systems. As the system grows, the complexity increases at an exponential rate."
                 - text:
-                    en: "An extra atom in a classical computer simulation could add years to the run time, but only a second longer on a quantum computer."
+                    en: "This is because information in a classical computer is stored and processed using billions of tiny switches called bits that can each be set to on or off (0 or 1)."
                 - text:
-                    en: "It's pretty powerful stuff, exponential speedup. Do you want to try it out?"
+                    en: "But, a qubit (the basic unit of information in a quantum computer) doesn't have this constraint, it can be in a superposition of 0 and 1 at the same time."
                   responses:
                     - text:
-                        en: "No, that sounds scary."
+                        en: "How can it be 0 and 1 at the same time?"
                       thenText:
-                        en: "I understand, this stuff is intimidating. Come back later if you change your mind."
+                        en: "You seem like a smart egg. Do a bit of research, I bet you can figure it out."
+                      set: ['visit.computer.center'] 
                     - text:
-                        en: "Yes, I want to use the shiniest new tech you have."
+                        en: "I don't believe you..."
                       thenText:
-                        en: "Alright, but this is delicate stuff, if you want me to trust you with this tech, I need to know you know what you're working with."
+                        en: "That's fair! Try doing your own research to convince yourself."
                       set: ['visit.computer.center']
-      - cond: 'visit.computer.center & ^learn.about.gates & ^passed.gate.quiz & ^passed.circuit.quiz & ^passed.second.circuit.quiz'
+      - cond: 'visit.computer.center & ^qubit.intro & ^learn.superposition'
         prompt:
-          en: "Learn about the basic building blocks of quantum computers."
+          en: "Find out what superposition is."
         target: citizenBlue
         dialogues:
           citizenBlue:
             - type: sequence
               items:
                 - text:
-                    en: "You look lost, can I help?"
+                    en: "You want to know about superposition? Certainly! The state of a qubit is encoded by two numbers, let's call them A and B."
+                - text:
+                    en: "When the qubit is measured, it has an A% chance of collapsing to 0, and B% chance of collapsing to 1."
+                - text:
+                    en: "But until we measure it, nobody knows the state, and that's what makes it so powerful."
                   responses:
                     - text:
-                        en: "Can you teach me a magic trick?"
+                        en: "Sounds impossible."
                       thenText:
-                        en: "I can do a handstand, does that help?"
+                        en: "I understand your doubt! But I promise it's real. Try asking the computer technician to convince you."
+                      set: [ 'qubit.intro' ]
                     - text:
-                        en: "I want to know how a quantum computer differs from a classical one, like my laptop or cell phone."
-                      then: classical-quiz  
-            - id: classical-quiz  
-              type: sequence
-              items:
-                - text:
-                   en: "I can help you, if you first tell me how a classical computer works."
-                  responses:
-                    - text:
-                        en: "It's made of billions of tiny switches that can be either off or on"
-                      thenText: 
-                        en: "True! So, information is recorded as sequences of 0's and 1's."
-                      then: quantum-basic-explanation
-                    - text:
-                        en: "A tiny hamster runs on a wheel inside your laptop. The faster it spins, the faster your Google loads."
-            - id: quantum-basic-explanation
-              type: sequence
-              items:
-                - text:
-                    en: "The basic building blocks of quantum computers, called 'qubits', can be set to 0 or 1, but can also exist in an in-between state, called 'superposition'."
-                - text:
-                    en: "In superposition, a qubit has some probability of being 1 and some probability of being 0 when you measure it."
-                - text:
-                    en: "We can pass our qubits through operators called 'gates' to change this probability distribution."
-                  set: [ 'learn.about.gates' ]
-      - cond: 'visit.computer.center & learn.about.gates & ^passed.gate.quiz & ^passed.circuit.quiz & ^passed.second.circuit.quiz'
+                        en: "How could that be useful?"
+                      thenText:
+                        en: "I understand your doubt! But I promise it's real. Try asking the computer technician to convince you."
+                      set: [ 'qubit.intro' ]
+      - cond: 'visit.computer.center & qubit.intro & ^learn.superposition'
         prompt:
-          en: "Prove your new knowledge to the computer technician."
+          en: "Question the computer technician."
         target: mayor
         dialogues:
           mayor:
             - type: sequence
               items:
                 - text:
-                    en: "So, pop-quiz, what does a quantum gate do?"
+                    en: "Did you learn a bit about superposition?"
                   responses:
                     - text:
-                        en: "Opens the door to great wonders."
+                        en: "Yes, it's when you wear a cape and stand in the way of evil."
                       thenText:
-                        en: "True, and very poetic, but not the answer I'm looking for..."
+                        en: "I'm not sure about that, but I can tell you why I think it's important."
+                      then: quantum-system-explanation
                     - text:
-                        en: "Changes the probability of a qubit measuring 0 or 1"
+                        en: "Yes, it's when a qubit exists in a combined state of 0 and 1 at the same time, and has some chance of collapsing to one or the other when measured."
                       thenText:
-                        en: "Nice! I have my lunch break now, but if you come back and tell me how to build a quantum circuit, I'll let you try this out."
-                      set: [ 'passed.gate.quiz' ]
-                    - text:
-                        en: "Flips all your 0's to 1's"
-                      thenText: 
-                        en: "Close, but not quite!"
-      - cond: 'visit.computer.center & learn.about.gates & passed.gate.quiz & ^passed.circuit.quiz & ^passed.second.circuit.quiz'
-        prompt:
-          en: "Learn how to build a quantum circuit."
-        target: citizenBlue
-        dialogues:
-          citizenBlue:
-            - type: sequence
-              items:
-                - text:
-                    en: "Back again so soon! Eager to seek more knowledge?"
-                  responses:
-                    - text:
-                        en: "No, I'm just taking a walk."
-                      thenText:
-                        en: "It's a beautiful day for a walk."
-                    - text:
-                        en: "Yes, how can I build a quantum circuit?"
-                      thenText:
-                        en: "Ah! We need to set up a series of gates to increase our chances of measuring a desired state. Let me tell you about two important gates, named X and H."
-                      then: gate-explanation
-            - id: gate-explanation
+                        en: "Nice! But you still seem doubtful. Let me give you a bit more context."
+                      then: quantum-system-explanation
+            - id: quantum-system-explanation
               type: sequence
               items:
                 - text:
-                    en: "The X gate, nicknamed the 'NOT' gate, flips our probabilities. So, if we had a qubit (or unfair coin) with 25% probability of measuring 0, and 75% probability of measuring 1, those would swap."
+                    en: "A system of 4 quantum particles has a state described by 16 numbers. 5 particles, 32 numbers.... 6 particles, 64 numbers... This is exponential growth."
                 - text:
-                    en: "The H gate, named after Jacques Hadamard, creates a superposition state out of a 0 or a 1. And, fun fact, two H gates cancel out, bringing you back to the state you started with."
+                    en: "If your system had 50 particles, you would need over a quadrillion bits in a classical computer just to describe one state!"
                 - text:
-                    en: "So, let's play a game. This coin in my hand is tails up. I'll give it to you if it lands on heads. Which gate do you want me to throw it through?"
+                    en: "But a quantum computer can represent all of these quadrillion states using just 50 qubits in superposition. Pretty cool, right?"
                   responses:
                     - text:
-                        en: "The NOT gate, of course!"
-                      thenText: 
-                        en: "Nice, simple and clear."
-                      then: next-gate
+                        en: "Indeed, very cool, I'll tell my friend about this right away."
+                      set: [ 'learn.superposition' ]
                     - text:
-                        en: "Throw it away, I don't need it."
-                      thenText: 
-                        en: "Alright, more coins for me then."
-                    - text:
-                        en: "The Hadamard gate sounds like it could help me out."
-                      thenText: 
-                        en: "Certainly, but in this case, I think the NOT gate is your best bet."
-            - id: next-gate
-              type: sequence
-              items:
-                - text:
-                    en: "Let's try a harder question now. The coin in my hand is heads up. I'll give it to you if it lands on heads."
-                - text:
-                    en: "But this time, I already threw it through the Hadamard gate, so it's spinning in superposition, not 0, not 1."
-                - text:
-                    en: "Which gate do you want to throw it through?"
-                  responses:
-                    - text:
-                        en: "I'll stick with the NOT gate, that worked last time."
-                      thenText: 
-                        en: "I don't think the NOT gate will help you out here."
-                    - text:
-                        en: "The Hadamard gate, for sure."
-                      thenText: 
-                        en: "Nice, it's back to it's initial state, heads! I think you've got the hang of gates now."
-                      set: [ 'passed.circuit.quiz' ]
-                      # set: ['quest.simulation.done']
-                    - text:
-                        en: "uhhhh I ate the coin..."
-                      thenText: 
-                        en: "uhhh spit it out?"
-      - cond: 'visit.computer.center & learn.about.gates & passed.gate.quiz & passed.circuit.quiz & ^passed.second.circuit.quiz'
-        prompt:
-          en: "Return to computer technician with new quantum circuit knowledge."
-        target: mayor
-        dialogues:
-          mayor:
-            - type: sequence
-              items:
-                - text:
-                    en: "So, you're feeling ready to handle a quantum computer?"
-                - text:
-                    en: "Can you tell me, if I start with a tails up coin (or a qubit in state 0), and hit it with HHX, what will I get?"
-                  responses:
-                    - text:
-                        en: "10€"
+                        en: "I think I'm cooler."
                       thenText:
-                        en: "I'm not giving you 10€."
-                    - text:
-                        en: "Heads up."
-                      thenText: 
-                        en: "Nice! You know your stuff. I trust you to use this quantum computer."
-                      set: ['passed.second.circuit.quiz']
-                    - text:
-                        en: "Superposition."
-                      thenText: 
-                          en: "Hmm, not quite." 
-      - cond: 'visit.computer.center & learn.about.gates & passed.gate.quiz & passed.circuit.quiz & passed.second.circuit.quiz'
+                        en: "I think you're cool too. But maybe this could be useful to your friend?"
+                      set: [ 'learn.superposition' ]
+      - cond: 'visit.computer.center & qubit.intro & learn.superposition'
         prompt:
-          en: "Tell the student you have a solution for their frozen simulation."
+          en: "Propose using a quantum computer to run the simulation."
         target: citizenBraid
         dialogues:
           citizenBraid:
             - type: sequence
               items:
                 - text:
-                    en: "You're back! What did you learn?"
+                    en: "You're back! Do you have an idea for how to fix my simulation?"
                   responses:
                     - text:
-                        en: "A magic trick."
+                        en: "Turn it off and on again."
                       thenText:
-                        en: "Oh, ok, but my simulation is still frozen..."
+                        en: "Oh... I tried that already, but thanks for trying..."
                     - text:
-                        en: "A quantum computer can more efficiently simulate a quantum system."
-                      then: final-offer
-            - id: final-offer
+                        en: "Use a quantum computer, it will be far more efficient at simulating a quantum system."
+                      thenText:
+                        en: "Oh fantastic! Thank you for your help!"
+                      set: ['quest.simulation.done', 'pnt.love.simulation']
+
+  computer:
+    npc: citizenBraid
+    mood: interrogation
+    required: simulation
+    available:
+      dialogue:
+        - type: sequence
+          items:
+            - text:
+                en: "You taught me a quantum computer would be perfect for my simulation, but I don't have access to one, can you help me?"
+              responses:
+                - text:
+                    en: "Sure, I think I know who to ask."
+                  thenText:
+                    en: "Thank you!"
+                  set: [ 'quest.computer.active' ]
+                - text:
+                    en: "No, sorry, I'm very busy trying to buy a Qroissant right now."
+                  thenText:
+                    en: "I understand, that sounds urgent, Qroissants are essential to well-being."
+    stages:
+      - cond: '^found.computer & ^circuit.basic & ^circuit.explanation'
+        prompt:
+          en: "Find a quantum computer."
+        target: mayor
+        dialogues:
+          mayor:
+            - type: sequence
+              items:
+                - text:
+                    en: "You want to run your friend's simulation on my quantum computer?"
+                - text:
+                    en: "Sure, but you'll need to prove you're qualified to operate this tech. Come back when you can tell me about quantum circuits."
+                  set: ['found.computer']
+      - cond: 'found.computer & ^circuit.basic & ^circuit.explanation'
+        prompt:
+          en: "Learn about quantum circuits."
+        target: citizenBlue
+        dialogues:
+          citizenBlue:
+            - type: sequence
+              items:
+                - text: 
+                    en: "Circuits? Certainly, I've got some knowledge to share. A circuit is like a recipe."
+                - text:
+                    en: "It takes ingredients, puts them through a series of steps, and gives you a final dish."
+                - text:
+                    en: "The Qafé has fantastic recipes for tasty Qroissants and Qookies, I bet they could help explain this."
+                  set: ['circuit.basic']
+      - cond: 'found.computer & circuit.basic & ^circuit.explanation'
+        prompt:
+          en: "Ask baker about how circuits are like recipes."
+        target: robot
+        dialogues:
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "Oh I love circuit diagrams! They remind me of my daily early morning baking routine."
+                - text:
+                    en: "First, I gather my ingredients, flour, sugar, butter, chocolate chips..."
+                  responses:
+                    - text:
+                        en: "This is making me hungry, can I have a Qookie?"
+                      then: cookie-analogy
+                    - text:
+                        en: "What would the ingredients be in a quantum computer?"
+                      then: cookie-analogy
+            - id: cookie-analogy
               type: sequence
               items:
                 - text:
-                    en: "That makes sense, how can I use one?"
+                    en: "Haha this explanation is making me hungry, let's both have a Qookie."
+                - text:
+                    en: "In a quantum computer, these ingredients would be qubits."
+                - text:
+                    en: "Then, beating the eggs, folding in the flour, that's all replaced with operations we call 'gates.'"
+                - text:
+                    en: "And in the end, by passing our qubits through a series of gates, we have transformed our original ingredients into a desirable Qookie! --uh, I mean, a mathematical ouput..."
                   responses:
                     - text:
-                        en: "I can go with you tomorrow afternoon. I learned all about building quantum circuits."
-                      set: ['quest.simulation.done', 'pnt.love.simulation']
+                        en: "What kind of transformations happen inside a quantum computer?"
+                      thenText:
+                        en: "Ah, great question, I'm not an expert on quantum gates, but I think there's one nearby who can tell you."
+                      set: ['circuit.explanation']
                     - text:
-                        en: "There is a wise wizard in the forest who can teach you."
-                      set: ['quest.simulation.done', 'pnt.love.simulation']
+                        en: "Can I have another Qookie?"
+                      thenText:
+                        en: "Ha I'm going to limit you to one free Qookie today, but if you want to learn more about quantum gates and circuits, I think there's an expert nearby."
+                      set: ['circuit.explanation']
+      - cond: 'found.computer & circuit.basic & circuit.explanation'
+        prompt:
+          en: "Ask an expert about quantum gates"
+        target: mayor
+        dialogues:
+          mayor:
+            - type: sequence
+              items:
+                - text:
+                    en: "You're back! Can you tell me what a quantum circuit is?"
+                  responses:
+                    - text:
+                        en: "A recipe which takes qubits and transforms their states."
+                      thenText:
+                        en: "Yes, nice analogy! I can tell you a bit more about the technical details."
+                      set: ['quest.computer.done' , 'pnt.love.computer']
+                      # then: gates-explanation
+                    - text:
+                        en: "When you spin around really fast."
+                      thenText: 
+                        en: "Um, that doesn't sound quite right, but maybe I can explain an example to help you understand."
+                      # then: gates-explanation
+            # - id: gates-explanation
+            #   type: sequence
+            #   items:
+            #     - text:
+            #         en: "One gate that we use in both classical and quantum computing is called the 'NOT' gate"
+            #     - text:
+            #         en: "When we pass a bit, or a qubit, through this gate, it switches the state, from 0 to 1, or from 1 to 0."
+            #         responses:
+            #           - text:
+            #               en: "How does the 'NOT' gate affect a qubit in superposition state?"
+            #             thenText:
+            #               en: "Great question! We can use a different kind of gate to handle the superposition state which doesn't exist in classical computing."
+            #               then: quantum-gates
+            #           - text:
+            #               en: "Like flipping a coin?"
+            #             thenText:
+            #               en: "Yes! But qubits can be in more than just a 'heads' or 'tails' state like a coin, remember superposition?"
+            #               then: quantum-gates     
+            # - id: quantum-gates             
+            #   type: sequence
+            #   items:
+            #     - text:
+            #         en: "The 'Hadamard' gate takes a qubit in a classical 0 or 1 state, and changes it to a superposition of both states, where the qubit has equal probability of being measured as 0 or 1."
+            #     - text:
+            #         en: "And, if we apply this gate twice, we get back to where we started."
+            #     - text:
+            #         en: "So, if we had a qubit already in superposition, and apply the Hadamard gate, now we have a basic state that we can apply the NOT gate to."
+            #     - text:
+            #         en: "Before I let you use this quantum commputer, tell me, if I start with a qubit in a 0 state, and apply Hadamard, Hadamard, NOT, what will I get?"
+            #       responses:
+            #         - text:
+            #             en: "A qubit in state 1"
+            #           thenText:
+            #             en: "Nice! Alright, you can run your friend's simulation on my machine. Good luck!"    
+            #           set: ['quest.computer.done']
+            #         - text:
+            #             en: "100€"
+            #           thenText:
+            #             en: "Not quite, we'll land in state 1. But oh- what's this? I don't usually accept bribes, but... Ok, you can run your friend's simulation on my machine. Good luck!"
+            #           set: ['quest.computer.done']
+            #         - text:
+            #             en: "A qubit in state 0, same as the start."
+            #           thenText:
+            #             en: "Not quite, we'll land in state 1. But oh- what's this? A Qookie? I don't usually accept bribes, but this is so tasty... Ok, you can run your friend's simulation on my machine. Good luck!"
+            #           set: ['quest.computer.done']
+
+
+          
+
   cafe:
     npc: robot
     mood: exclamation
@@ -352,7 +411,7 @@ quests:
         - type: sequence
           items:
             - text:
-                en: "Welcome to our QCafe, we have lots of tasty QCroissants. We only accept QCards for payment. I see you don't have one, would you like to get one to pay for your QCroissant?"
+                en: "Welcome to our Qafé, we have lots of tasty Qroissants. We only accept QCards for payment. I see you don't have one, would you like to get one to pay for your Qroissant?"
               responses:
                 - text:
                     en: "Yes, I want a QCard, where can I get one?"
@@ -385,7 +444,8 @@ quests:
                       then: quiz-encryption
                     - text:
                         en: "I don't trust banks, I would rather forage for mushrooms."
-                      thenText: "I like mushrooms too, but I also love a QCroissant every once in a while. I'll be here if you change your mind."
+                      thenText: 
+                        en: "I like mushrooms too, but I also love a Qroissant every once in a while. I'll be here if you change your mind."
             - id: encryption
               type: first
               items:
@@ -439,9 +499,9 @@ quests:
                   en: "I know a lot about the quantum world, are you seeking knowledge?"
                 responses:
                   - text:
-                      en: I'm looking for a QCroissant, I'm very hungry, do you have one?
+                      en: I'm looking for a Qroissant, I'm very hungry, do you have one?
                     thenText:
-                      en: "Not in my pocket, but there are freshly baked QCroissants every day down the road!"
+                      en: "Not in my pocket, but there are freshly baked Qroissants every day down the road!"
                   - text:
                       en: "Yes! Can you tell me about the algorithm that broke classical encryption?"
                     then: shor-explanation
@@ -475,12 +535,12 @@ quests:
                   set: ['got.qcard']
       - cond: 'learned.encryption & learned.shors.algorithm & got.qcard'
         prompt:
-          en: "Buy your QCroissant with a QCard."
+          en: "Buy your Qroissant with a QCard."
         target: robot
         dialogues:
           robot:
             - text:
-                en: "Congrats on getting your QCard. Here is your tasty QCroissant."
+                en: "Congrats on getting your QCard. Here is your tasty Qroissant."
               set: ['quest.cafe.done', 'pnt.love.cafe']
   delivery:
     npc: citizenPunk
@@ -536,9 +596,9 @@ quests:
                     en: "Hey there, you look stressed, can I help you?"
                   responses:
                     - text:
-                        en: "Yes, can I get a back massage?"
+                        en: "Yes, can I get a Qoffee?"
                       thenText:
-                        en: "Sadly, I don't have that capacity."
+                        en: "I prefer tea, but I'm sure the Qafé down the street has plenty of Qoffee!"
                     - text:
                         en: "Yes, I'm trying to learn about a search algorithm."
                       then: grover-explanation  
@@ -566,19 +626,23 @@ quests:
                     - text:
                         en: "A smart dog sniffing the package and leading us the right way."
                       thenText:
-                        en: "I like this idea, can you find a dog nearby?"
+                        en: "I love this idea, but I'm terribly allergic..."
+                      then: quiz-grover
                     - text:
                         en: "Shouting the name very loud."
                       thenText:
                         en: "...please don't, my ears are very sensitive."
+                      then: quiz-grover
                     - text:
                         en: "A quantum algorithm called Grover's Search"
+                      thenText:
+                        en: "Nice! Seems like you did your research."
                       then: quiz-grover
             - id: quiz-grover
               type: first
               items:
                 - text:
-                    en: "Oooh, sounds like you did your research, can you tell me how it works?"
+                    en: "I think Grover's search would be a great solution. Just to double-check, can you tell me how it works?"
                   responses:
                     - text:
                         en: "It checks every option simultaneously."
@@ -607,10 +671,11 @@ quests:
                         en: "When a ball of yarn has lots of knots in it."
                       thenText:
                         en: "Haha, I hope that's not what's in my box..."
+                      then: cupcake
                     - text:
                         en: "When the states of two objects are connected, even when separated by vast distances."
                       thenText:
-                        en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know something about what's in my friend's box. Thanks for your help!"
+                        en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know something about what's in my friend's box."
                       then: cupcake
             - id: cupcake
               type: sequence
@@ -621,12 +686,14 @@ quests:
                     en: "Do you want to take the first bite?"
                   responses:
                     - text:
-                        en: "No, I'd like to avoid the risk of tuna fish cupcake..."
-                      thenText: "*munch* Your loss! This strawberry cupcake is delicious."
+                        en: "No, I'd like to avoid the risk of a tuna fish cupcake..."
+                      thenText: 
+                        en: "*munch* Your loss! This strawberry cupcake is delicious."
                       set: [ 'quest.delivery.done', 'pnt.love.delivery' ]
                     - text:
                         en: "Yes, please!"
-                      thenText: "From the look on your face, seems like we got lucky! A delicious strawberry cupcake for us, and my friend should be munching on tuna any minute now..."
+                      thenText: 
+                        en: "From the look on your face, seems like we got lucky! A delicious strawberry cupcake for us, and my friend should be munching on tuna any minute now..."
                       set: [ 'quest.delivery.done', 'pnt.love.delivery' ]
 ending:
   dialogue:
@@ -637,13 +704,13 @@ ending:
           type: sequence
           items:
             - text:
-                en: 'You learned about encryption :love:'
+                en: "You learned about encryption and Shor's Algorithm :love:"
         - cond: '^quest.cafe.done'
           class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
-                en: 'You did not learn about encryption.'
+                en: "You did not learn about encryption and Shor's Algorithm."
         - cond: 'quest.delivery.done'
           class: 'citizensEmpowered'
           type: sequence
@@ -660,29 +727,20 @@ ending:
           type: sequence
           items:
             - text:
-                en: "You learned how quantum computers are unique and powerful. :love:"
+                en: "You learned how quantum computers differ from classical computers. :love:"
         - cond: '^quest.simulation.done'
           type: sequence
           items:
             - text:
-                en: "You did not learn about how quantum computers are unique and powerful."
-        - cond: 'COUNT("op.quest") = 0'
+                en: "You did not learn how classical and quantum computers differ."
+        - cond: 'quest.computer.done'
+          class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
-                en: "You did not complete any of the three quests. Try again!"
-        - cond: 'COUNT("op.quest") = 1'
+                en: "You learned how quantum computers process information. :love:"
+        - cond: '^quest.computer.done'
           type: sequence
           items:
             - text:
-                en: "You completed one of the three quests :love:."
-        - cond: 'COUNT("op.quest") = 2'
-          type: sequence
-          items:
-            - text:
-                en: "You completed two of the three quests :love::love:."
-        - cond: 'COUNT("op.quest") = 3'
-          type: sequence
-          items:
-            - text:
-                en: "Congratulations, you completed all of the three quests! :love::love::love:"
+                en: "You did not learn about how quantum computers process information."
