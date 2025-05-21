@@ -348,61 +348,57 @@ quests:
                       thenText:
                         en: "Yes, nice analogy! I can tell you a bit more about the technical details."
                       set: ['quest.computer.done' , 'pnt.love.computer']
-                      # then: gates-explanation
+                      then: gates-explanation
                     - text:
                         en: "When you spin around really fast."
                       thenText: 
                         en: "Um, that doesn't sound quite right, but maybe I can explain an example to help you understand."
-                      # then: gates-explanation
-            # - id: gates-explanation
-            #   type: sequence
-            #   items:
-            #     - text:
-            #         en: "One gate that we use in both classical and quantum computing is called the 'NOT' gate"
-            #     - text:
-            #         en: "When we pass a bit, or a qubit, through this gate, it switches the state, from 0 to 1, or from 1 to 0."
-            #         responses:
-            #           - text:
-            #               en: "How does the 'NOT' gate affect a qubit in superposition state?"
-            #             thenText:
-            #               en: "Great question! We can use a different kind of gate to handle the superposition state which doesn't exist in classical computing."
-            #               then: quantum-gates
-            #           - text:
-            #               en: "Like flipping a coin?"
-            #             thenText:
-            #               en: "Yes! But qubits can be in more than just a 'heads' or 'tails' state like a coin, remember superposition?"
-            #               then: quantum-gates     
-            # - id: quantum-gates             
-            #   type: sequence
-            #   items:
-            #     - text:
-            #         en: "The 'Hadamard' gate takes a qubit in a classical 0 or 1 state, and changes it to a superposition of both states, where the qubit has equal probability of being measured as 0 or 1."
-            #     - text:
-            #         en: "And, if we apply this gate twice, we get back to where we started."
-            #     - text:
-            #         en: "So, if we had a qubit already in superposition, and apply the Hadamard gate, now we have a basic state that we can apply the NOT gate to."
-            #     - text:
-            #         en: "Before I let you use this quantum commputer, tell me, if I start with a qubit in a 0 state, and apply Hadamard, Hadamard, NOT, what will I get?"
-            #       responses:
-            #         - text:
-            #             en: "A qubit in state 1"
-            #           thenText:
-            #             en: "Nice! Alright, you can run your friend's simulation on my machine. Good luck!"    
-            #           set: ['quest.computer.done']
-            #         - text:
-            #             en: "100€"
-            #           thenText:
-            #             en: "Not quite, we'll land in state 1. But oh- what's this? I don't usually accept bribes, but... Ok, you can run your friend's simulation on my machine. Good luck!"
-            #           set: ['quest.computer.done']
-            #         - text:
-            #             en: "A qubit in state 0, same as the start."
-            #           thenText:
-            #             en: "Not quite, we'll land in state 1. But oh- what's this? A Qookie? I don't usually accept bribes, but this is so tasty... Ok, you can run your friend's simulation on my machine. Good luck!"
-            #           set: ['quest.computer.done']
-
-
-          
-
+                      then: gates-explanation
+            - id: gates-explanation
+              type: sequence
+              items:
+                - text:
+                    en: "One gate that we use in both classical and quantum computing is called the 'NOT' gate"
+                - text:
+                    en: "When we pass a bit, or a qubit, through this gate, it switches the state, from 0 to 1, or from 1 to 0."
+                  responses:
+                    - text:
+                        en: "How does the 'NOT' gate affect a qubit in superposition state?"
+                      thenText:
+                        en: "Great question! We can use a different kind of gate to handle the superposition state which doesn't exist in classical computing."
+                        then: quantum-gates
+                    - text:
+                        en: "Like flipping a coin?"
+                      thenText:
+                        en: "Yes! But qubits can be in more than just a 'heads' or 'tails' state like a coin, remember superposition?"
+                        then: quantum-gates     
+            - id: quantum-gates             
+              type: sequence
+              items:
+                - text:
+                    en: "The 'Hadamard' gate takes a qubit in a classical 0 or 1 state, and changes it to a superposition of both states, where the qubit has equal probability of being measured as 0 or 1."
+                - text:
+                    en: "And, if we apply this gate twice, we get back to where we started."
+                - text:
+                    en: "So, if we had a qubit already in superposition, and apply the Hadamard gate, now we have a basic state that we can apply the NOT gate to."
+                - text:
+                    en: "Before I let you use this quantum commputer, tell me, if I start with a qubit in a 0 state, and apply Hadamard, Hadamard, NOT, what will I get?"
+                  responses:
+                    - text:
+                        en: "A qubit in state 1"
+                      thenText:
+                        en: "Nice! Alright, you can run your friend's simulation on my machine. Good luck!"    
+                      set: ['quest.computer.done']
+                    - text:
+                        en: "100€"
+                      thenText:
+                        en: "Not quite, we'll land in state 1. But oh- what's this? I don't usually accept bribes, but... Ok, you can run your friend's simulation on my machine. Good luck!"
+                      set: ['quest.computer.done']
+                    - text:
+                        en: "A qubit in state 0, same as the start."
+                      thenText:
+                        en: "Not quite, we'll land in state 1. But oh- what's this? A Qookie? I don't usually accept bribes, but this is so tasty... Ok, you can run your friend's simulation on my machine. Good luck!"
+                      set: ['quest.computer.done']
   cafe:
     npc: robot
     mood: exclamation
