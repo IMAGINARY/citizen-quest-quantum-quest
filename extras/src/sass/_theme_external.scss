@@ -1,11 +1,17 @@
 .title-overlay {
   background-color: #2b2b2b;
-  background-image: url('../../static/ui/intro.svg');
+  background-image: url('../../static/ui/quantum-splash.svg');
   background-size: contain;
   background-position: center center;
 
   .logo {
     display: none;
+  }
+
+  .press-start {
+    .frame {
+      background-color: #1d1d1b;
+    }
   }
 }
 
