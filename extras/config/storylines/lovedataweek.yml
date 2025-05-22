@@ -176,7 +176,7 @@ quests:
                 - text:
                     en: "You want to know about superposition? Certainly! The state of a qubit is encoded by two numbers, let's call them A and B."
                 - text:
-                    en: "When the qubit is measured, it has an A% chance of collapsing to 0, and B% chance of collapsing to 1."
+                    en: "When the qubit is measured, it has an A^2% chance of collapsing to 0, and B^2% chance of collapsing to 1."
                 - text:
                     en: "But until we measure it, nobody knows the state."
                   responses:
@@ -644,7 +644,7 @@ quests:
                         en: "A lot of people think that! But it actually works a little differently..."
                         then: quiz-grover
                     - text:
-                        en: "It takes a shorter path through the state space than a classical computer."
+                        en: "It finds a shorter path there, like a bird flying faster than a car winding through streets."
                       thenText:
                         en: "Nice! I'll run the search for you now. The recipient of your package should come down in a second."
                       set: [ 'passed.grover.search.quiz' ]
