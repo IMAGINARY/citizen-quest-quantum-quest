@@ -151,7 +151,7 @@ quests:
                 - text:
                     en: "Ah yes, classical computers struggle to simulate quantum systems. As the system grows, the complexity increases at an exponential rate."
                 - text:
-                    en: "This is because information in a classical computer is stored and processed using billions of tiny switches called bits that can each be set to on or off (0 or 1)."
+                    en: "Let's understand the difference between a quantum and a classical computer. In a classical computer information is stored and processed using billions of tiny switches called bits that can each be set to on or off (0 or 1)."
                 - text:
                     en: "But, a qubit (the basic unit of information in a quantum computer) doesn't have this constraint, it can be in a superposition of 0 and 1 at the same time."
                   responses:
@@ -178,7 +178,7 @@ quests:
                 - text:
                     en: "When the qubit is measured, it has an A% chance of collapsing to 0, and B% chance of collapsing to 1."
                 - text:
-                    en: "But until we measure it, nobody knows the state, and that's what makes it so powerful."
+                    en: "But until we measure it, nobody knows the state."
                   responses:
                     - text:
                         en: "Sounds impossible."
@@ -370,9 +370,7 @@ quests:
                     en: "When we pass a bit, or a qubit, through this gate, it switches the state, from 0 to 1, or from 1 to 0."
                   responses:
                     - text:
-                        en: "How does the 'NOT' gate affect a qubit in superposition state?"
-                      thenText:
-                        en: "Great question! We can use a different kind of gate to handle the superposition state which doesn't exist in classical computing."
+                        en: "Can we use a special gate that creates superposition?"
                       then: quantum-gates
                     - text:
                         en: "Like flipping a coin?"
@@ -383,11 +381,11 @@ quests:
               type: sequence
               items:
                 - text:
-                    en: "The 'Hadamard' gate takes a qubit in a classical 0 or 1 state, and changes it to a superposition of both states, where the qubit has equal probability of being measured as 0 or 1."
+                    en: "The 'Hadamard' gate takes a qubit in a basic state of 0 or 1, and changes it to a superposition of both states, where the qubit has equal probability of being measured as 0 or 1."
                 - text:
                     en: "And, if we apply this gate twice, we get back to where we started."
                 - text:
-                    en: "So, if we had a qubit already in superposition, and apply the Hadamard gate, now we have a basic state that we can apply the NOT gate to."
+                    en: "So, if we had a qubit already in superposition, and apply the Hadamard gate, now we have a basic state that we can apply the classical NOT gate to."
                 - text:
                     en: "Before I let you use this quantum computer, tell me, if I start with a qubit in a 0 state, and apply Hadamard, Hadamard, NOT, what will I get?"
                   responses:
@@ -507,7 +505,7 @@ quests:
               - text:
                   en: "Certainly! In the past, we protected information by relying on the fact that it's very difficult to figure out the prime factors of a large number."
               - text:
-                  en: "But then came Peter Shor, who figured out that a quantum computer can do this lightning fast."
+                  en: "But then came Peter Shor, who figured out that a large quantum computer can do this lightning fast."
               - text:
                   en: "So we developed post-quantum encryption -- new techniques to keep sensitive data safe."
                 set: ['learned.shors.algorithm']
@@ -525,7 +523,7 @@ quests:
                   thenText:
                     en: "Uh, no... Maybe you're not ready to handle this technology."
                 - text:
-                    en: "By Shor's prime factorization algorithm."
+                    en: "By running Shor's prime factorization algorithm on a large quantum computer."
                   thenText:
                     en: "Yes! Nice research work, here's your QCard."
                   set: ['got.qcard']
@@ -602,7 +600,7 @@ quests:
               type: sequence
               items:
                 - text:
-                   en: "Ah! Grover's search—what an exciting breakthrough. Imagine you're looking for a specific point in a huge space."
+                   en: "Ah! Grover's search—what an exciting innovation. Imagine you're looking for a specific point in a huge space."
                 - text:
                    en: "A classical computer would have to check many points one by one, like a taxi weaving through city streets."
                 - text:
