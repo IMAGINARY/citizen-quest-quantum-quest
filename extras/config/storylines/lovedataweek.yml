@@ -39,6 +39,14 @@ npcs:
     dialogue:
       - text:
           en: "I want to fill my brain with knowledge!"
+  citizenHoodie:
+    name:
+      en: "Local Resident"
+    spawn: { x: 400, y: 333 }
+    cond: 'quest.delivery.active & spoke.to.doorman & understood.grover.search & passed.grover.search.quiz'
+    dialogue:
+      - text:
+          en: "I live in this wonderful quantum world."
   citizenPunk:
     name:
       en: "Post-Office Clerk"
@@ -381,7 +389,7 @@ quests:
                 - text:
                     en: "So, if we had a qubit already in superposition, and apply the Hadamard gate, now we have a basic state that we can apply the NOT gate to."
                 - text:
-                    en: "Before I let you use this quantum commputer, tell me, if I start with a qubit in a 0 state, and apply Hadamard, Hadamard, NOT, what will I get?"
+                    en: "Before I let you use this quantum computer, tell me, if I start with a qubit in a 0 state, and apply Hadamard, Hadamard, NOT, what will I get?"
                   responses:
                     - text:
                         en: "A qubit in state 1"
@@ -652,9 +660,9 @@ quests:
       - cond: 'spoke.to.doorman & understood.grover.search & passed.grover.search.quiz'
         prompt:
           en: "Deliver the package!"
-        target: citizenBraid
+        target: citizenHoodie
         dialogues:
-          citizenBraid:
+          citizenHoodie:
             - type: sequence
               items:
                 - text:
