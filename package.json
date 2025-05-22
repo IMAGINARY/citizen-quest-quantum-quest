@@ -5,10 +5,12 @@
   "dependencies": {
     "cpx": "^1.5.0",
     "degit": "^2.8.4",
-    "shx": "^0.3.4"    
+    "shx": "^0.3.4"
   },
   "scripts": {
-    "build": "shx rm -rf ./dist && degit github:IMAGINARY/citizen-quest#v1.12.0 --force dist && shx cp -R ./extras/. ./dist/. && cd ./dist && npm install && npm run build && cd .."
+    "build": "shx rm -rf ./dist && degit github:IMAGINARY/citizen-quest#v1.12.0 --force dist && shx cp -R ./extras/. ./dist/. && cd ./dist && npm install && npm run build && cd ..",
+    "watch:copy": "cpx './extras/**' './dist/' -vw",
+    "watch:compile": "cd ./dist && npm run watch"
   },
   "repository": {
     "type": "git",
