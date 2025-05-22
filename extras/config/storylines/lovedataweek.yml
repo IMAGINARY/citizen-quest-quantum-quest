@@ -441,11 +441,6 @@ quests:
                         en: "What is encryption?"
                       then: encryption
                     - text:
-                        en: "Ok, can I have one?"
-                      thenText: 
-                        en: "Yes, of course, but first you need to show me you understand the technology you're receiving."
-                      then: quiz-encryption
-                    - text:
                         en: "I don't trust banks, I would rather forage for mushrooms."
                       thenText: 
                         en: "I like mushrooms too, but I also love a Qroissant every once in a while. I'll be here if you change your mind."
@@ -460,14 +455,12 @@ quests:
                         en: "Your friend, who knows the secret code, can unscramble it and read the message. But if someone else tries to look at it, all they’ll see is nonsense."
                     - text:
                         en: "Computers do the same thing with data. They use mathematical formulas to turn information into a secret code. This keeps things like passwords, messages, and bank details safe from hackers!"
-                    - text:
-                        en: "Did you get all that? Can you tell me what encryption is?"
                       then: quiz-encryption
             - id: quiz-encryption
               type: sequence
               items:
                 - text:
-                    en: "What is encryption?"
+                    en: "Alright, that was a lot of new info, let's double-check, can you tell me what encryption is?"
                   responses:
                     - text:
                         en: "When you write a message in really bad handwriting."
