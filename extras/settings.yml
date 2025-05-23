@@ -58,7 +58,7 @@ i18n:
       en: 'Press space to continue'
     defaultPrompt:
 #      en: 'You wake up in the future where quantum computing has become a commonly used tool in science and technology. Interact with people in this new world and complete quests to learn how it works.'
-      en: 'Interact with people in this new world and complete quests to learn how it works.'
+      en: 'Interact with people in this future world and complete quests to learn how quantum computing works.'
     includedInDecision:
       en: 'Included in the decision'
     inclusionBarTitle:

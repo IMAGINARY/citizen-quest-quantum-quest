@@ -58,8 +58,8 @@ npcs:
   citizenBlue:
     name:
       en: "Wise Person"
-    type: citizenAqua
-    spawn: { x: 5168, y: 658 }
+    type: hologramCeo
+    spawn: { x: 5128, y: 658 }
     dialogue:
       - text:
           en: "I am very wise in the ways of all things quantum."
