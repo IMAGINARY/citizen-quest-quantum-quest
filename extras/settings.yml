@@ -2,16 +2,16 @@ game:
   devModeShortcuts: false
   languages: ['en']
 town:
-  width: 2048
-  height: 768
+  width: 6235
+  height: 1080
 textures:
   bundles:
     - name: 'town-view'
       assets:
         - name: 'town-bg'
-          srcs: 'conference.png'
+          srcs: 'quantum-city.jpg'
         - name: 'town-collmap'
-          srcs: 'conference-collmap.png'
+          srcs: 'quantum-city-collmap.jpg'
         - name: 'player-1'
           srcs: 'player-1.json'
         - name: 'player-2'
@@ -39,7 +39,7 @@ textures:
 players:
   1:
     color: '#27a6a8'
-    spawn: { x: 100, y: 700 }
+    spawn: { x: 100, y: 750 }
 storylines:
   - lovedataweek
 i18n:
@@ -57,7 +57,8 @@ i18n:
     pressToContinue:
       en: 'Press space to continue'
     defaultPrompt:
-      en: 'You wake up in the future where quantum computing has become a commonly used tool in science and technology. Interact with people in this new world and complete quests to learn how it works.'
+#      en: 'You wake up in the future where quantum computing has become a commonly used tool in science and technology. Interact with people in this new world and complete quests to learn how it works.'
+      en: 'Interact with people in this new world and complete quests to learn how it works.'
     includedInDecision:
       en: 'Included in the decision'
     inclusionBarTitle:
