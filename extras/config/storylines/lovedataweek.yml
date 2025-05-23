@@ -2,18 +2,11 @@ decision:
   en: "You wake up in the future where quantum computing has become a normal part of life."
 prompt:
   en: "You wake up in the future where quantum computing has become a normal part of life. Interact with people in this new world and complete quests to learn how it works."
-scenery:
-  mardiDesk:
-    spawn: { x: 361, y: 553 }
-  coffeeTable:
-    spawn: { x: 1327, y: 551 }
-  libraryDesk:
-    spawn: { x: 1902, y: 547 }
 npcs:
   mayor:
     name:
       en: "Computer Center Technician"
-    spawn: { x: 819, y: 448 }
+    spawn: { x: 4003, y: 743 }
     dialogue:
     - type: sequence
       items:
@@ -22,7 +15,7 @@ npcs:
   robot:
     name:
       en: "Barista"
-    spawn: { x: 1079, y: 551 }
+    spawn: { x: 245, y: 750 }
     dialogue:
       - type: random
         items:
@@ -35,14 +28,14 @@ npcs:
   citizenBraid:
     name:
       en: "Local Student"
-    spawn: { x: 311, y: 538 }
+    spawn: { x: 774, y: 767 }
     dialogue:
       - text:
           en: "I want to fill my brain with knowledge!"
   citizenHoodie:
     name:
       en: "Local Resident"
-    spawn: { x: 400, y: 333 }
+    spawn: { x: 2930, y: 830 }
     cond: 'quest.delivery.active & spoke.to.doorman & understood.grover.search & passed.grover.search.quiz'
     dialogue:
       - text:
@@ -50,7 +43,7 @@ npcs:
   citizenPunk:
     name:
       en: "Post-Office Clerk"
-    spawn: { x: 1212, y: 333 }
+    spawn: { x: 2400, y: 700 }
     dialogue:
       - text:
           en: "I handle all the mail around here."
@@ -58,7 +51,7 @@ npcs:
   citizenPuan:
     name:
       en: "Banker"
-    spawn: { x: 1929, y: 530 }
+    spawn: { x: 1522, y: 700 }
     dialogue:
       - text:
           en: "You can trust me with your money."
@@ -66,59 +59,24 @@ npcs:
     name:
       en: "Wise Person"
     type: citizenAqua
-    spawn: { x: 435, y: 538 }
+    spawn: { x: 5168, y: 658 }
     dialogue:
       - text:
           en: "I am very wise in the ways of all things quantum."
   dogTan:
     name:
       en: "Emmy"
-    spawn: { x: 549, y: 540 }
+    spawn: { x: 5893, y: 719 }
     dialogue:
       - text:
           en: "Woof!"
   lawyer:
     name:
       en: "Doorman"
-    spawn: { x: 331, y: 333 }
+    spawn: { x: 2832, y: 829 }
     dialogue:
       - text:
           en: "I take care of this huuuge apartment building."
-  coffeeMachine:
-    type: invisible
-    name:
-      en: "PercoLaTeX 3000™"
-    spawn: { x: 1229, y: 560 }
-    dialogue:
-      - type: first
-        items:
-          - text:
-              en: "Let's integrate some coffee into your day!"
-            responses:
-              - text:
-                  en: "Espresso"
-                then: brew
-              - text:
-                  en: "Latte"
-                then: brew
-              - text:
-                  en: "Cappuccino"
-                then: brew
-      - id: brew
-        type: sequence
-        items:
-          - text:
-              en: "Beep! Whirrrrrr..."
-          - text:
-              en: "Ssshhhhhhhh... drip, drip, drip."
-  webBrowser:
-    type: invisible
-    name:
-      en: "Web Browser"
-    spawn: { x: 1547, y: 322 }
-    dialogue:
-      - text:
-          en: "click clack"     
 quests:
   simulation:
     npc: citizenBraid
