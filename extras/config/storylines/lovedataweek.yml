@@ -58,7 +58,7 @@ npcs:
   citizenBlue:
     name:
       en: "Wise Person"
-    type: hologramCeo
+    type: citizenAqua
     spawn: { x: 5128, y: 658 }
     dialogue:
       - text:
