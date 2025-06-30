@@ -370,17 +370,19 @@ quests:
         - type: sequence
           items:
             - text:
-                en: "Welcome to our Qafé, we have lots of tasty Qroissants. We only accept QCards for payment. I see you don't have one, would you like to get one to pay for your Qroissant?"
+                en: "Welcome to our Qafé, we have lots of tasty Qroissants. We only accept QCards for payment."
+            - text:
+                en: "I see you don't have one, would you like to get one to pay for your Qroissant?"
               responses:
                 - text:
                     en: "Yes, I want a QCard, where can I get one?"
                   thenText:
-                    en: "Go to the bank on the corner, they will help you."
+                    en: "Go to the bank down the street, they will help you."
                   set: [ 'quest.cafe.active' ]
                 - text:
                     en: "I'm not hungry, thank you."
                   thenText:
-                    en: "Ok, have a nice day."
+                    en: "Ok, have a nice day, you can come back anytime!"
     stages:
       - cond: '^learned.encryption & ^learned.shors.algorithm & ^got.qcard'
         prompt:
@@ -424,7 +426,7 @@ quests:
                         en: "Not quite... Try again."
                       then: quiz-encryption
                     - text:
-                        en: "A way to keep things like passwords, messages, and bank details safe from hackers."
+                        en: "A way to keep sensitive information safe from hackers."
                       thenText: 
                         en: "Nice! The most common form of encryption was broken by quantum computing, so we use new techniques now."
                       then: prompt-to-learn-shors-algorithm
@@ -437,7 +439,7 @@ quests:
               type: sequence
               items:
                 - text:
-                    en: "I'll give you this QCard to keep your data safe if you can tell me about the famous algorithm that prompted its creation."
+                    en: "I'll give you this QCard to keep your data safe if you can tell me about the famous algorithm that broke classical encryption."
                   set: [ 'learned.encryption' ]  
       - cond: 'learned.encryption & ^learned.shors.algorithm & ^got.qcard'
         prompt:
@@ -457,6 +459,20 @@ quests:
                   - text:
                       en: "Yes! Can you tell me about the algorithm that broke classical encryption?"
                     then: shor-explanation
+          - id: croissant-diversion
+            type: sequence
+            items:
+              - text:
+                  en: "Not in my pocket, but there are freshly baked Qroissants every day down the road!"
+              - text: 
+                  en: "If you want to stick around, I can answer any quantum curiousities you have."
+                responses:
+                  - text:
+                      en: "Can you tell me about the algorithm that broke classical encryption?"
+                    then: shor-explanation
+                  - text:
+                      en: "I really just want a Qroissant, do you have one?"
+                    then: croissant-diversion
           - id: shor-explanation
             type: sequence
             items:
@@ -469,7 +485,7 @@ quests:
                 set: ['learned.shors.algorithm']
       - cond: 'learned.encryption & learned.shors.algorithm & ^got.qcard'
         prompt:
-          en: "Prove your quantum algorithm knowledge to get a QCard"
+          en: "Prove your quantum algorithm knowledge at the bank to get a QCard"
         target: citizenPuan
         dialogues:
           citizenPuan:
@@ -487,7 +503,7 @@ quests:
                   set: ['got.qcard']
       - cond: 'learned.encryption & learned.shors.algorithm & got.qcard'
         prompt:
-          en: "Buy your Qroissant with a QCard."
+          en: "Buy your Qroissant at the Qáfe with a QCard."
         target: robot
         dialogues:
           robot:
@@ -652,47 +668,42 @@ ending:
     - type: sequence
       items:
         - cond: 'quest.cafe.done'
-          class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
                 en: "You learned about encryption and Shor's Algorithm :love:"
-        - cond: '^quest.cafe.done'
-          class: 'citizensEmpowered'
-          type: sequence
-          items:
-            - text:
-                en: "You did not learn about encryption and Shor's Algorithm."
         - cond: 'quest.delivery.done'
-          class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
                 en: "You learned about Grover's search :love:"
-        - cond: '^quest.delivery.done'
-          type: sequence
-          items:
-            - text:
-                en: "You did not learn about Grover's search."
         - cond: 'quest.simulation.done'
-          class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
                 en: "You learned how quantum computers differ from classical computers. :love:"
-        - cond: '^quest.simulation.done'
-          type: sequence
-          items:
-            - text:
-                en: "You did not learn how classical and quantum computers differ."
         - cond: 'quest.computer.done'
-          class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
                 en: "You learned how quantum computers process information. :love:"
+        - cond: '^quest.cafe.done'
+          type: sequence
+          items:
+            - text:
+                en: "Play again to learn about encryption and Shor's Algorithm."
+        - cond: '^quest.delivery.done'
+          type: sequence
+          items:
+            - text:
+                en: "Play again to learn about Grover's search."
+        - cond: '^quest.simulation.done'
+          type: sequence
+          items:
+            - text:
+                en: "Play again to learn how classical and quantum computers differ."
         - cond: '^quest.computer.done'
           type: sequence
           items:
             - text:
-                en: "You did not learn about how quantum computers process information."
+                en: "Play again to learn about how quantum computers process information."
