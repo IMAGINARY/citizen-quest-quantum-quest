@@ -39,7 +39,7 @@ textures:
 players:
   1:
     color: '#27a6a8'
-    spawn: { x: 100, y: 750 }
+    spawn: { x: 2500, y: 750 }
 storylines:
   - lovedataweek
 i18n:

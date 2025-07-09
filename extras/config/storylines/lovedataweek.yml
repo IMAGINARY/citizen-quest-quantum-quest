@@ -103,6 +103,31 @@ quests:
           en: "Visit the computer center."
         #target: mayor
         dialogues:
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "I can offer you Qoffee or Qroissants, but I can't help with your simulation. Maybe try the computer technician down the road?"
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "I think the computer center is down the road past the big apartment building. It looks like a huge glass dome."
+          citizenPuan:
+            - type: sequence
+              items:
+                - text:
+                    en: "The computer center? It's just down the road, past the big apartment building. It looks like a huge glass dome."
+          citizenPunk:
+            - type: sequence
+              items:
+                - text:
+                    en: "The computer center? It's just down the road, past the big apartment building. It looks like a huge glass dome."
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "The computer center? It's right next door. It looks like a huge glass dome."
           mayor:
             - type: sequence
               items:
@@ -128,12 +153,39 @@ quests:
                     en: "An example of a quantum system is a group of electrons interacting in a molecule. It’s impossible for us to know exactly where they are and how fast they’re moving at the same time."
                 - text:
                     en: "Try to do a bit of research to find out why qubits help us simulate this situation."
+                - text:
+                    en: "If you don't know where to start, I've heard that there's a retired scientist who likes to relax at the park and talk quantum."
                   set: ['visit.computer.center']          
       - cond: 'visit.computer.center & ^qubit.intro & ^learn.superposition'
         prompt:
           en: "Find someone to explain superposition."
         #target: citizenBlue
         dialogues:
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "The park is in the other direction, at the edge of town."
+          citizenPunk:
+            - type: sequence
+              items:
+                - text:
+                    en: "The park? Just follow the road to the edge of town."
+          citizenPuan:
+            - type: sequence
+              items:
+                - text:
+                    en: "The park? Just follow the road to the edge of town."
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "The park? Just follow the road to the edge of town."
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "The park? Just follow the road to the edge of town."
           citizenBlue:
             - type: sequence
               items:
@@ -425,8 +477,22 @@ quests:
                       then: encryption
                     - text:
                         en: "I don't trust banks, I would rather forage for mushrooms."
-                      thenText: 
-                        en: "I like mushrooms too, but I also love a Qroissant every once in a while. I'll be here if you change your mind."
+                      then: mushroom
+            - id: mushroom
+              type: first
+              items:
+                - type: sequence
+                  items:
+                    - text:
+                        en: "I like mushrooms too, but I also love a QCroissant every once in a while, and I need my QCard to get one. Do you want to learn about how encryption works?"
+                      responses:
+                        - text:
+                            en: "Sure, tell me about encryption."
+                          then: encryption
+                        - text:
+                            en: "No, I just want to forage for mushrooms."
+                          thenText:
+                            en: "Ok, have a nice day, you can come back anytime!"
             - id: encryption
               type: first
               items:
@@ -465,12 +531,47 @@ quests:
               items:
                 - text:
                     en: "I'll give you this QCard to keep your data safe if you can tell me about the famous algorithm that broke classical encryption."
-                  set: [ 'learned.encryption' ]  
+                  responses:
+                    - text:
+                        en: "I'll go do some research!"
+                      thenText: 
+                        en: "Nice! If you don't know where to start, I've heard there's a retired scientist often in the park at the edge of town who likes to talk quantum."
+                      set: [ 'learned.encryption' ]  
+                    - text:
+                        en: "I don't know where to start..."
+                      thenText: 
+                        en: "I've heard there's a retired scientist often in the park at the edge of town who likes to talk quantum."
+                      set: [ 'learned.encryption' ]  
       - cond: 'learned.encryption & ^learned.shors.algorithm & ^got.qcard'
         prompt:
           en: "Learn about the algorithm that broke classical encryption."
-        target: citizenBlue
+        #target: citizenBlue
         dialogues:
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "If you're looking for the park, it's just down the road in the other direction."
+          citizenPunk:
+            - type: sequence
+              items:
+                - text:
+                    en: "The park? It's just down the road, past the computer center."
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "The park? It's down the road at the edge of town, past the computer center."
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "The park? You're nearly there, just keep going, past the computer center, and you'll find it."
+          mayor:
+            - type: sequence
+              items:
+                - text:
+                    en: "The park? It's a lovely place, my former colleague is often fishing in the lake. It's right next to the computer center, past those trees."
           citizenBlue:
           - type: sequence
             items:
@@ -530,8 +631,8 @@ quests:
                   set: ['got.qcard']
       - cond: 'learned.encryption & learned.shors.algorithm & got.qcard'
         prompt:
-          en: "Buy your Qroissant at the Qafé with a QCard."
-        target: robot
+          en: "Buy a Qroissant at the Qafé with your new QCard."
+        #target: robot
         dialogues:
           robot:
             - text:
@@ -589,7 +690,7 @@ quests:
                 - text:
                     en: "I have 3 buttons I could press to run different search algorithms for you, but some may take much longer than others."
                 - text:
-                    en: "Can you find out which is the best choice and tell me what it's called and how it works?"
+                    en: "Can you find out which is the best choice and tell me what it's called?"
                   responses:
                     - text:
                         en: "Yes! A new pursuit of knowledge awaits me!"
@@ -641,7 +742,7 @@ quests:
                 - text:
                     en: "One day, Lov Grover found a way to sort through data much faster using a quantum computer."
                 - text:
-                    en: "If we had 10,000 pieces of data, we would only need a maximum of 100 checks. We call this 'quadratic' speedup."
+                    en: "If we had 10,000 pieces of data, we would only need a maximum of 100 checks using Grover's search algorithm. We call this 'quadratic' speedup."
                   responses:
                     - text:
                         en: "Thanks! This sounds perfect for my delivery quest."
@@ -717,7 +818,7 @@ quests:
                         en: "Haha, I hope that's not what's in my box..."
                       then: entanglement-explanation
                     - text:
-                        en: "When the states of two objects are connected, even when separated by vast distances."
+                        en: "When the states of two objects are connected, even when far apart"
                       thenText:
                         en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know something about what's in my friend's box."
                       then: cupcake
@@ -767,7 +868,7 @@ ending:
           type: sequence
           items:
             - text:
-                en: "You learned about Grover's search :love:"
+                en: "You learned about Grover's search and entanglement :love:"
         - cond: 'quest.simulation.done'
           class: 'citizensEmpowered'
           type: sequence
@@ -789,7 +890,7 @@ ending:
           type: sequence
           items:
             - text:
-                en: "Play again to learn about Grover's search."
+                en: "Play again to learn about Grover's search and entanglement."
         - cond: '^quest.simulation.done'
           type: sequence
           items:
