@@ -47,7 +47,7 @@ npcs:
     spawn: { x: 2400, y: 700 }
     dialogue:
       - text:
-          en: "I handle all the mail around here."
+          en: "Ahhhhh there's so much mail!"
         set: [ 'op.love.2' ]
   citizenPuan:
     name:
@@ -60,14 +60,14 @@ npcs:
     name:
       en: "Retired Scientist"
     type: citizenAqua
-    spawn: { x: 5128, y: 658 }
+    spawn: { x: 5800, y: 800 }
     dialogue:
       - text:
           en: "I am very wise in the ways of all things quantum."
   dogTan:
     name:
       en: "Emmy"
-    spawn: { x: 5893, y: 719 }
+    spawn: { x: 6000, y: 719 }
     dialogue:
       - text:
           en: "Woof!"
@@ -405,7 +405,7 @@ quests:
       - cond: 'circuit.basic & ^circuit.explanation'
         prompt:
           en: "Ask baker about how circuits are like recipes."
-        target: robot
+        #target: robot
         dialogues:
           robot:
             - type: sequence
@@ -524,7 +524,7 @@ quests:
                     - text:
                         en: "A qubit in state 0, same as the start."
                       thenText:
-                        en: "Not quite, we'll land in state 1. But oh- what's this? A Qookie? I don't usually accept bribes, but this is so tasty... Ok, you can run your friend's simulation on my machine. Good luck!"
+                        en: "Not quite, we'll land in state 1. But oh- what's this? A Qookie? I don't usually accept bribes, but this is so tasty... Ok, you can run your simulation on my machine. Good luck!"
                       set: ['quest.computer.done', 'pnt.love.computer']
   cafe:
     npc: robot
@@ -678,7 +678,12 @@ quests:
             - type: sequence
               items:
                 - text:
-                    en: "The park? It's a lovely place, my former colleague is often fishing in the lake. It's right next to the computer center, past those trees."
+                    en: "The park? It's a lovely place, my former colleague is often fishing at the lake. It's right next to the computer center, past those trees."
+          citizenPuan:
+            - type: sequence
+              items:
+                - text:
+                    en: "Try the park! It's down the road at the edge of town."
           citizenBlue:
           - type: sequence
             items:
@@ -766,7 +771,7 @@ quests:
               set: ['quest.cafe.done', 'pnt.love.cafe']
   delivery:
     npc: citizenPunk
-    mood: interrogation
+    mood: exclamation
     available:
       dialogue:
         - type: sequence
