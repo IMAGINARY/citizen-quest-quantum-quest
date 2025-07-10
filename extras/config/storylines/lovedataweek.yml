@@ -2,6 +2,7 @@ decision:
   en: "You wake up in the future where quantum computing has become a normal part of life."
 prompt:
   en: "You wake up in the future where quantum computing has become a normal part of life. Interact with people in this new world and complete quests to learn how it works."
+  de: "Du wachst in der Zukunft auf, wo Quantencomputing ein normaler Teil des Lebens geworden ist. Interagiere mit Menschen in dieser neuen Welt und löse Aufgaben, um zu lernen, wie es funktioniert."
 npcs:
   mayor:
     name:
@@ -57,7 +58,7 @@ npcs:
           en: "You can trust me with your money."
   citizenBlue:
     name:
-      en: "Wise Person"
+      en: "Retired Scientist"
     type: citizenAqua
     spawn: { x: 5128, y: 658 }
     dialogue:
@@ -464,8 +465,23 @@ quests:
       - cond: '^learned.encryption & ^learned.shors.algorithm & ^got.qcard'
         prompt:
           en: "Visit the bank."
-        target: citizenPuan
+        #target: citizenPuan
         dialogues:
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "The bank? It's right next door. My friend works there, she has pink hair, you can't miss her."
+          citizenPunk:
+            - type: sequence
+              items:
+                - text:
+                    en: "The bank? It's right next door, you just passed it."
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "The bank? It's down the road near the Qafé."
           citizenPuan:
             - type: sequence
               items:
@@ -484,7 +500,7 @@ quests:
                 - type: sequence
                   items:
                     - text:
-                        en: "I like mushrooms too, but I also love a QCroissant every once in a while, and I need my QCard to get one. Do you want to learn about how encryption works?"
+                        en: "I like mushrooms too, but I also love a Qroissant every once in a while, and I need my QCard to get one. Do you want to learn about how encryption works?"
                       responses:
                         - text:
                             en: "Sure, tell me about encryption."
@@ -514,8 +530,8 @@ quests:
                     - text:
                         en: "When you write a message in really bad handwriting."
                       thenText: 
-                        en: "Not quite... Try again."
-                      then: quiz-encryption
+                        en: "Haha that kind of encryption will always be relevant! But the technical type of encryption your phone or laptop uses can be broken by quantum computing, so we use new techniques now."
+                      then: prompt-to-learn-shors-algorithm
                     - text:
                         en: "A way to keep sensitive information safe from hackers."
                       thenText: 
@@ -582,8 +598,7 @@ quests:
                 responses:
                   - text:
                       en: I'm looking for a Qroissant, I'm very hungry, do you have one?
-                    thenText:
-                      en: "Not in my pocket, but there are freshly baked Qroissants every day down the road!"
+                    then: croissant-diversion
                   - text:
                       en: "Yes! Can you tell me about the algorithm that broke classical encryption?"
                     then: shor-explanation
@@ -613,9 +628,24 @@ quests:
                 set: ['learned.shors.algorithm']
       - cond: 'learned.encryption & learned.shors.algorithm & ^got.qcard'
         prompt:
-          en: "Prove your quantum algorithm knowledge at the bank to get a QCard"
-        target: citizenPuan
+          en: "Prove your quantum algorithm knowledge at the Bank to get a QCard"
+        #target: citizenPuan
         dialogues:
+          citizenPunk:
+            - type: sequence
+              items:
+                - text:
+                    en: "The bank? It's right next door."
+          citizenBraid:
+            - type: sequence
+              items:
+                - text: 
+                    en: "The bank? It's right next door, you just passed it."
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "mmmm so many tasty Qroissants nom nom nom... Oh, the bank? It's right next door."
           citizenPuan:
             - text:
                 en: "So, how was classical encryption broken?"
@@ -634,6 +664,11 @@ quests:
           en: "Buy a Qroissant at the Qafé with your new QCard."
         #target: robot
         dialogues:
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "I eat a Qroissant every day, they are so tasty!"
           robot:
             - text:
                 en: "Congrats on getting your QCard. Here is your tasty Qroissant."

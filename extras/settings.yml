@@ -1,6 +1,6 @@
 game:
   devModeShortcuts: false
-  languages: ['en']
+  languages: ['en', 'de']
 town:
   width: 6235
   height: 1080
@@ -57,8 +57,8 @@ i18n:
     pressToContinue:
       en: 'Press space to continue'
     defaultPrompt:
-#      en: 'You wake up in the future where quantum computing has become a commonly used tool in science and technology. Interact with people in this new world and complete quests to learn how it works.'
       en: 'Interact with people in this future world and complete quests to learn how quantum computing works.'
+      de: 'Interagiere mit Menschen in dieser zukünftigen Welt und löse Aufgaben, um zu lernen, wie Quantencomputing funktioniert.'
     includedInDecision:
       en: 'Included in the decision'
     inclusionBarTitle:
