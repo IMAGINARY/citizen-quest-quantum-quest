@@ -133,25 +133,25 @@ quests:
             - type: sequence
               items:
                 - text:
-                    en: "Ah yes, classical computers struggle to simulate quantum systems. As the system grows, the complexity increases at an exponential rate."
+                    en: "Ah your friend is trying to simulate a quantum system with a classical computer..."
                 - text:
-                    en: "In a classical computer information is stored and processed using billions of tiny switches called bits that can each be set to on or off (0 or 1)."
+                    en: "In a classical computer, information is stored and processed using billions of tiny switches called bits that can each be set to on or off (0 or 1)."
                 - text:
-                    en: "But, a qubit (the basic unit of information in a quantum computer) doesn't have this constraint, it can be in a superposition of 0 and 1 at the same time."
+                    en: "But, the basic unit of information in a quantum computer (a qubit) doesn't have this constraint, it can be in a superposition of 0 and 1 at the same time."
                   responses:
                     - text:
                         en: "How can it be 0 and 1 at the same time?"
                       thenText:
-                        en: "You seem like a smart egg. Do a bit of research, I bet you can figure it out."
-                      set: ['visit.computer.center'] 
+                        en: "You seem like a smart egg. Do a bit of research, I bet you can figure it out. If you’re lost, maybe a stroll in the forest will help."
+                      set: ['visit.computer.center']
                     - text:
-                       en: "What is a quantum system?"
+                        en: "What is a quantum system?"
                       then: electrons-example
             - id: electrons-example
               type: sequence
               items:
                 - text:
-                    en: "An example of a quantum system is a group of electrons interacting in a molecule. It’s impossible for us to know exactly where they are and how fast they’re moving at the same time."
+                    en: "An example of a quantum system is a group of electrons interacting in a molecule."
                 - text:
                     en: "Try to do a bit of research to find out why qubits help us simulate this situation."
                 - text:
@@ -212,6 +212,26 @@ quests:
           en: "Go back to the computer technician."
         #target: mayor
         dialogues:
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "The computer center? It's right next door."
+          citizenPunk:
+            - type: sequence
+              items:
+                - text:
+                    en: "The computer center? It's right next door."
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "The computer center is on the other side of town."
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "The computer center is on the other side of town, so far away from all the tasty Qroissants..."
           mayor:
             - type: sequence
               items:
@@ -224,7 +244,7 @@ quests:
                         en: "I'm not sure about that, but I can tell you why I think it's important."
                       then: quantum-system-explanation
                     - text:
-                        en: "Yes, it's when a qubit exists in a combined state of 0 and 1 at the same time."
+                        en: "When a qubit exists in a combined state of 0 and 1 at the same time."
                       thenText:
                         en: "Nice! But you still seem doubtful. Let me give you a bit more context."
                       then: quantum-system-explanation
@@ -254,8 +274,18 @@ quests:
       - cond: 'visit.computer.center & qubit.intro & learn.superposition'
         prompt:
           en: "Propose using a quantum computer to run the simulation."
-        target: citizenBraid
+        #target: citizenBraid
         dialogues:
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "I don't know anything about simulations... unless you can simulate a qroissant inside a qroissant? Mega-qroissant... I would be interested in that!"
+          citizenPunk:
+            - type: sequence
+              items:
+                - text:
+                    en: "I don't know anything about simulations, I'm so overwhelmed by all this mail!"
           citizenBraid:
             - type: sequence
               items:
@@ -287,44 +317,45 @@ quests:
                         en: "Uh, ok, I guess I'll try it, thanks for your help!"
                       set: ['quest.simulation.done', 'pnt.love.simulation']
   computer:
-    npc: citizenBraid
-    mood: interrogation
-    required: simulation
+    npc: mayor
+    mood: exclamation
     available:
       dialogue:
         - type: sequence
           items:
             - text:
-                en: "You taught me a quantum computer would be perfect for my simulation, but I don't have access to one, can you help me?"
+                en: "I have a quantum computer if you need it, but I can't just give access to anyone."
               responses:
                 - text:
-                    en: "Sure, I think I know who to ask."
+                    en: "I want to run a chemical simulation."
                   thenText:
-                    en: "Thank you! I bet the computer center down the road can offer some help."
+                    en: "Alright, but you'll need to prove that you're qualified to operate this tech. Come back when you can tell me about quantum circuits. You may find knowledge near the trees..."
                   set: [ 'quest.computer.active' ]
                 - text:
-                    en: "No, sorry, I'm very busy trying to buy a Qroissant right now."
+                    en: "I want to play pacman."
                   thenText:
-                    en: "I understand, that sounds urgent, Qroissants are essential to well-being. You can come back later anytime!"
+                    en: "This is not a toy! Come back if you have a serious request."
     stages:
-      - cond: '^found.computer & ^circuit.basic & ^circuit.explanation'
+      - cond: '^circuit.basic & ^circuit.explanation'
         prompt:
-          en: "Ask for access to a quantum computer."
-        target: mayor
+          en: "Find someone to teach you about quantum circuits."
+        #target: citizenBlue
         dialogues:
-          mayor:
+          lawyer:
             - type: sequence
               items:
                 - text:
-                    en: "Sure, I have a quantum computer, but you'll need to prove that you're qualified to operate this tech."
+                    en: "I don't know anything about quantum circuits, but I think the retired scientist at the park might be able to help you."
+          citizenPunk:
+            - type: sequence
+              items:
                 - text:
-                    en: "Come back when you can tell me about quantum circuits."
-                  set: ['found.computer']
-      - cond: 'found.computer & ^circuit.basic & ^circuit.explanation'
-        prompt:
-          en: "Find someone to teach you about quantum circuits."
-        target: citizenBlue
-        dialogues:
+                    en: "Ack please don't step on that envelope! If you need quantum computing help, I think the retired scientist at the park might be able to help you."
+          citizenPuan:
+            - type: sequence
+              items:  
+                - text:
+                    en: "I don't know anything about quantum circuits, but I think the retired scientist at the park might be able to help you."
           citizenBlue:
             - type: sequence
               items:
@@ -335,7 +366,43 @@ quests:
                 - text:
                     en: "The Qafé has fantastic recipes for tasty Qroissants and Qookies, I bet they could help explain this."
                   set: ['circuit.basic']
-      - cond: 'found.computer & circuit.basic & ^circuit.explanation'
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "Oh I love circuits! They remind me of my daily early morning baking routine."
+                - text:
+                    en: "First, I gather my ingredients, flour, sugar, butter, chocolate chips..."
+                  responses:
+                    - text:
+                        en: "This is making me hungry, can I have a Qookie?"
+                      then: cookie-analogy
+                    - text:
+                        en: "What would the ingredients be in a quantum computer?"
+                      then: cookie-analogy
+            - id: cookie-analogy
+              type: sequence
+              items:
+                - text:
+                    en: "Haha this explanation is making me hungry, let's both have a Qookie."
+                - text:
+                    en: "In a quantum computer, the ingredients for the recipe would be qubits."
+                - text:
+                    en: "Then, beating the eggs, folding in the flour, that's all replaced with operations we call 'gates.'"
+                - text:
+                    en: "And in the end, by passing our qubits through a series of gates, we have transformed our original ingredients into a desirable Qookie! --uh, I mean, a mathematical ouput..."
+                  responses:
+                    - text:
+                        en: "What kind of transformations happen inside a quantum computer?"
+                      thenText:
+                        en: "Ah, great question, I'm not an expert on quantum gates, but I think there's one nearby who can tell you."
+                      set: ['circuit.explanation', 'circuit.basic']
+                    - text:
+                        en: "Can I have another Qookie?"
+                      thenText:
+                        en: "Ha I'm going to limit you to one free Qookie today, but if you want to learn more about quantum gates and circuits, I think there's an expert nearby."
+                      set: ['circuit.explanation', 'circuit.basic']
+      - cond: 'circuit.basic & ^circuit.explanation'
         prompt:
           en: "Ask baker about how circuits are like recipes."
         target: robot
@@ -376,11 +443,30 @@ quests:
                       thenText:
                         en: "Ha I'm going to limit you to one free Qookie today, but if you want to learn more about quantum gates and circuits, I think there's an expert nearby."
                       set: ['circuit.explanation']
-      - cond: 'found.computer & circuit.basic & circuit.explanation'
+      - cond: 'circuit.basic & circuit.explanation'
         prompt:
           en: "Tell the computer technician what you learned about quantum circuits."
-        target: mayor
+        #target: mayor
         dialogues:
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "I wonder how many windows are in this building...1000? 500000?"
+          citizenPunk:
+            - type: sequence
+              items:
+                - text:
+                    en: "Ahhhh too many letters!"
+          citizenPuan:
+            - type: sequence
+              items:
+                - text:
+                    en: "mmm so much money, so secure."
+          citizenBraid:
+            - type: sequence
+              items:
+                - text: "nom nom, tasty Qroissants."
           mayor:
             - type: sequence
               items:
@@ -411,7 +497,7 @@ quests:
                     - text:
                         en: "Like flipping a coin?"
                       thenText:
-                        en: "Yes! But qubits can be in more than just a 'heads' or 'tails' state like a coin, remember superposition?"
+                        en: "Yes! But qubits can be in more than just a 'heads' or 'tails' state like a coin, they can also exist in a 'superposition' of both states at the same time."
                       then: quantum-gates     
             - id: quantum-gates             
               type: sequence
@@ -428,12 +514,12 @@ quests:
                     - text:
                         en: "A qubit in state 1"
                       thenText:
-                        en: "Nice! Alright, you can run your friend's simulation on my machine. Good luck!"    
+                        en: "Nice! Alright, you can run your simulation on my machine. Good luck!"    
                       set: ['quest.computer.done', 'pnt.love.computer']
                     - text:
                         en: "100€"
                       thenText:
-                        en: "Not quite, we'll land in state 1. But oh- what's this? I don't usually accept bribes, but... Ok, you can run your friend's simulation on my machine. Good luck!"
+                        en: "Not quite, we'll land in state 1. But oh- what's this? I don't usually accept bribes, but... Ok, you can run your simulation on my machine. Good luck!"
                       set: ['quest.computer.done', 'pnt.love.computer']
                     - text:
                         en: "A qubit in state 0, same as the start."
@@ -467,6 +553,11 @@ quests:
           en: "Visit the bank."
         #target: citizenPuan
         dialogues:
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "The bank? It's right next door."
           citizenBraid:
             - type: sequence
               items:
@@ -742,6 +833,26 @@ quests:
           en: "Find someone to help you choose a suitable algorithm."
         #target: citizenBlue
         dialogues:
+          citizenPunk:
+            - type: sequence
+              items:
+                - text:
+                    en: "A quantum algorithm? I can't help you with that, but I've heard there's a wise person by the lake..."
+          mayor:
+            - type: sequence
+              items:
+                - text:
+                    en: "Quantum algorithms are so fascinating! I'm busy right now but there's a retired scientist who loves to fish by the lake at the edge of town. She might be able to help you."
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "I have no idea about quantum algorithms, but I've heard there's a retired scientist who loves to fish by the lake at the edge of town. She might be able to help you."
+          lawyer:
+            - type: sequence
+              items:
+                - text: 
+                    en: "Try talking to the retired scientist who likes to fish by the lake at the edge of town. She might be able to help you."
           citizenBlue:
             - type: sequence
               items:
@@ -839,6 +950,16 @@ quests:
           en: "Deliver the package!"
         target: citizenHoodie
         dialogues:
+          citizenBraid:
+            - type: sequence
+              items:
+                - text:
+                    en: "I love Qroissants..."
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "I bake the Qroissants fresh every day, they are so tasty!"
           citizenHoodie:
             - type: sequence
               items:
@@ -897,13 +1018,13 @@ ending:
           type: sequence
           items:
             - text:
-                en: "You learned about encryption and Shor's Algorithm :love:"
+                en: "You learned about encryption and Shor's Algorithm. :love:"
         - cond: 'quest.delivery.done'
           class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
-                en: "You learned about Grover's search and entanglement :love:"
+                en: "You learned about Grover's search and entanglement. :love:"
         - cond: 'quest.simulation.done'
           class: 'citizensEmpowered'
           type: sequence
