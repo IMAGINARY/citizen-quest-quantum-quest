@@ -48,7 +48,6 @@ npcs:
     dialogue:
       - text:
           en: "Ahhhhh there's so much mail!"
-        set: [ 'op.love.2' ]
   citizenPuan:
     name:
       en: "Banker"
@@ -221,7 +220,7 @@ quests:
             - type: sequence
               items:
                 - text:
-                    en: "The computer center? It's right next door."
+                    en: "Ack please be careful where you step! There's too much mail! Oh- the computer center? It's right next to the apartment complex."
           citizenBraid:
             - type: sequence
               items:
@@ -236,12 +235,12 @@ quests:
             - type: sequence
               items:
                 - text:
-                    en: "Did you find out a bit about superposition?"
+                    en: "So, how would you define superposition?"
                   responses:
                     - text:
-                        en: "Yes, it's when you wear a cape and stand in the way of evil."
+                        en: "When you wear a cape and stand in the way of evil."
                       thenText:
-                        en: "I'm not sure about that, but I can tell you why I think it's important."
+                        en: "A very nobel endeavor, but not quite right... Let me tell you a bit about why superposition is important."
                       then: quantum-system-explanation
                     - text:
                         en: "When a qubit exists in a combined state of 0 and 1 at the same time."
@@ -256,7 +255,7 @@ quests:
               type: sequence
               items:
                 - text:
-                    en: "If we used a classical computer to conduct a simulation, a system of 4 electrons has a state described by 16 numbers. 5 particles, 32 numbers.... 6 particles, 64 numbers... This is exponential growth."
+                    en: "If we used a classical computer to conduct a simulation, a system with 4 electrons has a state described by 16 numbers. With 5 electrons, 32 numbers.... With 6 electrons, 64 numbers... This is exponential growth."
                 - text:
                     en: "If your system had 50 electrons, you would need over a quadrillion bits in a classical computer just to describe one state of the system!"
                 - text:
@@ -479,7 +478,7 @@ quests:
                         en: "Yes, nice analogy! I can tell you a bit more about the technical details."
                       then: gates-explanation
                     - text:
-                        en: "When you spin around really fast."
+                        en: "When you spin around really fast. "
                       thenText: 
                         en: "Um, that doesn't sound quite right, but maybe I can explain an example to help you understand."
                       then: gates-explanation
@@ -489,7 +488,7 @@ quests:
                 - text:
                     en: "One gate that we use in both classical and quantum computing is called the 'NOT' gate"
                 - text:
-                    en: "When we pass a bit, or a qubit, through this gate, it switches the state, from 0 to 1, or from 1 to 0."
+                    en: "When we pass a bit, or a qubit, through this gate, it switches the state, from 1 to 0, or from 0 to 1."
                   responses:
                     - text:
                         en: "Can we use a special gate that creates superposition?"
@@ -899,8 +898,8 @@ quests:
                         en: "Thanks! This sounds perfect for my delivery quest."
                       set: [ 'understood.grover.search' ]
                     - text:
-                        en: "Can you remind me where I can get a Qoffee?"
-                      thenText: "Yes, at the Qafé down the street. But I hope you'll stop to deliver your package along the way!"
+                        en: "Ok, but where can I get a Qoffee?"
+                      thenText: "At the Qafé down the street. But I hope you'll stop to deliver your package along the way!"
                       set: [ 'understood.grover.search' ]
       - cond: 'spoke.to.doorman & understood.grover.search & ^passed.grover.search.quiz'
         prompt:
