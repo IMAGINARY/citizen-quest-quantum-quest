@@ -332,7 +332,7 @@ quests:
                     en: "Alright, but you'll need to prove that you're qualified to operate this tech. Come back when you can tell me about quantum circuits. You may find knowledge near the trees..."
                   set: [ 'quest.computer.active' ]
                 - text:
-                    en: "I want to play pacman."
+                    en: "I want to play Pac-Man."
                   thenText:
                     en: "This is not a toy! Come back if you have a serious request."
     stages:
