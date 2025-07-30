@@ -251,6 +251,7 @@ quests:
                         en: "A group of electrons interacting in a molecule."
                       thenText:
                         en: "Hm, that sounds like a quantum system. Superposition is when one qubit exists in a combined state of 0 and 1 at the same time. But I wanted to tell you more about quantum systems so this is a perfect transition!"
+                      then: quantum-system-explanation
             - id: quantum-system-explanation
               type: sequence
               items:
