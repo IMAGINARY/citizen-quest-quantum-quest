@@ -1,82 +1,103 @@
 decision:
   en: "You wake up in the future where quantum computing has become a normal part of life."
+  de: "Du wachst in der Zukunft auf, in der Quantencomputing ein normaler Teil des Lebens geworden ist."
 prompt:
   en: "You wake up in the future where quantum computing has become a normal part of life. Interact with people in this new world and complete quests to learn how it works."
-  de: "Du wachst in der Zukunft auf, wo Quantencomputing ein normaler Teil des Lebens geworden ist. Interagiere mit Menschen in dieser neuen Welt und löse Aufgaben, um zu lernen, wie es funktioniert."
+  de: "Du wachst in der Zukunft auf, in der Quantencomputing ein normaler Teil des Lebens geworden ist. Interagiere mit Menschen in dieser neuen Welt und schließe Quests ab, um zu lernen, wie es funktioniert."
 npcs:
   mayor:
     name:
       en: "Computer Center Technician"
+      de: "Techniker des Computerzentrums"
     spawn: { x: 4003, y: 743 }
     dialogue:
     - type: sequence
       items:
         - text:
             en: "type type type"
+            de: "tipp tipp tipp"
   robot:
     name:
       en: "Barista"
+      de: "Barista"
     spawn: { x: 245, y: 750 }
     dialogue:
       - type: random
         items:
           - text:
               en: "I love working here because I'm surrounded by my favorite snacks all day."
+              de: "Ich liebe es, hier zu arbeiten, weil ich den ganzen Tag von meinen Lieblingssnacks umgeben bin."
           - text:
               en: "Qroissant Qroissant Qroissant"
+              de: "Qroissant Qroissant Qroissant"
           - text:
               en: "Qoffee Qoffee Qoffee"
+              de: "Qoffee Qoffee Qoffee"
   citizenBraid:
     name:
       en: "Local Student"
+      de: "Lokale*r Student*in"
     spawn: { x: 774, y: 767 }
     dialogue:
       - text:
           en: "I want to fill my brain with knowledge!"
+          de: "Ich will mein Gehirn mit Wissen füllen!"
   citizenHoodie:
     name:
       en: "Local Resident"
+      de: "Einwohner*in"
     spawn: { x: 2930, y: 830 }
     cond: 'quest.delivery.active & spoke.to.doorman & understood.grover.search & passed.grover.search.quiz'
     dialogue:
       - text:
           en: "I live in this wonderful quantum world."
+          de: "Ich lebe in dieser wunderbaren Quantenwelt."
   citizenPunk:
     name:
       en: "Post-Office Clerk"
+      de: "Postbeamte*r"
     spawn: { x: 2400, y: 700 }
     dialogue:
       - text:
           en: "Ahhhhh there's so much mail!"
+          de: "Ahhhhh, so viel Post!"
   citizenPuan:
     name:
       en: "Banker"
+      de: "Bankangestellte*r"
     spawn: { x: 1522, y: 700 }
     dialogue:
       - text:
           en: "You can trust me with your money."
+          de: "Du kannst mir dein Geld anvertrauen."
   citizenBlue:
     name:
       en: "Retired Scientist"
+      de: "Pensionierte*r Wissenschaftler*in"
     type: citizenAqua
     spawn: { x: 5800, y: 800 }
     dialogue:
       - text:
           en: "I am very wise in the ways of all things quantum."
+          de: "Ich bin sehr weise, wenn es um alles Quantenbezogene geht."
   dogTan:
     name:
       en: "Emmy"
+      de: "Emmy"
     spawn: { x: 6000, y: 719 }
     dialogue:
       - text:
           en: "Woof!"
+          de: "Wuff!"
   lawyer:
     name:
       en: "Doorman"
+      de: "Türsteher"
     spawn: { x: 2832, y: 829 }
     dialogue:
       - text:
           en: "I take care of this huuuge apartment building."
+          de: "Ich kümmere mich um dieses riiieesige Wohngebäude."
 quests:
   simulation:
     npc: citizenBraid
@@ -87,234 +108,294 @@ quests:
           items:
             - text:
                 en: "I'm trying to create a chemical simulation, but I added one extra electron, and my computer froze. Can you help me?"
+                de: "Ich versuche, eine chemische Simulation zu erstellen, aber ich habe ein Elektron zu viel hinzugefügt und mein Computer ist abgestürzt. Kannst du mir helfen?"
               responses:
                 - text:
                     en: "Yes!"
+                    de: "Ja!"
                   thenText:
                     en: "Thank you! I saw a computer center down the road, maybe they can help?"
+                    de: "Danke! Ich habe ein Computerzentrum die Straße runter gesehen, vielleicht können die helfen?"
                   set: [ 'quest.simulation.active' ]
                 - text:
                     en: "Can’t right now. I’m in the middle of a staring contest with a robot."
+                    de: "Gerade nicht. Ich bin mitten in einem Starrwettbewerb mit einem Roboter."
                   thenText:
                     en: "Oh, good luck! Please come back later after you win your staring contest!"
+                    de: "Oh, viel Glück! Komm bitte später wieder, wenn du den Wettbewerb gewonnen hast!"
     stages:
       - cond: '^visit.computer.center & ^qubit.intro & ^learn.superposition'
         prompt:
           en: "Visit the computer center."
-        #target: mayor
+          de: "Besuche das Computerzentrum."
         dialogues:
           robot:
             - type: sequence
               items:
                 - text:
                     en: "I can offer you Qoffee or Qroissants, but I can't help with your simulation. Maybe try the computer technician down the road?"
+                    de: "Ich kann dir Qoffee oder Qroissants anbieten, aber bei deiner Simulation kann ich nicht helfen. Versuch es beim Computertechniker die Straße runter."
           citizenBraid:
             - type: sequence
               items:
                 - text:
                     en: "I think the computer center is down the road past the big apartment building. It looks like a huge glass dome."
+                    de: "Ich glaube, das Computerzentrum ist die Straße runter hinter dem großen Wohngebäude. Es sieht aus wie eine riesige Glaskuppel."
           citizenPuan:
             - type: sequence
               items:
                 - text:
                     en: "The computer center? It's just down the road, past the big apartment building. It looks like a huge glass dome."
+                    de: "Das Computerzentrum? Es ist gleich die Straße runter, hinter dem großen Wohngebäude. Es sieht aus wie eine riesige Glaskuppel."
           citizenPunk:
             - type: sequence
               items:
                 - text:
                     en: "The computer center? It's just down the road, past the big apartment building. It looks like a huge glass dome."
+                    de: "Das Computerzentrum? Es ist gleich die Straße runter, hinter dem großen Wohngebäude. Es sieht aus wie eine riesige Glaskuppel."
           lawyer:
             - type: sequence
               items:
                 - text:
                     en: "The computer center? It's right next door. It looks like a huge glass dome."
+                    de: "Das Computerzentrum? Es ist gleich nebenan. Es sieht aus wie eine riesige Glaskuppel."
           mayor:
             - type: sequence
               items:
                 - text:
                     en: "Ah your friend is trying to simulate a quantum system with a classical computer..."
+                    de: "Ah, dein Freund versucht, ein Quantensystem mit einem klassischen Computer zu simulieren..."
                 - text:
                     en: "In a classical computer, information is stored and processed using billions of tiny switches called bits that can each be set to on or off (0 or 1)."
+                    de: "In einem klassischen Computer werden Informationen durch Milliarden winziger Schalter gespeichert und verarbeitet, sogenannte Bits, die entweder auf an oder aus (0 oder 1) gesetzt werden können."
                 - text:
                     en: "But, the basic unit of information in a quantum computer (a qubit) doesn't have this constraint, it can be in a superposition of 0 and 1 at the same time."
+                    de: "Aber die Grundeinheit der Information in einem Quantencomputer (ein Qubit) hat diese Einschränkung nicht – es kann sich gleichzeitig in einer Überlagerung von 0 und 1 befinden."
                   responses:
                     - text:
                         en: "How can it be 0 and 1 at the same time?"
+                        de: "Wie kann es gleichzeitig 0 und 1 sein?"
                       thenText:
                         en: "You seem like a smart egg. Do a bit of research, I bet you can figure it out. If you’re lost, maybe a stroll in the forest will help."
+                        de: "Du scheinst ein schlaues Köpfchen zu sein. Recherchiere ein wenig, ich wette, du kannst es herausfinden. Wenn du nicht weiterkommst, hilft vielleicht ein Spaziergang im Wald."
                       set: ['visit.computer.center']
                     - text:
                         en: "What is a quantum system?"
+                        de: "Was ist ein Quantensystem?"
                       then: electrons-example
             - id: electrons-example
               type: sequence
               items:
                 - text:
                     en: "An example of a quantum system is a group of electrons interacting in a molecule."
+                    de: "Ein Beispiel für ein Quantensystem ist eine Gruppe von Elektronen, die in einem Molekül miteinander wechselwirken."
                 - text:
                     en: "Try to do a bit of research to find out why qubits help us simulate this situation."
+                    de: "Versuche ein wenig zu recherchieren, warum Qubits uns helfen, diese Situation zu simulieren."
                 - text:
                     en: "If you don't know where to start, I've heard that there's a retired scientist who likes to relax at the park and talk quantum."
-                  set: ['visit.computer.center']          
+                    de: "Wenn du nicht weißt, wo du anfangen sollst – ich habe gehört, es gibt einen pensionierten Wissenschaftler, der sich gerne im Park entspannt und über Quanten spricht."
       - cond: 'visit.computer.center & ^qubit.intro & ^learn.superposition'
         prompt:
           en: "Find someone to explain superposition."
-        #target: citizenBlue
+          de: "Finde jemanden, der dir Superposition erklärt."
         dialogues:
           lawyer:
             - type: sequence
               items:
                 - text:
                     en: "The park is in the other direction, at the edge of town."
+                    de: "Der Park liegt in die andere Richtung, am Stadtrand."
           citizenPunk:
             - type: sequence
               items:
                 - text:
                     en: "The park? Just follow the road to the edge of town."
+                    de: "Der Park? Folge einfach der Straße bis zum Stadtrand."
           citizenPuan:
             - type: sequence
               items:
                 - text:
                     en: "The park? Just follow the road to the edge of town."
+                    de: "Der Park? Folge einfach der Straße bis zum Stadtrand."
           citizenBraid:
             - type: sequence
               items:
                 - text:
                     en: "The park? Just follow the road to the edge of town."
+                    de: "Der Park? Folge einfach der Straße bis zum Stadtrand."
           robot:
             - type: sequence
               items:
                 - text:
                     en: "The park? Just follow the road to the edge of town."
+                    de: "Der Park? Folge einfach der Straße bis zum Stadtrand."
           citizenBlue:
             - type: sequence
               items:
                 - text:
                     en: "You want to know about superposition? Certainly! The state of a qubit is encoded by two numbers, like two coordinates for a point on a map."
+                    de: "Du willst etwas über Superposition wissen? Natürlich! Der Zustand eines Qubits wird durch zwei Zahlen beschrieben, wie zwei Koordinaten für einen Punkt auf einer Karte."
                 - text:
                     en: "Before the qubit is measured, it has some chance of being 0, and some other chance of being 1."
+                    de: "Bevor das Qubit gemessen wird, hat es eine gewisse Wahrscheinlichkeit, 0 zu sein, und eine andere Wahrscheinlichkeit, 1 zu sein."
                 - text:
                     en: "These two probabilities add to 100%. The only possible values are 0 or 1, but until we measure it, nobody knows the state, and it exists in ‘superposition’."
+                    de: "Diese beiden Wahrscheinlichkeiten ergeben zusammen 100 %. Die einzigen möglichen Werte sind 0 oder 1, aber solange wir es nicht messen, kennt niemand den Zustand – es existiert in einer ‚Superposition‘."
                   responses:
                     - text:
                         en: "Sounds impossible."
+                        de: "Klingt unmöglich."
                       thenText:
                         en: "I understand your doubt! But I promise it's real. Try talking to the computer technician to dive deeper."
+                        de: "Ich verstehe deinen Zweifel! Aber ich verspreche dir, es ist real. Sprich doch mit dem Computertechniker, um tiefer einzutauchen."
                       set: [ 'qubit.intro' ]
                     - text:
                         en: "How could that be useful?"
+                        de: "Wie kann das nützlich sein?"
                       thenText:
                         en: "I understand your doubt! But I promise it's real. Try talking to the computer technician to dive deeper."
+                        de: "Ich verstehe deinen Zweifel! Aber ich verspreche dir, es ist real. Sprich doch mit dem Computertechniker, um tiefer einzutauchen."
                       set: [ 'qubit.intro' ]
       - cond: 'visit.computer.center & qubit.intro & ^learn.superposition'
         prompt:
           en: "Go back to the computer technician."
-        #target: mayor
+          de: "Geh zurück zum Computertechniker."
         dialogues:
           lawyer:
             - type: sequence
               items:
                 - text:
                     en: "The computer center? It's right next door."
+                    de: "Das Computerzentrum? Es ist gleich nebenan."
           citizenPunk:
             - type: sequence
               items:
                 - text:
                     en: "Ack please be careful where you step! There's too much mail! Oh- the computer center? It's right next to the apartment complex."
+                    de: "Ah, bitte pass auf, wo du hintrittst! Es gibt zu viel Post! Oh – das Computerzentrum? Es ist direkt neben dem Wohnkomplex."
           citizenBraid:
             - type: sequence
               items:
                 - text:
                     en: "The computer center is on the other side of town."
+                    de: "Das Computerzentrum ist auf der anderen Seite der Stadt."
           robot:
             - type: sequence
               items:
                 - text:
                     en: "The computer center is on the other side of town, so far away from all the tasty Qroissants..."
+                    de: "Das Computerzentrum ist auf der anderen Seite der Stadt, so weit weg von all den leckeren Qroissants..."
           mayor:
             - type: sequence
               items:
                 - text:
                     en: "So, how would you define superposition?"
+                    de: "Wie würdest du Superposition definieren?"
                   responses:
                     - text:
                         en: "When you wear a cape and stand in the way of evil."
+                        de: "Wenn man einen Umhang trägt und sich dem Bösen in den Weg stellt."
                       thenText:
-                        en: "A very nobel endeavor, but not quite right... Let me tell you a bit about why superposition is important."
+                        en: "A very noble endeavor, but not quite right... Let me tell you a bit about why superposition is important."
+                        de: "Ein sehr edles Vorhaben, aber nicht ganz richtig... Ich erkläre dir, warum Superposition wichtig ist."
                       then: quantum-system-explanation
                     - text:
                         en: "When a qubit exists in a combined state of 0 and 1 at the same time."
+                        de: "Wenn ein Qubit gleichzeitig in einem kombinierten Zustand von 0 und 1 existiert."
                       thenText:
                         en: "Nice! But you still seem doubtful. Let me give you a bit more context."
+                        de: "Gut! Aber du scheinst immer noch zu zweifeln. Lass mich dir etwas mehr Kontext geben."
                       then: quantum-system-explanation
                     - text:
                         en: "A group of electrons interacting in a molecule."
+                        de: "Eine Gruppe von Elektronen, die in einem Molekül miteinander wechselwirken."
                       thenText:
                         en: "Hm, that sounds like a quantum system. Superposition is when one qubit exists in a combined state of 0 and 1 at the same time. But I wanted to tell you more about quantum systems so this is a perfect transition!"
+                        de: "Hm, das klingt nach einem Quantensystem. Superposition bedeutet, dass ein Qubit gleichzeitig in einem kombinierten Zustand von 0 und 1 existiert. Aber ich wollte dir mehr über Quantensysteme erzählen – also ist das eine perfekte Überleitung!"
                       then: quantum-system-explanation
             - id: quantum-system-explanation
               type: sequence
               items:
                 - text:
                     en: "If we used a classical computer to conduct a simulation, a system with 4 electrons has a state described by 16 numbers. With 5 electrons, 32 numbers.... With 6 electrons, 64 numbers... This is exponential growth."
+                    de: "Wenn wir einen klassischen Computer zur Simulation verwenden, hat ein System mit 4 Elektronen einen Zustand, der durch 16 Zahlen beschrieben wird. Mit 5 Elektronen sind es 32 Zahlen... mit 6 Elektronen 64... Das ist exponentielles Wachstum."
                 - text:
                     en: "If your system had 50 electrons, you would need over a quadrillion bits in a classical computer just to describe one state of the system!"
+                    de: "Wenn dein System 50 Elektronen hätte, bräuchtest du über eine Billiarde Bits in einem klassischen Computer, nur um einen Zustand des Systems zu beschreiben!"
                 - text:
                     en: "But a quantum computer can represent all of these quadrillion states using just 50 qubits in superposition. Pretty cool, right?"
+                    de: "Aber ein Quantencomputer kann all diese Billiarden Zustände mit nur 50 Qubits in Superposition darstellen. Ziemlich cool, oder?"
                   responses:
                     - text:
                         en: "Indeed, very cool, I'll tell my friend about this right away."
-                      thenText: "Great! Spread the word!"
+                        de: "Ja, wirklich cool – ich werde meinem Freund sofort davon erzählen."
+                      thenText:
+                        en: "Great! Spread the word!"
+                        de: "Super! Verbreite die Nachricht!"
                       set: [ 'learn.superposition' ]
                     - text:
                         en: "I think I'm cooler."
+                        de: "Ich glaube, ich bin cooler."
                       thenText:
                         en: "I think you're cool too. But maybe this could be useful to your friend?"
+                        de: "Ich finde dich auch cool. Aber vielleicht ist das für deinen Freund nützlich?"
                       set: [ 'learn.superposition' ]
       - cond: 'visit.computer.center & qubit.intro & learn.superposition'
         prompt:
           en: "Propose using a quantum computer to run the simulation."
-        #target: citizenBraid
+          de: "Schlage vor, einen Quantencomputer zu verwenden, um die Simulation durchzuführen."
         dialogues:
           robot:
             - type: sequence
               items:
                 - text:
                     en: "I don't know anything about simulations... unless you can simulate a qroissant inside a qroissant? Mega-qroissant... I would be interested in that!"
+                    de: "Ich weiß nichts über Simulationen... es sei denn, du kannst ein Qroissant in einem Qroissant simulieren? Mega-Qroissant... das würde mich interessieren!"
           citizenPunk:
             - type: sequence
               items:
                 - text:
                     en: "I don't know anything about simulations, I'm so overwhelmed by all this mail!"
+                    de: "Ich weiß nichts über Simulationen, ich bin so überfordert mit all dieser Post!"
           citizenBraid:
             - type: sequence
               items:
                 - text:
                     en: "You're back! Do you have an idea for how to fix my simulation?"
+                    de: "Du bist zurück! Hast du eine Idee, wie ich meine Simulation reparieren kann?"
                   responses:
                     - text:
                         en: "Turn it off and on again."
+                        de: "Schalt sie aus und wieder ein."
                       then: on-off
                     - text:
                         en: "Use a quantum computer to efficiently simulate a quantum system."
+                        de: "Verwende einen Quantencomputer, um ein Quantensystem effizient zu simulieren."
                       thenText:
                         en: "Oh fantastic! Thank you for your help!"
+                        de: "Oh, fantastisch! Vielen Dank für deine Hilfe!"
                       set: ['quest.simulation.done', 'pnt.love.simulation']
             - id: on-off
               type: sequence
               items:
                 - text:
                     en: "Oh... I tried that already... Do you think a quantum computer might work?"
+                    de: "Oh... das habe ich schon ausprobiert... Denkst du, ein Quantencomputer könnte funktionieren?"
                   responses:
-                    - text: 
+                    - text:
                         en: "Yes! You can use a quantum computer to efficiently simulate a quantum system."
+                        de: "Ja! Du kannst einen Quantencomputer verwenden, um ein Quantensystem effizient zu simulieren."
                       thenText:
                         en: "Oh fantastic! Thank you for your help!"
+                        de: "Oh, fantastisch! Vielen Dank für deine Hilfe!"
                       set: ['quest.simulation.done', 'pnt.love.simulation']
                     - text:
                         en: "Maybe, maybe not, the universe is full of unknowns..."
+                        de: "Vielleicht, vielleicht auch nicht – das Universum ist voller Unbekannter..."
                       thenText:
                         en: "Uh, ok, I guess I'll try it, thanks for your help!"
+                        de: "Äh, okay, ich denke, ich werde es versuchen – danke für deine Hilfe!"
                       set: ['quest.simulation.done', 'pnt.love.simulation']
   computer:
     npc: mayor
