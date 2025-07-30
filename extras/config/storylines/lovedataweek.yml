@@ -47,7 +47,8 @@ npcs:
     spawn: { x: 2400, y: 700 }
     dialogue:
       - text:
-          en: "Ahhhhh there's so much mail!"
+          en: "I handle all the mail around here."
+        set: [ 'op.love.2' ]
   citizenPuan:
     name:
       en: "Banker"
@@ -59,14 +60,14 @@ npcs:
     name:
       en: "Retired Scientist"
     type: citizenAqua
-    spawn: { x: 5800, y: 800 }
+    spawn: { x: 5128, y: 658 }
     dialogue:
       - text:
           en: "I am very wise in the ways of all things quantum."
   dogTan:
     name:
       en: "Emmy"
-    spawn: { x: 6000, y: 719 }
+    spawn: { x: 5893, y: 719 }
     dialogue:
       - text:
           en: "Woof!"
@@ -78,6 +79,375 @@ npcs:
       - text:
           en: "I take care of this huuuge apartment building."
 quests:
+  delivery:
+    npc: citizenPunk
+    mood: interrogation
+    available:
+      dialogue:
+        - type: sequence
+          items:
+            - text:
+                en: "We’ve got a premium express package for the apartment complex down the street that must be delivered today, but our staff all called in sick. Could you help me out, please? "
+              responses:
+                - text:
+                    en: "Sure, I can help out."
+                  thenText:
+                    en: "Thank you so much! Just so you know, the package only has a name, and no apartment number, but I'm sure you can figure it out."
+                  set: [ 'quest.delivery.active' ]
+                - text:
+                    en: "Sorry, I don’t have time to help right now."
+                  thenText:
+                    en: "I understand. Please come back if you're free later!"
+    stages:
+      - cond: '^spoke.to.doorman & ^understood.grover.search & ^passed.grover.search.quiz'
+        prompt:
+          en: "Find the apartment complex and speak to the doorman."
+        #target: lawyer
+        dialogues:
+          citizenPunk:
+            - type: sequence
+              items:
+                - text:
+                    en: "I think the building is quite close, right next door actually."
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "Hey there. Delivering something? Just so you know, for the privacy of our residents, our mailboxes are labeled only by apartment numbers, not names."
+                - text:
+                    en: "Do you know which apartment you're delivering to?"
+                  responses:
+                    - text:
+                        en: "The fanciest one."
+                      thenText:
+                        en: "I'm not sure which that is, but if you have a name, I could probably help you out."
+                      then: search-algorithm-choice
+                    - text:
+                        en: "Oh no, I only have a name."
+                      then: search-algorithm-choice
+            - id: search-algorithm-choice
+              type: sequence
+              items:
+                - text:
+                    en: "I have 3 buttons I could press to run different search algorithms for you, but some may take much longer than others."
+                - text:
+                    en: "Can you find out which is the best choice and tell me what it's called?"
+                  responses:
+                    - text:
+                        en: "Yes! A new pursuit of knowledge awaits me!"
+                      thenText:
+                        en: "Great attitude! I'm sure you'll figure it out. I've heard there's a quantum computing expert who likes to go fishing by the lake in the forest at the edge of town."
+                      set: ['spoke.to.doorman']
+                    - text: 
+                        en: "I have no idea where to start..."
+                      thenText:
+                        en: "That's okay! I've heard there's a quantum computing expert who likes to go fishing by the lake in the forest at the edge of town. Maybe she could help?"
+                      set: ['spoke.to.doorman']
+      - cond: 'spoke.to.doorman & ^understood.grover.search & ^passed.grover.search.quiz'
+        prompt:
+          en: "Find someone to help you choose a suitable algorithm."
+        #target: citizenBlue
+        dialogues:
+          citizenBlue:
+            - type: sequence
+              items:
+                - text:
+                    en: "Hey there, you look stressed, can I help you?"
+                  responses:
+                    - text:
+                        en: "Yes, can I get a Qoffee?"
+                      then: qoffee-response
+                    - text:
+                        en: "Yes, I'm trying to learn about a search algorithm."
+                      then: grover-explanation  
+            - id: qoffee-response  
+              type: sequence
+              items:
+                - text:
+                   en: "The Qafé down the street has great Qoffee, but I can awaken your mind with quantum computing knowledge if you're interested."
+                  responses:
+                    - text:
+                        en: "Yes please! I am looking for an efficient search algorithm."
+                        then: grover-explanation
+                    - text:
+                        en: "I'd rather get a Qoffee..."
+                      thenText: "...but you look like you're searching for something... Let me tell you a bit about the history of how we search!"
+                      then: grover-explanation
+            - id: grover-explanation  
+              type: sequence
+              items:
+                - text:
+                    en: "Long ago, we had various algorithms to search through unsorted data. For example, we could check every element one by one."
+                - text:
+                    en: "But if we had 10,000 pieces of data, that could take 10,000 checks..."
+                - text:
+                    en: "One day, Lov Grover found a way to sort through data much faster using a quantum computer."
+                - text:
+                    en: "If we had 10,000 pieces of data, we would only need a maximum of 100 checks using Grover's search algorithm. We call this 'quadratic' speedup."
+                  responses:
+                    - text:
+                        en: "Thanks! This sounds perfect for my delivery quest."
+                      set: [ 'understood.grover.search' ]
+                    - text:
+                        en: "Can you remind me where I can get a Qoffee?"
+                      thenText: "Yes, at the Qafé down the street. But I hope you'll stop to deliver your package along the way!"
+                      set: [ 'understood.grover.search' ]
+      - cond: 'spoke.to.doorman & understood.grover.search & ^passed.grover.search.quiz'
+        prompt:
+          en: "Help the doorman choose the right algorithm."
+        #target: lawyer
+        dialogues:
+          lawyer:
+            - type: sequence
+              items:
+                - text:
+                    en: "You're back! And you look like you went on an enlightening journey."
+                  then: algorithm-question
+            - id: algorithm-question
+              type: sequence
+              items:
+                - text:
+                    en: "So, what kind of search do you think would be most efficient?"
+                  responses:
+                    - text:
+                        en: "A smart dog sniffing the package and leading us the right way."
+                      thenText:
+                        en: "I love this idea, but I'm terribly allergic..."
+                      then: algorithm-question
+                    - text:
+                        en: "Checking each element one by one."
+                      thenText:
+                        en: "I don't think that's quite right, there must be a more efficient way..."
+                      then: algorithm-question
+                    - text:
+                        en: "A quantum algorithm called Grover's Search"
+                      thenText:
+                        en: "Nice! Seems like you did your research."
+                      then: quiz-grover
+            - id: quiz-grover
+              type: first
+              items:
+                - text:
+                    en: "Do you know how much faster Grover's search will be than just checking through unsorted data one by one?"
+                  responses:
+                    - text:
+                        en: "It checks every option simultaneously."
+                      thenText:
+                        en: "A lot of people think that! But it actually works a little differently..."
+                      then: quiz-grover
+                    - text:
+                        en: "A quadratic speedup, 10,000 pieces of data only requires 100 checks!"
+                      thenText:
+                        en: "Nice! I'll run the search for you now. The recipient of your package should come down in a second."
+                      set: [ 'passed.grover.search.quiz' ]
+      - cond: 'spoke.to.doorman & understood.grover.search & passed.grover.search.quiz'
+        prompt:
+          en: "Deliver the package!"
+        target: citizenHoodie
+        dialogues:
+          citizenHoodie:
+            - type: sequence
+              items:
+                - text:
+                    en: "I hear you have a package for me! I'm quite excited to open it, because it's entangled with a package my friend has."
+                - text:
+                    en: "Do you know what entanglement is?"
+                  responses:
+                    - text:
+                        en: "When a ball of yarn has lots of knots in it."
+                      thenText:
+                        en: "Haha, I hope that's not what's in my box..."
+                      then: entanglement-explanation
+                    - text:
+                        en: "When the states of two objects are connected, even when far apart"
+                      thenText:
+                        en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know something about what's in my friend's box."
+                      then: cupcake
+                    - text: 
+                        en: "I don't know, can you explain?"
+                      then: entanglement-explanation
+            - id: entanglement-explanation
+              type: sequence
+              items:
+                - text:
+                    en: "Imagine you have two magic dice. Whenever you roll them, they always land on the same number — if one lands on a 6, the other will too, no matter how far apart they are." 
+                - text:
+                    en: "You could roll one in New York and the other in Tokyo, and they’d still match every time."
+                - text:
+                    en: "In real life, this sounds impossible. But in quantum physics, something like this really does happen with tiny particles, like electrons or photons, even when they're light years apart."
+                  then: cupcake
+            - id: cupcake
+              type: sequence
+              items:
+                - text:
+                   en: "In my specific case of entanglement, we got two beautiful pink cupcakes, one with strawberry filling, one with tuna fish. As soon as I bite into mine, I'll know the fate of my friend too."
+                - text:
+                    en: "Do you want to take the first bite?"
+                  responses:
+                    - text:
+                        en: "No, I'd like to avoid the risk of a tuna fish cupcake..."
+                      thenText: 
+                        en: "*munch* Your loss! This strawberry cupcake is delicious. I should get a tuna-fish-furious call from my friend any minute now... Thanks for the delivery!"
+                      set: [ 'quest.delivery.done', 'pnt.love.delivery' ]
+                    - text:
+                        en: "Yes, please!"
+                      thenText: 
+                        en: "From the look on your face, seems like we got lucky! A delicious strawberry cupcake for us, and my friend should be munching on tuna any minute now... Thanks for the delivery!"
+                      set: [ 'quest.delivery.done', 'pnt.love.delivery' ]
+  computer:
+    npc: mayor
+    mood: interrogation
+    # required: simulation
+    available:
+      dialogue:
+        - type: sequence
+          items:
+            - text:
+                en: "You taught me a quantum computer would be perfect for my simulation, but I don't have access to one, can you help me?"
+              responses:
+                - text:
+                    en: "Sure, I think I know who to ask."
+                  thenText:
+                    en: "Thank you! I bet the computer center down the road can offer some help."
+                  set: [ 'quest.computer.active' ]
+                - text:
+                    en: "No, sorry, I'm very busy trying to buy a Qroissant right now."
+                  thenText:
+                    en: "I understand, that sounds urgent, Qroissants are essential to well-being. You can come back later anytime!"
+    stages:
+      - cond: '^found.computer & ^circuit.basic & ^circuit.explanation'
+        prompt:
+          en: "Ask for access to a quantum computer."
+        target: mayor
+        dialogues:
+          mayor:
+            - type: sequence
+              items:
+                - text:
+                    en: "Sure, I have a quantum computer, but you'll need to prove that you're qualified to operate this tech."
+                - text:
+                    en: "Come back when you can tell me about quantum circuits."
+                  set: ['found.computer']
+      - cond: 'found.computer & ^circuit.basic & ^circuit.explanation'
+        prompt:
+          en: "Find someone to teach you about quantum circuits."
+        target: citizenBlue
+        dialogues:
+          citizenBlue:
+            - type: sequence
+              items:
+                - text: 
+                    en: "Circuits? Certainly, I've got some knowledge to share. A circuit is like a recipe."
+                - text:
+                    en: "It takes ingredients, puts them through a series of steps, and gives you a final dish."
+                - text:
+                    en: "The Qafé has fantastic recipes for tasty Qroissants and Qookies, I bet they could help explain this."
+                  set: ['circuit.basic']
+      - cond: 'found.computer & circuit.basic & ^circuit.explanation'
+        prompt:
+          en: "Ask baker about how circuits are like recipes."
+        target: robot
+        dialogues:
+          robot:
+            - type: sequence
+              items:
+                - text:
+                    en: "Oh I love circuits! They remind me of my daily early morning baking routine."
+                - text:
+                    en: "First, I gather my ingredients, flour, sugar, butter, chocolate chips..."
+                  responses:
+                    - text:
+                        en: "This is making me hungry, can I have a Qookie?"
+                      then: cookie-analogy
+                    - text:
+                        en: "What would the ingredients be in a quantum computer?"
+                      then: cookie-analogy
+            - id: cookie-analogy
+              type: sequence
+              items:
+                - text:
+                    en: "Haha this explanation is making me hungry, let's both have a Qookie."
+                - text:
+                    en: "In a quantum computer, the ingredients for the recipe would be qubits."
+                - text:
+                    en: "Then, beating the eggs, folding in the flour, that's all replaced with operations we call 'gates.'"
+                - text:
+                    en: "And in the end, by passing our qubits through a series of gates, we have transformed our original ingredients into a desirable Qookie! --uh, I mean, a mathematical ouput..."
+                  responses:
+                    - text:
+                        en: "What kind of transformations happen inside a quantum computer?"
+                      thenText:
+                        en: "Ah, great question, I'm not an expert on quantum gates, but I think there's one nearby who can tell you."
+                      set: ['circuit.explanation']
+                    - text:
+                        en: "Can I have another Qookie?"
+                      thenText:
+                        en: "Ha I'm going to limit you to one free Qookie today, but if you want to learn more about quantum gates and circuits, I think there's an expert nearby."
+                      set: ['circuit.explanation']
+      - cond: 'found.computer & circuit.basic & circuit.explanation'
+        prompt:
+          en: "Tell the computer technician what you learned about quantum circuits."
+        target: mayor
+        dialogues:
+          mayor:
+            - type: sequence
+              items:
+                - text:
+                    en: "You're back! Can you tell me what a quantum circuit is?"
+                  responses:
+                    - text:
+                        en: "A recipe which takes qubits and transforms their states."
+                      thenText:
+                        en: "Yes, nice analogy! I can tell you a bit more about the technical details."
+                      then: gates-explanation
+                    - text:
+                        en: "When you spin around really fast."
+                      thenText: 
+                        en: "Um, that doesn't sound quite right, but maybe I can explain an example to help you understand."
+                      then: gates-explanation
+            - id: gates-explanation
+              type: sequence
+              items:
+                - text:
+                    en: "One gate that we use in both classical and quantum computing is called the 'NOT' gate"
+                - text:
+                    en: "When we pass a bit, or a qubit, through this gate, it switches the state, from 0 to 1, or from 1 to 0."
+                  responses:
+                    - text:
+                        en: "Can we use a special gate that creates superposition?"
+                      then: quantum-gates
+                    - text:
+                        en: "Like flipping a coin?"
+                      thenText:
+                        en: "Yes! But qubits can be in more than just a 'heads' or 'tails' state like a coin, remember superposition?"
+                      then: quantum-gates     
+            - id: quantum-gates             
+              type: sequence
+              items:
+                - text:
+                    en: "The 'Hadamard' gate takes a qubit in a basic state of 0 or 1, and changes it to a superposition of both states, where the qubit has equal probability of being measured as 0 or 1."
+                - text:
+                    en: "And, if we apply this gate twice, we get back to where we started."
+                - text:
+                    en: "So, if we had a qubit already in superposition, and apply the Hadamard gate, now we have a basic state that we can apply the classical NOT gate to."
+                - text:
+                    en: "Before I let you use this quantum computer, tell me, if I start with a qubit in a 0 state, and apply Hadamard, Hadamard, NOT, what will I get?"
+                  responses:
+                    - text:
+                        en: "A qubit in state 1"
+                      thenText:
+                        en: "Nice! Alright, you can run your friend's simulation on my machine. Good luck!"    
+                      set: ['quest.computer.done', 'pnt.love.computer']
+                    - text:
+                        en: "100€"
+                      thenText:
+                        en: "Not quite, we'll land in state 1. But oh- what's this? I don't usually accept bribes, but... Ok, you can run your friend's simulation on my machine. Good luck!"
+                      set: ['quest.computer.done', 'pnt.love.computer']
+                    - text:
+                        en: "A qubit in state 0, same as the start."
+                      thenText:
+                        en: "Not quite, we'll land in state 1. But oh- what's this? A Qookie? I don't usually accept bribes, but this is so tasty... Ok, you can run your friend's simulation on my machine. Good luck!"
+                      set: ['quest.computer.done', 'pnt.love.computer']
   simulation:
     npc: citizenBraid
     mood: interrogation
@@ -136,13 +506,13 @@ quests:
                 - text:
                     en: "In a classical computer, information is stored and processed using billions of tiny switches called bits that can each be set to on or off (0 or 1)."
                 - text:
-                    en: "But, the basic unit of information in a quantum computer (a qubit) doesn't have this constraint, it can be in a superposition of 0 and 1 at the same time."
+                     en: "But, the basic unit of information in a quantum computer (a qubit) doesn't have this constraint, it can be in a superposition of 0 and 1 at the same time."
                   responses:
                     - text:
                         en: "How can it be 0 and 1 at the same time?"
                       thenText:
                         en: "You seem like a smart egg. Do a bit of research, I bet you can figure it out. If you’re lost, maybe a stroll in the forest will help."
-                      set: ['visit.computer.center']
+                      set: ['visit.computer.center'] 
                     - text:
                         en: "What is a quantum system?"
                       then: electrons-example
@@ -194,7 +564,7 @@ quests:
                 - text:
                     en: "Before the qubit is measured, it has some chance of being 0, and some other chance of being 1."
                 - text:
-                    en: "These two probabilities add to 100%, so the only possible values are 0 or 1, but until we measure it, nobody knows the state, and it exists in ‘superposition’."
+                    en: "These two probabilities add to 100%. The only possible values are 0 or 1, but until we measure it, nobody knows the state, and it exists in ‘superposition’."
                   responses:
                     - text:
                         en: "Sounds impossible."
@@ -220,7 +590,7 @@ quests:
             - type: sequence
               items:
                 - text:
-                    en: "Ack please be careful where you step! There's too much mail! Oh- the computer center? It's right next to the apartment complex."
+                    en: "The computer center? It's right next door."
           citizenBraid:
             - type: sequence
               items:
@@ -235,12 +605,12 @@ quests:
             - type: sequence
               items:
                 - text:
-                    en: "So, how would you define superposition?"
+                    en: "Did you find out a bit about superposition?"
                   responses:
                     - text:
-                        en: "When you wear a cape and stand in the way of evil."
+                        en: "Yes, it's when you wear a cape and stand in the way of evil."
                       thenText:
-                        en: "A very nobel endeavor, but not quite right... Let me tell you a bit about why superposition is important."
+                        en: "I'm not sure about that, but I can tell you why I think it's important."
                       then: quantum-system-explanation
                     - text:
                         en: "When a qubit exists in a combined state of 0 and 1 at the same time."
@@ -255,7 +625,7 @@ quests:
               type: sequence
               items:
                 - text:
-                    en: "If we used a classical computer to conduct a simulation, a system with 4 electrons has a state described by 16 numbers. With 5 electrons, 32 numbers.... With 6 electrons, 64 numbers... This is exponential growth."
+                    en: "If we used a classical computer to conduct a simulation, a system of 4 electrons has a state described by 16 numbers. 5 particles, 32 numbers.... 6 particles, 64 numbers... This is exponential growth."
                 - text:
                     en: "If your system had 50 electrons, you would need over a quadrillion bits in a classical computer just to describe one state of the system!"
                 - text:
@@ -275,16 +645,6 @@ quests:
           en: "Propose using a quantum computer to run the simulation."
         #target: citizenBraid
         dialogues:
-          robot:
-            - type: sequence
-              items:
-                - text:
-                    en: "I don't know anything about simulations... unless you can simulate a qroissant inside a qroissant? Mega-qroissant... I would be interested in that!"
-          citizenPunk:
-            - type: sequence
-              items:
-                - text:
-                    en: "I don't know anything about simulations, I'm so overwhelmed by all this mail!"
           citizenBraid:
             - type: sequence
               items:
@@ -315,216 +675,6 @@ quests:
                       thenText:
                         en: "Uh, ok, I guess I'll try it, thanks for your help!"
                       set: ['quest.simulation.done', 'pnt.love.simulation']
-  computer:
-    npc: mayor
-    mood: exclamation
-    available:
-      dialogue:
-        - type: sequence
-          items:
-            - text:
-                en: "I have a quantum computer if you need it, but I can't just give access to anyone."
-              responses:
-                - text:
-                    en: "I want to run a chemical simulation."
-                  thenText:
-                    en: "Alright, but you'll need to prove that you're qualified to operate this tech. Come back when you can tell me about quantum circuits. You may find knowledge near the trees..."
-                  set: [ 'quest.computer.active' ]
-                - text:
-                    en: "I want to play pacman."
-                  thenText:
-                    en: "This is not a toy! Come back if you have a serious request."
-    stages:
-      - cond: '^circuit.basic & ^circuit.explanation'
-        prompt:
-          en: "Find someone to teach you about quantum circuits."
-        #target: citizenBlue
-        dialogues:
-          lawyer:
-            - type: sequence
-              items:
-                - text:
-                    en: "I don't know anything about quantum circuits, but I think the retired scientist at the park might be able to help you."
-          citizenPunk:
-            - type: sequence
-              items:
-                - text:
-                    en: "Ack please don't step on that envelope! If you need quantum computing help, I think the retired scientist at the park might be able to help you."
-          citizenPuan:
-            - type: sequence
-              items:  
-                - text:
-                    en: "I don't know anything about quantum circuits, but I think the retired scientist at the park might be able to help you."
-          citizenBlue:
-            - type: sequence
-              items:
-                - text: 
-                    en: "Circuits? Certainly, I've got some knowledge to share. A circuit is like a recipe."
-                - text:
-                    en: "It takes ingredients, puts them through a series of steps, and gives you a final dish."
-                - text:
-                    en: "The Qafé has fantastic recipes for tasty Qroissants and Qookies, I bet they could help explain this."
-                  set: ['circuit.basic']
-          robot:
-            - type: sequence
-              items:
-                - text:
-                    en: "Oh I love circuits! They remind me of my daily early morning baking routine."
-                - text:
-                    en: "First, I gather my ingredients, flour, sugar, butter, chocolate chips..."
-                  responses:
-                    - text:
-                        en: "This is making me hungry, can I have a Qookie?"
-                      then: cookie-analogy
-                    - text:
-                        en: "What would the ingredients be in a quantum computer?"
-                      then: cookie-analogy
-            - id: cookie-analogy
-              type: sequence
-              items:
-                - text:
-                    en: "Haha this explanation is making me hungry, let's both have a Qookie."
-                - text:
-                    en: "In a quantum computer, the ingredients for the recipe would be qubits."
-                - text:
-                    en: "Then, beating the eggs, folding in the flour, that's all replaced with operations we call 'gates.'"
-                - text:
-                    en: "And in the end, by passing our qubits through a series of gates, we have transformed our original ingredients into a desirable Qookie! --uh, I mean, a mathematical ouput..."
-                  responses:
-                    - text:
-                        en: "What kind of transformations happen inside a quantum computer?"
-                      thenText:
-                        en: "Ah, great question, I'm not an expert on quantum gates, but I think there's one nearby who can tell you."
-                      set: ['circuit.explanation', 'circuit.basic']
-                    - text:
-                        en: "Can I have another Qookie?"
-                      thenText:
-                        en: "Ha I'm going to limit you to one free Qookie today, but if you want to learn more about quantum gates and circuits, I think there's an expert nearby."
-                      set: ['circuit.explanation', 'circuit.basic']
-      - cond: 'circuit.basic & ^circuit.explanation'
-        prompt:
-          en: "Ask baker about how circuits are like recipes."
-        #target: robot
-        dialogues:
-          robot:
-            - type: sequence
-              items:
-                - text:
-                    en: "Oh I love circuits! They remind me of my daily early morning baking routine."
-                - text:
-                    en: "First, I gather my ingredients, flour, sugar, butter, chocolate chips..."
-                  responses:
-                    - text:
-                        en: "This is making me hungry, can I have a Qookie?"
-                      then: cookie-analogy
-                    - text:
-                        en: "What would the ingredients be in a quantum computer?"
-                      then: cookie-analogy
-            - id: cookie-analogy
-              type: sequence
-              items:
-                - text:
-                    en: "Haha this explanation is making me hungry, let's both have a Qookie."
-                - text:
-                    en: "In a quantum computer, the ingredients for the recipe would be qubits."
-                - text:
-                    en: "Then, beating the eggs, folding in the flour, that's all replaced with operations we call 'gates.'"
-                - text:
-                    en: "And in the end, by passing our qubits through a series of gates, we have transformed our original ingredients into a desirable Qookie! --uh, I mean, a mathematical ouput..."
-                  responses:
-                    - text:
-                        en: "What kind of transformations happen inside a quantum computer?"
-                      thenText:
-                        en: "Ah, great question, I'm not an expert on quantum gates, but I think there's one nearby who can tell you."
-                      set: ['circuit.explanation']
-                    - text:
-                        en: "Can I have another Qookie?"
-                      thenText:
-                        en: "Ha I'm going to limit you to one free Qookie today, but if you want to learn more about quantum gates and circuits, I think there's an expert nearby."
-                      set: ['circuit.explanation']
-      - cond: 'circuit.basic & circuit.explanation'
-        prompt:
-          en: "Tell the computer technician what you learned about quantum circuits."
-        #target: mayor
-        dialogues:
-          lawyer:
-            - type: sequence
-              items:
-                - text:
-                    en: "I wonder how many windows are in this building...1000? 500000?"
-          citizenPunk:
-            - type: sequence
-              items:
-                - text:
-                    en: "Ahhhh too many letters!"
-          citizenPuan:
-            - type: sequence
-              items:
-                - text:
-                    en: "mmm so much money, so secure."
-          citizenBraid:
-            - type: sequence
-              items:
-                - text: "nom nom, tasty Qroissants."
-          mayor:
-            - type: sequence
-              items:
-                - text:
-                    en: "You're back! Can you tell me what a quantum circuit is?"
-                  responses:
-                    - text:
-                        en: "A recipe which takes qubits and transforms their states."
-                      thenText:
-                        en: "Yes, nice analogy! I can tell you a bit more about the technical details."
-                      then: gates-explanation
-                    - text:
-                        en: "When you spin around really fast. "
-                      thenText: 
-                        en: "Um, that doesn't sound quite right, but maybe I can explain an example to help you understand."
-                      then: gates-explanation
-            - id: gates-explanation
-              type: sequence
-              items:
-                - text:
-                    en: "One gate that we use in both classical and quantum computing is called the 'NOT' gate"
-                - text:
-                    en: "When we pass a bit, or a qubit, through this gate, it switches the state, from 1 to 0, or from 0 to 1."
-                  responses:
-                    - text:
-                        en: "Can we use a special gate that creates superposition?"
-                      then: quantum-gates
-                    - text:
-                        en: "Like flipping a coin?"
-                      thenText:
-                        en: "Yes! But qubits can be in more than just a 'heads' or 'tails' state like a coin, they can also exist in a 'superposition' of both states at the same time."
-                      then: quantum-gates     
-            - id: quantum-gates             
-              type: sequence
-              items:
-                - text:
-                    en: "The 'Hadamard' gate takes a qubit in a basic state of 0 or 1, and changes it to a superposition of both states, where the qubit has equal probability of being measured as 0 or 1."
-                - text:
-                    en: "And, if we apply this gate twice, we get back to where we started."
-                - text:
-                    en: "So, if we had a qubit already in superposition, and apply the Hadamard gate, now we have a basic state that we can apply the classical NOT gate to."
-                - text:
-                    en: "Before I let you use this quantum computer, tell me, if I start with a qubit in a 0 state, and apply Hadamard, Hadamard, NOT, what will I get?"
-                  responses:
-                    - text:
-                        en: "A qubit in state 1"
-                      thenText:
-                        en: "Nice! Alright, you can run your simulation on my machine. Good luck!"    
-                      set: ['quest.computer.done', 'pnt.love.computer']
-                    - text:
-                        en: "100€"
-                      thenText:
-                        en: "Not quite, we'll land in state 1. But oh- what's this? I don't usually accept bribes, but... Ok, you can run your simulation on my machine. Good luck!"
-                      set: ['quest.computer.done', 'pnt.love.computer']
-                    - text:
-                        en: "A qubit in state 0, same as the start."
-                      thenText:
-                        en: "Not quite, we'll land in state 1. But oh- what's this? A Qookie? I don't usually accept bribes, but this is so tasty... Ok, you can run your simulation on my machine. Good luck!"
-                      set: ['quest.computer.done', 'pnt.love.computer']
   cafe:
     npc: robot
     mood: exclamation
@@ -552,11 +702,6 @@ quests:
           en: "Visit the bank."
         #target: citizenPuan
         dialogues:
-          robot:
-            - type: sequence
-              items:
-                - text:
-                    en: "The bank? It's right next door."
           citizenBraid:
             - type: sequence
               items:
@@ -677,12 +822,7 @@ quests:
             - type: sequence
               items:
                 - text:
-                    en: "The park? It's a lovely place, my former colleague is often fishing at the lake. It's right next to the computer center, past those trees."
-          citizenPuan:
-            - type: sequence
-              items:
-                - text:
-                    en: "Try the park! It's down the road at the edge of town."
+                    en: "The park? It's a lovely place, my former colleague is often fishing in the lake. It's right next to the computer center, past those trees."
           citizenBlue:
           - type: sequence
             items:
@@ -768,251 +908,6 @@ quests:
             - text:
                 en: "Congrats on getting your QCard. Here is your tasty Qroissant."
               set: ['quest.cafe.done', 'pnt.love.cafe']
-  delivery:
-    npc: citizenPunk
-    mood: exclamation
-    available:
-      dialogue:
-        - type: sequence
-          items:
-            - text:
-                en: "We’ve got a premium express package for the apartment complex down the street that must be delivered today, but our staff all called in sick. Could you help me out, please? "
-              responses:
-                - text:
-                    en: "Sure, I can help out."
-                  thenText:
-                    en: "Thank you so much! Just so you know, the package only has a name, and no apartment number, but I'm sure you can figure it out."
-                  set: [ 'quest.delivery.active' ]
-                - text:
-                    en: "Sorry, I don’t have time to help right now."
-                  thenText:
-                    en: "I understand. Please come back if you're free later!"
-    stages:
-      - cond: '^spoke.to.doorman & ^understood.grover.search & ^passed.grover.search.quiz'
-        prompt:
-          en: "Find the apartment complex and speak to the doorman."
-        #target: lawyer
-        dialogues:
-          citizenPunk:
-            - type: sequence
-              items:
-                - text:
-                    en: "I think the building is quite close, right next door actually."
-          lawyer:
-            - type: sequence
-              items:
-                - text:
-                    en: "Hey there. Delivering something? Just so you know, for the privacy of our residents, our mailboxes are labeled only by apartment numbers, not names."
-                - text:
-                    en: "Do you know which apartment you're delivering to?"
-                  responses:
-                    - text:
-                        en: "The fanciest one."
-                      thenText:
-                        en: "I'm not sure which that is, but if you have a name, I could probably help you out."
-                      then: search-algorithm-choice
-                    - text:
-                        en: "Oh no, I only have a name."
-                      then: search-algorithm-choice
-            - id: search-algorithm-choice
-              type: sequence
-              items:
-                - text:
-                    en: "I have 3 buttons I could press to run different search algorithms for you, but some may take much longer than others."
-                - text:
-                    en: "Can you find out which is the best choice and tell me what it's called?"
-                  responses:
-                    - text:
-                        en: "Yes! A new pursuit of knowledge awaits me!"
-                      thenText:
-                        en: "Great attitude! I'm sure you'll figure it out. I've heard there's a quantum computing expert who likes to go fishing by the lake in the forest at the edge of town."
-                      set: ['spoke.to.doorman']
-                    - text: 
-                        en: "I have no idea where to start..."
-                      thenText:
-                        en: "That's okay! I've heard there's a quantum computing expert who likes to go fishing by the lake in the forest at the edge of town. Maybe she could help?"
-                      set: ['spoke.to.doorman']
-      - cond: 'spoke.to.doorman & ^understood.grover.search & ^passed.grover.search.quiz'
-        prompt:
-          en: "Find someone to help you choose a suitable algorithm."
-        #target: citizenBlue
-        dialogues:
-          citizenPunk:
-            - type: sequence
-              items:
-                - text:
-                    en: "A quantum algorithm? I can't help you with that, but I've heard there's a wise person by the lake..."
-          mayor:
-            - type: sequence
-              items:
-                - text:
-                    en: "Quantum algorithms are so fascinating! I'm busy right now but there's a retired scientist who loves to fish by the lake at the edge of town. She might be able to help you."
-          citizenBraid:
-            - type: sequence
-              items:
-                - text:
-                    en: "I have no idea about quantum algorithms, but I've heard there's a retired scientist who loves to fish by the lake at the edge of town. She might be able to help you."
-          lawyer:
-            - type: sequence
-              items:
-                - text: 
-                    en: "Try talking to the retired scientist who likes to fish by the lake at the edge of town. She might be able to help you."
-          citizenBlue:
-            - type: sequence
-              items:
-                - text:
-                    en: "Hey there, you look stressed, can I help you?"
-                  responses:
-                    - text:
-                        en: "Yes, can I get a Qoffee?"
-                      then: qoffee-response
-                    - text:
-                        en: "Yes, I'm trying to learn about a search algorithm."
-                      then: grover-explanation  
-            - id: qoffee-response  
-              type: sequence
-              items:
-                - text:
-                   en: "The Qafé down the street has great Qoffee, but I can awaken your mind with quantum computing knowledge if you're interested."
-                  responses:
-                    - text:
-                        en: "Yes please! I am looking for an efficient search algorithm."
-                        then: grover-explanation
-                    - text:
-                        en: "I'd rather get a Qoffee..."
-                      thenText: "...but you look like you're searching for something... Let me tell you a bit about the history of how we search!"
-                      then: grover-explanation
-            - id: grover-explanation  
-              type: sequence
-              items:
-                - text:
-                    en: "Long ago, we had various algorithms to search through unsorted data. For example, we could check every element one by one."
-                - text:
-                    en: "But if we had 10,000 pieces of data, that could take 10,000 checks..."
-                - text:
-                    en: "One day, Lov Grover found a way to sort through data much faster using a quantum computer."
-                - text:
-                    en: "If we had 10,000 pieces of data, we would only need a maximum of 100 checks using Grover's search algorithm. We call this 'quadratic' speedup."
-                  responses:
-                    - text:
-                        en: "Thanks! This sounds perfect for my delivery quest."
-                      set: [ 'understood.grover.search' ]
-                    - text:
-                        en: "Ok, but where can I get a Qoffee?"
-                      thenText: "At the Qafé down the street. But I hope you'll stop to deliver your package along the way!"
-                      set: [ 'understood.grover.search' ]
-      - cond: 'spoke.to.doorman & understood.grover.search & ^passed.grover.search.quiz'
-        prompt:
-          en: "Help the doorman choose the right algorithm."
-        #target: lawyer
-        dialogues:
-          lawyer:
-            - type: sequence
-              items:
-                - text:
-                    en: "You're back! And you look like you went on an enlightening journey."
-                  then: algorithm-question
-            - id: algorithm-question
-              type: sequence
-              items:
-                - text:
-                    en: "So, what kind of search do you think would be most efficient?"
-                  responses:
-                    - text:
-                        en: "A smart dog sniffing the package and leading us the right way."
-                      thenText:
-                        en: "I love this idea, but I'm terribly allergic..."
-                      then: algorithm-question
-                    - text:
-                        en: "Checking each element one by one."
-                      thenText:
-                        en: "I don't think that's quite right, there must be a more efficient way..."
-                      then: algorithm-question
-                    - text:
-                        en: "A quantum algorithm called Grover's Search"
-                      thenText:
-                        en: "Nice! Seems like you did your research."
-                      then: quiz-grover
-            - id: quiz-grover
-              type: first
-              items:
-                - text:
-                    en: "Do you know how much faster Grover's search will be than just checking through unsorted data one by one?"
-                  responses:
-                    - text:
-                        en: "It checks every option simultaneously."
-                      thenText:
-                        en: "A lot of people think that! But it actually works a little differently..."
-                      then: quiz-grover
-                    - text:
-                        en: "A quadratic speedup, 10,000 pieces of data only requires 100 checks!"
-                      thenText:
-                        en: "Nice! I'll run the search for you now. The recipient of your package should come down in a second."
-                      set: [ 'passed.grover.search.quiz' ]
-      - cond: 'spoke.to.doorman & understood.grover.search & passed.grover.search.quiz'
-        prompt:
-          en: "Deliver the package!"
-        target: citizenHoodie
-        dialogues:
-          citizenBraid:
-            - type: sequence
-              items:
-                - text:
-                    en: "I love Qroissants..."
-          robot:
-            - type: sequence
-              items:
-                - text:
-                    en: "I bake the Qroissants fresh every day, they are so tasty!"
-          citizenHoodie:
-            - type: sequence
-              items:
-                - text:
-                    en: "I hear you have a package for me! I'm quite excited to open it, because it's entangled with a package my friend has."
-                - text:
-                    en: "Do you know what entanglement is?"
-                  responses:
-                    - text:
-                        en: "When a ball of yarn has lots of knots in it."
-                      thenText:
-                        en: "Haha, I hope that's not what's in my box..."
-                      then: entanglement-explanation
-                    - text:
-                        en: "When the states of two objects are connected, even when far apart"
-                      thenText:
-                        en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know something about what's in my friend's box."
-                      then: cupcake
-                    - text: 
-                        en: "I don't know, can you explain?"
-                      then: entanglement-explanation
-            - id: entanglement-explanation
-              type: sequence
-              items:
-                - text:
-                    en: "Imagine you have two magic dice. Whenever you roll them, they always land on the same number — if one lands on a 6, the other will too, no matter how far apart they are." 
-                - text:
-                    en: "You could roll one in New York and the other in Tokyo, and they’d still match every time."
-                - text:
-                    en: "In real life, this sounds impossible. But in quantum physics, something like this really does happen with tiny particles, like electrons or photons, even when they're light years apart."
-                  then: cupcake
-            - id: cupcake
-              type: sequence
-              items:
-                - text:
-                   en: "In my specific case of entanglement, we got two beautiful pink cupcakes, one with strawberry filling, one with tuna fish. As soon as I bite into mine, I'll know the fate of my friend too."
-                - text:
-                    en: "Do you want to take the first bite?"
-                  responses:
-                    - text:
-                        en: "No, I'd like to avoid the risk of a tuna fish cupcake..."
-                      thenText: 
-                        en: "*munch* Your loss! This strawberry cupcake is delicious. I should get a tuna-fish-furious call from my friend any minute now... Thanks for the delivery!"
-                      set: [ 'quest.delivery.done', 'pnt.love.delivery' ]
-                    - text:
-                        en: "Yes, please!"
-                      thenText: 
-                        en: "From the look on your face, seems like we got lucky! A delicious strawberry cupcake for us, and my friend should be munching on tuna any minute now... Thanks for the delivery!"
-                      set: [ 'quest.delivery.done', 'pnt.love.delivery' ]
 ending:
   dialogue:
     - type: sequence
@@ -1022,13 +917,13 @@ ending:
           type: sequence
           items:
             - text:
-                en: "You learned about encryption and Shor's Algorithm. :love:"
+                en: "You learned about encryption and Shor's Algorithm :love:"
         - cond: 'quest.delivery.done'
           class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
-                en: "You learned about Grover's search and entanglement. :love:"
+                en: "You learned about Grover's search and entanglement :love:"
         - cond: 'quest.simulation.done'
           class: 'citizensEmpowered'
           type: sequence
