@@ -8,7 +8,7 @@ npcs:
   mayor:
     name:
       en: "Computer Center Technician"
-      de: "Techniker des Computerzentrums"
+      de: "Techniker*in des Computerzentrums"
     spawn: { x: 4003, y: 743 }
     dialogue:
     - type: sequence
@@ -73,7 +73,7 @@ npcs:
   citizenBlue:
     name:
       en: "Retired Scientist"
-      de: "Pensionierte*r Wissenschaftler*in"
+      de: "Pensionierte Wissenschaftlerin"
     type: citizenAqua
     spawn: { x: 5800, y: 800 }
     dialogue:
@@ -194,7 +194,7 @@ quests:
                     de: "Versuche ein wenig zu recherchieren, warum Qubits uns helfen, diese Situation zu simulieren."
                 - text:
                     en: "If you don't know where to start, I've heard that there's a retired scientist who likes to relax at the park and talk quantum."
-                    de: "Wenn du nicht weißt, wo du anfangen sollst – ich habe gehört, es gibt einen pensionierten Wissenschaftler, der sich gerne im Park entspannt und über Quanten spricht."
+                    de: "Wenn du nicht weißt, wo du anfangen sollst – ich habe gehört, es gibt eine pensionierte Wissenschaftlerin, die sich gerne im Park entspannt und über Quanten spricht."
       - cond: 'visit.computer.center & ^qubit.intro & ^learn.superposition'
         prompt:
           en: "Find someone to explain superposition."
@@ -432,19 +432,19 @@ quests:
               items:
                 - text:
                     en: "I don't know anything about quantum circuits, but I think the retired scientist at the park might be able to help you."
-                    de: "Ich weiß nichts über Quanten-Schaltkreise, aber ich glaube, der pensionierte Wissenschaftler im Park kann dir helfen."
+                    de: "Ich weiß nichts über Quanten-Schaltkreise, aber ich glaube, die pensionierte Wissenschaftlerin im Park kann dir helfen."
           citizenPunk:
             - type: sequence
               items:
                 - text:
                     en: "Ack please don't step on that envelope! If you need quantum computing help, I think the retired scientist at the park might be able to help you."
-                    de: "Ah, bitte tritt nicht auf diesen Umschlag! Wenn du Hilfe beim Quantencomputing brauchst, kann dir der pensionierte Wissenschaftler im Park vielleicht helfen."
+                    de: "Ah, bitte tritt nicht auf diesen Umschlag! Wenn du Hilfe beim Quantencomputing brauchst, kann dir die pensionierte Wissenschaftlerin im Park vielleicht helfen."
           citizenPuan:
             - type: sequence
               items:  
                 - text:
                     en: "I don't know anything about quantum circuits, but I think the retired scientist at the park might be able to help you."
-                    de: "Ich weiß nichts über Quanten-Schaltkreise, aber ich glaube, der pensionierte Wissenschaftler im Park kann dir helfen."
+                    de: "Ich weiß nichts über Quanten-Schaltkreise, aber ich glaube, die pensionierte Wissenschaftlerin im Park kann dir helfen."
           citizenBlue:
             - type: sequence
               items:
@@ -814,14 +814,14 @@ quests:
                         de: "Ich werde ein bisschen recherchieren!"
                       thenText: 
                         en: "Nice! If you don't know where to start, I've heard there's a retired scientist often in the park at the edge of town who likes to talk quantum."
-                        de: "Super! Wenn du nicht weißt, wo du anfangen sollst – ich habe gehört, ein pensionierter Wissenschaftler ist oft im Park am Stadtrand und redet gern über Quanten."
+                        de: "Super! Wenn du nicht weißt, wo du anfangen sollst – ich habe gehört, eine pensionierte Wissenschaftlerin ist oft im Park am Stadtrand und redet gern über Quanten."
                       set: [ 'learned.encryption' ]  
                     - text:
                         en: "I don't know where to start..."
                         de: "Ich weiß nicht, wo ich anfangen soll..."
                       thenText: 
                         en: "I've heard there's a retired scientist often in the park at the edge of town who likes to talk quantum."
-                        de: "Ich habe gehört, ein pensionierter Wissenschaftler ist oft im Park am Stadtrand und redet gern über Quanten."
+                        de: "Ich habe gehört, eine pensionierte Wissenschaftlerin ist oft im Park am Stadtrand und redet gern über Quanten."
                       set: [ 'learned.encryption' ]  
       - cond: 'learned.encryption & ^learned.shors.algorithm & ^got.qcard'
         prompt:
@@ -870,7 +870,7 @@ quests:
             items:
               - text:
                   en: "Hi, I'm a retired scientist, enjoying a relaxing day in the park. When I was younger, I worked on groundbreaking quantum computing research."
-                  de: "Hallo, ich bin ein pensionierter Wissenschaftler und genieße einen entspannten Tag im Park. Früher habe ich an bahnbrechender Quantencomputer-Forschung gearbeitet."
+                  de: "Hallo, ich bin eine pensionierte Wissenschaftlerin und genieße einen entspannten Tag im Park. Früher habe ich an bahnbrechender Quantencomputer-Forschung gearbeitet."
               - text:
                   en: "I know a lot about the quantum world, are you seeking knowledge?"
                   de: "Ich weiß viel über die Quantenwelt – suchst du nach Wissen?"
@@ -1084,7 +1084,7 @@ quests:
               items:
                 - text: 
                     en: "Try talking to the retired scientist who likes to fish by the lake at the edge of town. She might be able to help you."
-                    de: "Versuch, mit der pensionierten Wissenschaftlerin zu sprechen, die gerne am See am Stadtrand angelt. Sie könnte dir helfen."
+                    de: "Versuch, mit die pensionierte Wissenschaftlerin zu sprechen, die gerne am See am Stadtrand angelt. Sie könnte dir helfen."
           citizenBlue:
             - type: sequence
               items:
