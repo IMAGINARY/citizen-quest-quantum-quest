@@ -21,7 +21,7 @@ server.
 
 ## Credits
 
-- **Story:** Skye Rothenstein, Bianca Violet, Alexa Lehmann, Elisabeth Schaber, and Andreas Matt
+- **Story:** Skye Rothenstein, Bianca Violet, Alexa Lehmann, Elisabeth Schaber, Karla Schön, Oliver Schön, and Andreas Matt
 - **Images:** Ariel Kahtan
 - **Game engine:** Eric Londaits and Christian Stussak (see [Citizen Quest](https://github.com/IMAGINARY/citizen-quest)).
 
