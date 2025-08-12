@@ -1,9 +1,9 @@
-# Data ❤️ Quest
+# Quantum Quest
 
-A game about math, open data and love for the MaRDI Love Data Week 2024.
+A game about quantum computing, part of the [Quantum Arcade](https://quantum-arcade.org/) project.
 
 Based on the interactive exhibit [Citizen Quest](https://github.com/IMAGINARY/citizen-quest), 
-developed by [Imaginary](https://about.imaginary.org/) for [Futurium](https://futurium.de/de/citizen-quest).
+developed by [Imaginary](https://about.imaginary.org/).
 
 ## Building
 
@@ -21,11 +21,11 @@ server.
 
 ## Credits
 
-- **Story:** Bianca Violet, Christiane Görgen, Tabea Bacher, Daniel Ramos, and Andreas Matt
-- **Images:** Eric Londaits
+- **Story:** Skye Rothenstein, Bianca Violet, Alexa Lehmann, Elisabeth Schaber, and Andreas Matt
+- **Images:** Ariel Kahtan
 - **Game engine:** Eric Londaits and Christian Stussak (see [Citizen Quest](https://github.com/IMAGINARY/citizen-quest)).
 
-This project was funded by [MaRDI](www.mardi4nfdi.de/).
+This project was supported by the [Federal Ministry of Research, Technology and Space](https://www.bmftr.bund.de/EN/Home/home_node.html).
 
 ## License
 
@@ -33,4 +33,4 @@ Code licensed under the MIT License. See [LICENSE](LICENSE) for details.
 Images licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
 See [extras/static/README-datalove-quest.md](extras/static/README-datalove-quest.md) for details.
 
-Copyright 2024 Imaginary gGmbH.
+Copyright 2025 Imaginary gGmbH.
