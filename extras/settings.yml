@@ -64,7 +64,7 @@ storylines:
 i18n:
   ui:
     title:
-      en: 'Quantum 🩷 Quest'
+      en: 'Quantum Quest'
     pressStart:
       en: "Press space to start"
     decisionMade:
