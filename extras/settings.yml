@@ -2,6 +2,7 @@ game:
   devModeShortcuts: false
   languages: ['en', 'de']
   maxActiveQuests: 4
+  canSwitchQuests: false
 town:
   width: 6265
   height: 1080
