@@ -66,7 +66,7 @@ i18n:
     title:
       en: 'Quantum Quest'
     pressStart:
-      en: "Press space to start"
+      en: "Press to start"
     decisionMade:
       en: 'Thank you for playing! Here are your quest achievements:'
     waitingToBegin:
@@ -74,7 +74,7 @@ i18n:
     waitingToEnd:
       en: 'Waiting for the other players…'
     pressToContinue:
-      en: 'Press space to continue'
+      en: 'Press to continue'
     defaultPrompt:
       en: 'Interact with people in this future world and complete quests to learn how quantum computing works.'
       de: 'Interagiere mit Menschen in dieser zukünftigen Welt und löse Aufgaben, um zu lernen, wie Quantencomputing funktioniert.'
