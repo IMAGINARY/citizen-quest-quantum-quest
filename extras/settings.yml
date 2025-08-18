@@ -3,7 +3,7 @@ game:
   languages: ['en', 'de']
   maxActiveQuests: 4
 town:
-  width: 6235
+  width: 6265
   height: 1080
 textures:
   bundles:
@@ -31,12 +31,30 @@ textures:
           srcs: 'target-arrow.png'
         - name: 'guide-arrow'
           srcs: 'guide-arrow.png'
-        - name: 'mardiDesk'
-          srcs: 'mardi-desk.png'
-        - name: 'coffeeTable'
-          srcs: 'coffee-table.png'
-        - name: 'libraryDesk'
-          srcs: 'library-desk.png'
+        - name: 'bank-grass-left'
+          srcs: 'bank-grass-left.png'
+        - name: 'bank-grass-right'
+          srcs: 'bank-grass-right.png'
+        - name: 'cafe-bag'
+          srcs: 'cafe-bag.png'
+        - name: 'cafe-counter'
+          srcs: 'cafe-counter.png'
+        - name: 'cafe-table-01'
+          srcs: 'cafe-table-01.png'
+        - name: 'cafe-table-02'
+          srcs: 'cafe-table-02.png'
+        - name: 'forest-big-mushrooms'
+          srcs: 'forest-big-mushrooms.png'
+        - name: 'forest-medium-mushrooms'
+          srcs: 'forest-medium-mushrooms.png'
+        - name: 'forest-small-mushrooms-1'
+          srcs: 'forest-small-mushrooms-1.png'
+        - name: 'forest-small-mushrooms-2'
+          srcs: 'forest-small-mushrooms-2.png'
+        - name: 'forest-tiny-mushroom'
+          srcs: 'forest-tiny-mushroom.png'
+        - name: 'post-office'
+          srcs: 'post-office.png'
 players:
   1:
     color: '#27a6a8'

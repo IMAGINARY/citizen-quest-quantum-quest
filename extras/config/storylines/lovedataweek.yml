@@ -20,7 +20,7 @@ npcs:
     name:
       en: "Barista"
       de: "Barista"
-    spawn: { x: 245, y: 750 }
+    spawn: { x: 400, y: 568 }
     dialogue:
       - type: random
         items:
@@ -37,7 +37,7 @@ npcs:
     name:
       en: "Local Student"
       de: "Lokale*r Student*in"
-    spawn: { x: 774, y: 767 }
+    spawn: { x: 895, y: 631 }
     dialogue:
       - text:
           en: "I want to fill my brain with knowledge!"
@@ -56,7 +56,7 @@ npcs:
     name:
       en: "Post-Office Clerk"
       de: "Postbeamte*r"
-    spawn: { x: 2400, y: 700 }
+    spawn: { x: 2290, y: 724 }
     dialogue:
       - text:
           en: "Ahhhhh there's so much mail!"
@@ -65,7 +65,7 @@ npcs:
     name:
       en: "Banker"
       de: "Bankangestellte*r"
-    spawn: { x: 1522, y: 700 }
+    spawn: { x: 1337, y: 750 }
     dialogue:
       - text:
           en: "You can trust me with your money."
@@ -75,7 +75,7 @@ npcs:
       en: "Retired Scientist"
       de: "Pensionierte Wissenschaftlerin"
     type: citizenAqua
-    spawn: { x: 5800, y: 800 }
+    spawn: { x: 5887, y: 723 }
     dialogue:
       - text:
           en: "I am very wise in the ways of all things quantum."
@@ -93,11 +93,36 @@ npcs:
     name:
       en: "Doorman"
       de: "Türsteher"
-    spawn: { x: 2832, y: 829 }
+    spawn: { x: 2917, y: 791 }
     dialogue:
       - text:
           en: "I take care of this huuuge apartment building."
           de: "Ich kümmere mich um dieses riiieesige Wohngebäude."
+scenery:
+  post-office:
+    spawn: { x: 2325, y: 660 }
+  bank-grass-left:
+      spawn: { x: 1068.5, y: 638 }
+  bank-grass-right:
+      spawn: { x: 1664.75, y: 604.5 }
+  cafe-bag:
+      spawn: { x: 792, y: 744 }
+  cafe-counter:
+      spawn: { x: 372, y: 582 }
+  cafe-table-01:
+      spawn: { x: 213.25, y: 789 }
+  cafe-table-02:
+      spawn: { x: 722.75, y: 714 }
+  forest-big-mushrooms:
+      spawn: { x: 5534.75, y: 738 }
+  forest-medium-mushrooms:
+      spawn: { x: 5283.25, y: 731.5 }
+  forest-small-mushrooms-1:
+      spawn: { x: 4771.25, y: 668 }
+  forest-small-mushrooms-2:
+      spawn: { x: 4819.75, y: 680 }
+  forest-tiny-mushroom:
+      spawn: { x: 4907.25, y: 602 }
 quests:
   simulation:
     npc: citizenBraid
@@ -441,14 +466,14 @@ quests:
                     de: "Ah, bitte tritt nicht auf diesen Umschlag! Wenn du Hilfe beim Quantencomputing brauchst, kann dir die pensionierte Wissenschaftlerin im Park vielleicht helfen."
           citizenPuan:
             - type: sequence
-              items:  
+              items:
                 - text:
                     en: "I don't know anything about quantum circuits, but I think the retired scientist at the park might be able to help you."
                     de: "Ich weiß nichts über Quanten-Schaltkreise, aber ich glaube, die pensionierte Wissenschaftlerin im Park kann dir helfen."
           citizenBlue:
             - type: sequence
               items:
-                - text: 
+                - text:
                     en: "Circuits? Certainly, I've got some knowledge to share. A circuit is like a recipe."
                     de: "Schaltkreise? Natürlich, ich habe ein bisschen Wissen zu teilen. Ein Schaltkreis ist wie ein Rezept."
                 - text:
@@ -605,7 +630,7 @@ quests:
                     - text:
                         en: "When you spin around really fast. "
                         de: "Wenn man sich ganz schnell im Kreis dreht."
-                      thenText: 
+                      thenText:
                         en: "Um, that doesn't sound quite right, but maybe I can explain an example to help you understand."
                         de: "Ähm, das klingt nicht ganz richtig – aber vielleicht kann ich dir ein Beispiel erklären, das dir hilft, es zu verstehen."
                       then: gates-explanation
@@ -630,7 +655,7 @@ quests:
                         en: "Yes! But qubits can be in more than just a 'heads' or 'tails' state like a coin, they can also exist in a 'superposition' of both states at the same time."
                         de: "Ja! Aber Qubits können mehr als nur Kopf oder Zahl sein – sie können sich gleichzeitig in einer Superposition beider Zustände befinden."
                       then: quantum-gates
-            - id: quantum-gates             
+            - id: quantum-gates
               type: sequence
               items:
                 - text:
@@ -650,7 +675,7 @@ quests:
                         en: "A qubit in state 1"
                         de: "Ein Qubit im Zustand 1"
                       thenText:
-                        en: "Nice! Alright, you can run your simulation on my machine. Good luck!"    
+                        en: "Nice! Alright, you can run your simulation on my machine. Good luck!"
                         de: "Schön! In Ordnung, du kannst deine Simulation auf meinem Rechner durchführen. Viel Erfolg!"
                       set: ['quest.computer.done', 'pnt.love.computer']
                     - text:
@@ -784,21 +809,21 @@ quests:
                     - text:
                         en: "When you write a message in really bad handwriting."
                         de: "Wenn man eine Nachricht mit wirklich schlechter Handschrift schreibt."
-                      thenText: 
+                      thenText:
                         en: "Haha that kind of encryption will always be relevant! But the technical type of encryption your phone or laptop uses can be broken by quantum computing, so we use new techniques now."
                         de: "Haha, diese Art von Verschlüsselung wird wohl immer relevant bleiben! Aber die technische Verschlüsselung, die dein Handy oder Laptop nutzt, kann durch Quantencomputer gebrochen werden – deshalb verwenden wir jetzt neue Methoden."
                       then: prompt-to-learn-shors-algorithm
                     - text:
                         en: "A way to keep sensitive information safe from hackers."
                         de: "Eine Methode, um sensible Informationen vor Hackern zu schützen."
-                      thenText: 
+                      thenText:
                         en: "Nice! The most common form of encryption was broken by quantum computing, so we use new techniques now."
                         de: "Sehr gut! Die gebräuchlichste Form der Verschlüsselung wurde durch Quantencomputer gebrochen – deshalb verwenden wir jetzt neue Methoden."
                       then: prompt-to-learn-shors-algorithm
                     - text:
                         en: "When you hide your files in a secret vault deep underground."
                         de: "Wenn man seine Dateien in einem geheimen Tresor tief unter der Erde versteckt."
-                      thenText: 
+                      thenText:
                         en: "Not quite... Try again."
                         de: "Nicht ganz... Versuch’s nochmal."
                       then: quiz-encryption
@@ -812,17 +837,17 @@ quests:
                     - text:
                         en: "I'll go do some research!"
                         de: "Ich werde ein bisschen recherchieren!"
-                      thenText: 
+                      thenText:
                         en: "Nice! If you don't know where to start, I've heard there's a retired scientist often in the park at the edge of town who likes to talk quantum."
                         de: "Super! Wenn du nicht weißt, wo du anfangen sollst – ich habe gehört, eine pensionierte Wissenschaftlerin ist oft im Park am Stadtrand und redet gern über Quanten."
-                      set: [ 'learned.encryption' ]  
+                      set: [ 'learned.encryption' ]
                     - text:
                         en: "I don't know where to start..."
                         de: "Ich weiß nicht, wo ich anfangen soll..."
-                      thenText: 
+                      thenText:
                         en: "I've heard there's a retired scientist often in the park at the edge of town who likes to talk quantum."
                         de: "Ich habe gehört, eine pensionierte Wissenschaftlerin ist oft im Park am Stadtrand und redet gern über Quanten."
-                      set: [ 'learned.encryption' ]  
+                      set: [ 'learned.encryption' ]
       - cond: 'learned.encryption & ^learned.shors.algorithm & ^got.qcard'
         prompt:
           en: "Learn about the algorithm that broke classical encryption."
@@ -889,7 +914,7 @@ quests:
               - text:
                   en: "Not in my pocket, but there are freshly baked Qroissants every day down the road!"
                   de: "Nicht in meiner Tasche, aber es gibt jeden Tag frisch gebackene Qroissants die Straße runter!"
-              - text: 
+              - text:
                   en: "If you want to stick around, I can answer any quantum curiousities you have."
                   de: "Wenn du bleiben willst, kann ich jede Frage zu Quanten beantworten, die du hast."
                 responses:
@@ -929,7 +954,7 @@ quests:
           citizenBraid:
             - type: sequence
               items:
-                - text: 
+                - text:
                     en: "The bank? It's right next door, you just passed it."
                     de: "Die Bank? Sie ist gleich nebenan, du bist gerade daran vorbeigegangen."
           robot:
@@ -1048,7 +1073,7 @@ quests:
                         en: "Great attitude! I'm sure you'll figure it out. I've heard there's a quantum computing expert who likes to go fishing by the lake in the forest at the edge of town."
                         de: "Tolle Einstellung! Ich bin sicher, du wirst es herausfinden. Ich habe gehört, es gibt eine Quantencomputing-Expertin, die gerne am See im Wald am Stadtrand angeln geht."
                       set: ['spoke.to.doorman']
-                    - text: 
+                    - text:
                         en: "I have no idea where to start..."
                         de: "Ich habe keine Ahnung, wo ich anfangen soll..."
                       thenText:
@@ -1082,7 +1107,7 @@ quests:
           lawyer:
             - type: sequence
               items:
-                - text: 
+                - text:
                     en: "Try talking to the retired scientist who likes to fish by the lake at the edge of town. She might be able to help you."
                     de: "Versuch, mit die pensionierte Wissenschaftlerin zu sprechen, die gerne am See am Stadtrand angelt. Sie könnte dir helfen."
           citizenBlue:
@@ -1099,8 +1124,8 @@ quests:
                     - text:
                         en: "Yes, I'm trying to learn about a search algorithm."
                         de: "Ja, ich versuche, etwas über einen Suchalgorithmus zu lernen."
-                      then: grover-explanation  
-            - id: qoffee-response  
+                      then: grover-explanation
+            - id: qoffee-response
               type: sequence
               items:
                 - text:
@@ -1114,11 +1139,11 @@ quests:
                     - text:
                         en: "I'd rather get a Qoffee..."
                         de: "Ich hätte lieber einen Qoffee..."
-                      thenText: 
+                      thenText:
                         en: "...but you look like you're searching for something... Let me tell you a bit about the history of how we search!"
                         de: "...aber du siehst aus, als würdest du etwas suchen... Lass mich dir ein wenig über die Geschichte des Suchens erzählen!"
                       then: grover-explanation
-            - id: grover-explanation  
+            - id: grover-explanation
               type: sequence
               items:
                 - text:
@@ -1248,7 +1273,7 @@ quests:
                         en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know something about what's in my friend's box."
                         de: "Du kennst dich wirklich aus! Ganz genau – wenn ich diese Box öffne, weiß ich sofort etwas über den Inhalt der Box meines Freundes."
                       then: cupcake
-                    - text: 
+                    - text:
                         en: "I don't know, can you explain?"
                         de: "Ich weiß es nicht, kannst du es mir erklären?"
                       then: entanglement-explanation
@@ -1256,7 +1281,7 @@ quests:
               type: sequence
               items:
                 - text:
-                    en: "Imagine you have two magic dice. Whenever you roll them, they always land on the same number — if one lands on a 6, the other will too, no matter how far apart they are." 
+                    en: "Imagine you have two magic dice. Whenever you roll them, they always land on the same number — if one lands on a 6, the other will too, no matter how far apart they are."
                     de: "Stell dir vor, du hast zwei magische Würfel. Jedes Mal, wenn du sie wirfst, zeigen sie dieselbe Zahl – wenn einer eine 6 zeigt, tut es der andere auch, egal wie weit sie voneinander entfernt sind."
                 - text:
                     en: "You could roll one in New York and the other in Tokyo, and they’d still match every time."
@@ -1278,14 +1303,14 @@ quests:
                     - text:
                         en: "No, I'd like to avoid the risk of a tuna fish cupcake..."
                         de: "Nein, ich möchte das Risiko eines Thunfisch-Cupcakes lieber vermeiden..."
-                      thenText: 
+                      thenText:
                         en: "*munch* Your loss! This strawberry cupcake is delicious. I should get a tuna-fish-furious call from my friend any minute now... Thanks for the delivery!"
                         de: "*mampf* Dein Pech! Dieser Erdbeer-Cupcake ist köstlich. Ich sollte jeden Moment einen wütenden Thunfisch-Anruf von meinem Freund bekommen... Danke für die Lieferung!"
                       set: [ 'quest.delivery.done', 'pnt.love.delivery' ]
                     - text:
                         en: "Yes, please!"
                         de: "Ja, bitte!"
-                      thenText: 
+                      thenText:
                         en: "From the look on your face, seems like we got lucky! A delicious strawberry cupcake for us, and my friend should be munching on tuna any minute now... Thanks for the delivery!"
                         de: "Nach deinem Gesichtsausdruck zu urteilen, hatten wir Glück! Ein köstlicher Erdbeer-Cupcake für uns, und mein Freund knabbert sicher gleich an Thunfisch... Danke für die Lieferung!"
                       set: [ 'quest.delivery.done', 'pnt.love.delivery' ]
