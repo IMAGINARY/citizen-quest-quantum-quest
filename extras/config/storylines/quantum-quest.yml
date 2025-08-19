@@ -220,6 +220,7 @@ quests:
                 - text:
                     en: "If you don't know where to start, I've heard that there's a retired scientist who likes to relax at the park and talk quantum."
                     de: "Wenn du nicht weißt, wo du anfangen sollst: Ich habe gehört, es gibt eine pensionierte Wissenschaftlerin, die sich gerne im Park entspannt und über Quanten spricht."
+                  set: [ 'visit.computer.center' ]
       - cond: 'visit.computer.center & ^qubit.intro & ^learn.superposition'
         prompt:
           en: "Find someone to explain superposition."
