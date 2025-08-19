@@ -70,6 +70,7 @@ i18n:
       en: "Press to start"
     decisionMade:
       en: 'Thank you for playing! Here are your quest achievements:'
+      de: 'Danke fürs Spielen! Hier sind deine Quest-Ergebnisse:'
     waitingToBegin:
       en: 'Get ready! A new game will begin soon.'
     waitingToEnd:
