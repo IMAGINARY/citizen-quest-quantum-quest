@@ -62,7 +62,7 @@ players:
     color: '#27a6a8'
     spawn: { x: 2500, y: 750 }
 storylines:
-  - lovedataweek
+  - quantum-quest
 i18n:
   ui:
     title:
