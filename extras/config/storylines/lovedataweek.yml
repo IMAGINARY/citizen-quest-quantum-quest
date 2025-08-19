@@ -64,7 +64,7 @@ npcs:
   citizenPuan:
     name:
       en: "Banker"
-      de: "Bankangestellte*r"
+      de: "Bankangestellte"
     spawn: { x: 1337, y: 750 }
     dialogue:
       - text:
