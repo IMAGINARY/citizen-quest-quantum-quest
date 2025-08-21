@@ -8,7 +8,7 @@
     "shx": "^0.3.4"
   },
   "scripts": {
-    "build": "shx rm -rf ./dist && degit github:IMAGINARY/citizen-quest#v1.12.0 --force dist && shx cp -R ./extras/. ./dist/. && cd ./dist && npm install && npm run build && cd ..",
+    "build": "shx rm -rf ./dist && degit github:IMAGINARY/citizen-quest#v1.12.1 --force dist && shx cp -R ./extras/. ./dist/. && cd ./dist && npm install && npm run build && cd ..",
     "watch:copy": "cpx './extras/**' './dist/' -vw",
     "watch:compile": "cd ./dist && npm run watch"
   },
