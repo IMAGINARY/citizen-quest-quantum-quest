@@ -3,7 +3,7 @@ game:
   languages: ['en', 'de']
   maxActiveQuests: 4
   canSwitchQuests: false
-  duration: 540
+  duration: 900 # 15 minutes
 town:
   width: 6265
   height: 1080
