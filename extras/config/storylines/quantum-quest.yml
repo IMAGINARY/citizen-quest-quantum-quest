@@ -36,7 +36,7 @@ npcs:
   citizenBraid:
     name:
       en: "Local Student"
-      de: "Lokale Studentin"
+      de: "Studentin"
     spawn: { x: 895, y: 631 }
     dialogue:
       - text:
@@ -45,7 +45,7 @@ npcs:
   citizenHoodie:
     name:
       en: "Local Resident"
-      de: "Einwohner"
+      de: "Bewohner"
     spawn: { x: 2930, y: 830 }
     cond: 'quest.delivery.active & spoke.to.doorman & understood.grover.search & passed.grover.search.quiz'
     dialogue:
@@ -92,7 +92,7 @@ npcs:
   lawyer:
     name:
       en: "Doorman"
-      de: "Türsteher"
+      de: "Pförtner"
     spawn: { x: 2917, y: 791 }
     dialogue:
       - text:
@@ -144,7 +144,7 @@ quests:
                   set: [ 'quest.simulation.active' ]
                 - text:
                     en: "Can’t right now. I’m in the middle of a staring contest with a robot."
-                    de: "Gerade nicht. Ich bin mitten in einem Starrwettbewerb mit einem Roboter."
+                    de: "Nein, ich bin mitten in einem Starrwettbewerb mit einem Roboter."
                   thenText:
                     en: "Oh, good luck! Please come back later after you win your staring contest!"
                     de: "Oh, viel Glück! Komm bitte später wieder, wenn du den Wettbewerb gewonnen hast!"
@@ -189,7 +189,7 @@ quests:
               items:
                 - text:
                     en: "Ah your friend is trying to simulate a quantum system with a classical computer..."
-                    de: "Ah, dein Freund versucht, ein Quantensystem mit einem klassischen Computer zu simulieren..."
+                    de: "Ah, deine Freundin versucht, ein Quantensystem mit einem klassischen Computer zu simulieren..."
                 - text:
                     en: "In a classical computer, information is stored and processed using billions of tiny switches called bits that can each be set to on or off (0 or 1)."
                     de: "In einem klassischen Computer werden Informationen durch Milliarden winziger Schalter gespeichert und verarbeitet, sogenannte Bits, die entweder auf an oder aus (0 oder 1) gesetzt werden können."
@@ -335,17 +335,17 @@ quests:
                       then: quantum-system-explanation
                     - text:
                         en: "A group of electrons interacting in a molecule."
-                        de: "Eine Gruppe von Elektronen, die in einem Molekül miteinander wechselwirken."
+                        de: "Eine Gruppe wechselwirkender Elektronen in einem Molekül."
                       thenText:
                         en: "Hm, that sounds like a quantum system. Superposition is when one qubit exists in a combined state of 0 and 1 at the same time. But I wanted to tell you more about quantum systems so this is a perfect transition!"
-                        de: "Hm, das klingt nach einem Quantensystem. Superposition bedeutet, dass sich ein Qubit in einem Zustand von 0 und 1 gleichzeitig befindet. Aber ich wollte dir mehr über Quantensysteme erzählen, das ist eine perfekte Überleitung!"
+                        de: "Hm, das klingt nach einem Quantensystem. Superposition bedeutet, ein Qubit kann gleichzeitig 0 und 1 sein. Aber ich wollte dir mehr über Quantensysteme erzählen, das ist eine perfekte Überleitung!"
                       then: quantum-system-explanation
             - id: quantum-system-explanation
               type: sequence
               items:
                 - text:
                     en: "If we used a classical computer to conduct a simulation, a system with 4 electrons has a state described by 16 numbers. With 5 electrons, 32 numbers.... With 6 electrons, 64 numbers... This is exponential growth."
-                    de: "Wenn wir einen klassischen Computer zur Simulation verwenden, hat ein System mit 4 Elektronen einen Zustand, der durch 16 Zahlen beschrieben wird. Mit 5 Elektronen sind es 32 Zahlen... mit 6 Elektronen 64... Das ist exponentielles Wachstum."
+                    de: "Wenn wir einen klassischen Computer nutzen, lässt sich der Zustand eines System mit 4 Elektronen durch 16 Zahlen beschreiben. Mit 5 Elektronen sind es 32 Zahlen... mit 6 Elektronen 64... Das ist exponentielles Wachstum."
                 - text:
                     en: "If your system had 50 electrons, you would need over a quadrillion bits in a classical computer just to describe one state of the system!"
                     de: "Wenn dein System 50 Elektronen hätte, bräuchtest du über eine Billiarde Bits in einem klassischen Computer, nur um einen Zustand des Systems zu beschreiben!"
@@ -355,7 +355,7 @@ quests:
                   responses:
                     - text:
                         en: "Indeed, very cool, I'll tell my friend about this right away."
-                        de: "Ja, wirklich cool. Ich werde meinem Freund sofort davon erzählen."
+                        de: "Ja, wirklich cool. Ich werde meiner Freundin sofort davon erzählen."
                       thenText:
                         en: "Great! Spread the word!"
                         de: "Super! Verbreite die Nachricht!"
@@ -365,12 +365,12 @@ quests:
                         de: "Ich glaube, ich bin cooler."
                       thenText:
                         en: "I think you're cool too. But maybe this could be useful to your friend?"
-                        de: "Ich finde dich auch cool. Aber vielleicht ist das für deinen Freund nützlich?"
+                        de: "Ich finde dich auch cool. Aber vielleicht ist das für deine Freundin nützlich?"
                       set: [ 'learn.superposition' ]
       - cond: 'visit.computer.center & qubit.intro & learn.superposition'
         prompt:
           en: "Propose using a quantum computer to run the simulation."
-          de: "Schlage vor, einen Quantencomputer zu verwenden, um die Simulation durchzuführen."
+          de: "Schlage einen Quantencomputer für die Simulation vor."
         dialogues:
           robot:
             - type: sequence
@@ -397,7 +397,7 @@ quests:
                       then: on-off
                     - text:
                         en: "Use a quantum computer to efficiently simulate a quantum system."
-                        de: "Verwende einen Quantencomputer, um ein Quantensystem effizient zu simulieren."
+                        de: "Verwende einen Quantencomputer, um ein Quantensystem zu simulieren."
                       thenText:
                         en: "Oh fantastic! Thank you for your help!"
                         de: "Oh, fantastisch! Vielen Dank für deine Hilfe!"
@@ -410,8 +410,8 @@ quests:
                     de: "Oh... das habe ich schon ausprobiert... Denkst du, ein Quantencomputer könnte funktionieren?"
                   responses:
                     - text:
-                        en: "Yes! You can use a quantum computer to efficiently simulate a quantum system."
-                        de: "Ja! Du kannst einen Quantencomputer verwenden, um ein Quantensystem effizient zu simulieren."
+                        en: "Yes! You can use a quantum computer."
+                        de: "Ja! Du kannst einen Quantencomputer verwenden."
                       thenText:
                         en: "Oh fantastic! Thank you for your help!"
                         de: "Oh, fantastisch! Vielen Dank für deine Hilfe!"
@@ -587,8 +587,8 @@ quests:
                       set: ['circuit.explanation']
       - cond: 'circuit.basic & circuit.explanation'
         prompt:
-          en: "Tell the computer technician what you learned about quantum circuits."
-          de: "Erzähl dem Computertechniker, was du über Quanten-Schaltkreise gelernt hast."
+          en: "Go back to the computer technician."
+          de: "Gehe zurück zum Computertechniker."
         dialogues:
           lawyer:
             - type: sequence
@@ -639,7 +639,7 @@ quests:
               type: sequence
               items:
                 - text:
-                    en: "One gate that we use in both classical and quantum computing is called the 'NOT' gate"
+                    en: "One gate that we use in both classical and quantum computing is called the 'NOT' gate."
                     de: "Ein Gate, das wir sowohl in der klassischen als auch in der Quanteninformatik verwenden, heißt 'NOT'-Gate."
                 - text:
                     en: "When we pass a bit, or a qubit, through this gate, it switches the state, from 1 to 0, or from 0 to 1."
@@ -654,7 +654,7 @@ quests:
                         de: "Wie beim Werfen einer Münze?"
                       thenText:
                         en: "Yes! But qubits can be in more than just a 'heads' or 'tails' state like a coin, they can also exist in a 'superposition' of both states at the same time."
-                        de: "Ja! Aber Qubits können mehr als nur Kopf oder Zahl sein, sie können sich gleichzeitig in einer Superposition beider Zustände gleichzeitig befinden."
+                        de: "Ja! Aber Qubits können mehr als nur Kopf oder Zahl sein, sie können sich in einer Superposition beider Zustände gleichzeitig befinden."
                       then: quantum-gates
             - id: quantum-gates
               type: sequence
@@ -687,8 +687,8 @@ quests:
                         de: "Nicht ganz, wir landen im Zustand 1. Aber oh – was ist das? Ein Qookie? Ich nehme normalerweise keine Bestechungen an, aber... In Ordnung, du kannst deine Simulation auf meinem Rechner durchführen. Viel Erfolg!"
                       set: ['quest.computer.done', 'pnt.love.computer']
                     - text:
-                        en: "A qubit in state 0, same as the start."
-                        de: "Ein Qubit im Zustand 0, also wie zu Beginn."
+                        en: "A qubit in state 0, same as the start"
+                        de: "Ein Qubit im Zustand 0, also wie zu Beginn"
                       thenText:
                         en: "Not quite, we'll land in state 1. But oh- what's this? A Qookie? I don't usually accept bribes, but... Ok, you can run your simulation on my machine. Good luck!"
                         de: "Nicht ganz, wir landen im Zustand 1. Aber oh – was ist das? Ein Qookie? Ich nehme normalerweise keine Bestechungen an, aber ... In Ordnung, du kannst deine Simulation auf meinem Rechner durchführen. Viel Erfolg!"
@@ -812,7 +812,7 @@ quests:
                         de: "Wenn man eine Nachricht mit wirklich schlechter Handschrift schreibt."
                       thenText:
                         en: "Haha that kind of encryption will always be relevant! But the technical type of encryption your phone or laptop uses can be broken by quantum computing, so we use new techniques now."
-                        de: "Haha, diese Art von Verschlüsselung wird wohl immer relevant bleiben! Aber die technische Verschlüsselung, die dein Handy oder Laptop nutzt, kann durch Quantencomputer geknackt werden. Deshalb verwenden wir jetzt neue Methoden."
+                        de: "Haha, das wird wohl immer relevant bleiben! Aber die Verschlüsselung, die dein Handy oder Laptop nutzt, kann durch Quantencomputer geknackt werden. Deshalb verwenden wir jetzt neue Methoden."
                       then: prompt-to-learn-shors-algorithm
                     - text:
                         en: "A way to keep sensitive information safe from hackers."
@@ -823,7 +823,7 @@ quests:
                       then: prompt-to-learn-shors-algorithm
                     - text:
                         en: "When you hide your files in a secret vault deep underground."
-                        de: "Wenn man seine Dateien in einem geheimen Tresor tief unter der Erde versteckt."
+                        de: "Wenn man Dateien in einem geheimen, unterirdischen Tresor versteckt."
                       thenText:
                         en: "Not quite... Try again."
                         de: "Nicht ganz... Versuch’s nochmal."
@@ -852,7 +852,7 @@ quests:
       - cond: 'learned.encryption & ^learned.shors.algorithm & ^got.qcard'
         prompt:
           en: "Learn about the algorithm that broke classical encryption."
-          de: "Lerne den Algorithmus kennen, der die klassische Verschlüsselung geknackt hat."
+          de: "Lerne den berühmten, modernen Algorithmus kennen."
         #target: citizenBlue
         dialogues:
           robot:
@@ -884,7 +884,7 @@ quests:
               items:
                 - text:
                     en: "The park? It's a lovely place, my former colleague is often fishing at the lake. It's right next to the computer center, past those trees."
-                    de: "Der Park? Ein schöner Ort, mein ehemaliger Kollege angelt dort oft am See. Er ist direkt neben dem Computerzentrum, hinter den Bäumen."
+                    de: "Der Park? Ein schöner Ort, meine ehemalige Kollegin angelt dort oft am See. Er ist direkt neben dem Computerzentrum, hinter den Bäumen."
           citizenPuan:
             - type: sequence
               items:
@@ -942,8 +942,8 @@ quests:
                 set: ['learned.shors.algorithm']
       - cond: 'learned.encryption & learned.shors.algorithm & ^got.qcard'
         prompt:
-          en: "Prove your quantum algorithm knowledge at the Bank to get a QCard"
-          de: "Beweise dein Wissen über Quantenalgorithmen bei der Bank, um eine QCard zu bekommen"
+          en: "Go to the Bank to get a QCard."
+          de: "Gehe zur Bank, um eine QCard zu bekommen."
         #target: citizenPuan
         dialogues:
           citizenPunk:
@@ -977,7 +977,7 @@ quests:
                     de: "Äh, nein... Vielleicht bist du noch nicht bereit, diese Technologie zu handhaben."
                 - text:
                     en: "By running Shor's prime factorization algorithm on a large quantum computer."
-                    de: "Indem man Shors Primfaktorzerlegungsalgorithmus auf einem großen Quantencomputer laufen lässt."
+                    de: "Mit Shors Primfaktorzerlegung auf einem großen Quantencomputer."
                   thenText:
                     en: "Yes! Nice research work, here's your QCard."
                     de: "Ja! Gute Forschungsarbeit, hier ist deine QCard."
@@ -1015,7 +1015,7 @@ quests:
                     de: "Klar, ich kann helfen."
                   thenText:
                     en: "Thank you so much! Just so you know, the package only has a name, and no apartment number, but I'm sure you can figure it out."
-                    de: "Vielen Dank! Nur damit du es weißt, auf dem Paket ist nur ein Name und keine Wohnungsnummer angegeben, aber ich bin sicher, du bekommst das hin."
+                    de: "Vielen Dank! Nur damit du es weißt, auf dem Paket ist nur ein Name aber keine Wohnungsnummer angegeben, doch ich bin sicher, du bekommst das hin."
                   set: [ 'quest.delivery.active' ]
                 - text:
                     en: "Sorry, I don’t have time to help right now."
@@ -1027,7 +1027,7 @@ quests:
       - cond: '^spoke.to.doorman & ^understood.grover.search & ^passed.grover.search.quiz'
         prompt:
           en: "Find the apartment complex and speak to the doorman."
-          de: "Finde den Wohnkomplex und sprich mit dem Türsteher."
+          de: "Finde den Wohnkomplex und sprich mit dem Pförtner."
         #target: lawyer
         dialogues:
           citizenPunk:
@@ -1084,7 +1084,7 @@ quests:
       - cond: 'spoke.to.doorman & ^understood.grover.search & ^passed.grover.search.quiz'
         prompt:
           en: "Find someone to help you choose a suitable algorithm."
-          de: "Finde jemanden, der dir hilft, einen passenden Algorithmus auszuwählen."
+          de: "Finde jemanden, der den passenden Algorithmus kennt."
         #target: citizenBlue
         dialogues:
           citizenPunk:
@@ -1136,7 +1136,7 @@ quests:
                     - text:
                         en: "Yes please! I am looking for an efficient search algorithm."
                         de: "Ja bitte! Ich suche nach einem effizienten Suchalgorithmus."
-                        then: grover-explanation
+                      then: grover-explanation
                     - text:
                         en: "I'd rather get a Qoffee..."
                         de: "Ich hätte lieber einen Qoffee..."
@@ -1149,7 +1149,7 @@ quests:
               items:
                 - text:
                     en: "Long ago, we had various algorithms to search through unsorted data. For example, we could check every element one by one."
-                    de: "Früher hatten wir verschiedene Algorithmen, um unsortierte Daten zu durchsuchen. Eine Möglichkeit ist zum Beispiel, jedes Element einzeln überprüfen."
+                    de: "Früher hatten wir verschiedene Algorithmen, um unsortierte Daten zu durchsuchen. Eine Möglichkeit ist zum Beispiel, jedes Element einzeln zu überprüfen."
                 - text:
                     en: "But if we had 10,000 pieces of data, that could take 10,000 checks..."
                     de: "Aber wenn wir 10.000 Datenpunkte hätten, würde das 10.000 Überprüfungen dauern..."
@@ -1167,13 +1167,14 @@ quests:
                     - text:
                         en: "Ok, but where can I get a Qoffee?"
                         de: "Okay, aber wo bekomme ich einen Qoffee?"
-                      thenText: "At the Qafé down the street. But I hope you'll stop to deliver your package along the way!"
-                      de: "Im Qafé die Straße runter. Aber ich hoffe, du lieferst dein Paket vorher noch ab!"
+                      thenText: 
+                        en: "At the Qafé down the street. But I hope you'll stop to deliver your package along the way!"
+                        de: "Im Qafé die Straße runter. Aber ich hoffe, du lieferst dein Paket vorher noch ab!"
                       set: [ 'understood.grover.search' ]
       - cond: 'spoke.to.doorman & understood.grover.search & ^passed.grover.search.quiz'
         prompt:
           en: "Help the doorman choose the right algorithm."
-          de: "Hilf dem Türsteher, den richtigen Algorithmus auszuwählen."
+          de: "Hilf dem Pförtner, den richtigen Algorithmus auszuwählen."
         #target: lawyer
         dialogues:
           lawyer:
@@ -1192,7 +1193,7 @@ quests:
                   responses:
                     - text:
                         en: "A smart dog sniffing the package and leading us the right way."
-                        de: "Ein schlauer Hund, der am Paket schnüffelt und uns den richtigen Weg zeigt."
+                        de: "Ein schlauer Hund schnüffelt am Paket und zeigt den richtigen Weg."
                       thenText:
                         en: "I love this idea, but I'm terribly allergic..."
                         de: "Ich liebe diese Idee, aber ich bin leider schrecklich allergisch..."
@@ -1227,7 +1228,7 @@ quests:
                       then: quiz-grover
                     - text:
                         en: "A quadratic speedup, 10,000 pieces of data only requires 100 checks!"
-                        de: "Eine quadratische Beschleunigung: 10.000 Daten erfordern nur 100 Überprüfungen!"
+                        de: "Quadratische Beschleunigung: 100 Daten brauchen nur 10 Prüfungen!"
                       thenText:
                         en: "Nice! I'll run the search for you now. The recipient of your package should come down in a second."
                         de: "Super! Ich starte direkt die Suche für dich. Der Empfänger deines Pakets sollte gleich herunterkommen."
@@ -1265,14 +1266,14 @@ quests:
                         de: "Wenn ein Wollknäuel viele Knoten hat."
                       thenText:
                         en: "Haha, I hope that's not what's in my box..."
-                        de: "Haha, ich hoffe, das ist nicht das, was in meiner Box ist..."
+                        de: "Haha, ich hoffe, das ist nicht das, was in meinem Paket ist..."
                       then: entanglement-explanation
                     - text:
-                        en: "When the states of two objects are connected, even when far apart"
-                        de: "Wenn die Zustände zweier Objekte verbunden sind, selbst wenn sie weit voneinander entfernt sind."
+                        en: "When the states of two objects are connected, even when far apart."
+                        de: "Wenn die Zustände zweier Objekte selbst auf Distanz verbunden sind."
                       thenText:
                         en: "You really know your stuff! Exactly right, when I open this box, I'll instantly know something about what's in my friend's box."
-                        de: "Du kennst dich wirklich aus! Ganz genau, wenn ich diese Box öffne, weiß ich sofort etwas über den Inhalt der Box meines Freundes."
+                        de: "Du kennst dich gut aus! Genau, wenn ich dieses Paket öffne, weiß ich sofort etwas über den Inhalt des Pakets meines Freundes."
                       then: cupcake
                     - text:
                         en: "I don't know, can you explain?"
@@ -1296,14 +1297,14 @@ quests:
               items:
                 - text:
                    en: "In my specific case of entanglement, we got two beautiful pink cupcakes, one with strawberry filling, one with tuna fish. As soon as I bite into mine, I'll know the fate of my friend too."
-                   de: "In meinem speziellen Fall der Verschränkung haben wir zwei wunderschöne rosa Cupcakes bekommen, einer mit Erdbeerfüllung, einer mit Thunfisch. Sobald ich in meinen beiße, werde ich auch das Schicksal meines Freundes kennen."
+                   de: "In meinem Fall der Verschränkung haben wir zwei wunderschöne rosa Cupcakes bekommen, einer mit Erdbeerfüllung, einer mit Thunfisch. Sobald ich in meinen beiße, werde ich auch das Schicksal meines Freundes kennen."
                 - text:
                     en: "Do you want to take the first bite?"
                     de: "Möchtest du den ersten Bissen nehmen?"
                   responses:
                     - text:
                         en: "No, I'd like to avoid the risk of a tuna fish cupcake..."
-                        de: "Nein, ich möchte das Risiko eines Thunfisch-Cupcakes lieber vermeiden..."
+                        de: "Nein, ich möchte das Risiko eines Thunfisch-Cupcakes vermeiden..."
                       thenText:
                         en: "*munch* Your loss! This strawberry cupcake is delicious. I should get a tuna-fish-furious call from my friend any minute now... Thanks for the delivery!"
                         de: "*mampf* Dein Pech! Dieser Erdbeer-Cupcake ist köstlich. Ich sollte jeden Moment einen wütenden Thunfisch-Anruf von meinem Freund bekommen... Danke für die Lieferung!"
@@ -1325,49 +1326,49 @@ ending:
           items:
             - text:
                 en: "You learned about encryption and Shor's Algorithm. :love:"
-                de: "Du hast etwas über Verschlüsselung und Shors Algorithmus gelernt. :love:"
+                de: "Du weißt etwas über Verschlüsselung und Shors Algorithmus. :love:"
         - cond: 'quest.delivery.done'
           class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
                 en: "You learned about Grover's search and entanglement. :love:"
-                de: "Du hast etwas über Grovers Suche und Verschränkung gelernt. :love:"
+                de: "Du kennst Grovers Suche und Verschränkung. :love:"
         - cond: 'quest.simulation.done'
           class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
                 en: "You learned how quantum computers differ from classical computers. :love:"
-                de: "Du hast gelernt, wie sich Quantencomputer von klassischen Computern unterscheiden. :love:"
+                de: "Du kannst Quantencomputer von klassischen Computern unterscheiden. :love:"
         - cond: 'quest.computer.done'
           class: 'citizensEmpowered'
           type: sequence
           items:
             - text:
                 en: "You learned how quantum computers process information. :love:"
-                de: "Du hast gelernt, wie Quantencomputer Informationen verarbeiten. :love:"
+                de: "Du weißt, wie Quantencomputer Informationen verarbeiten. :love:"
         - cond: '^quest.cafe.done'
           type: sequence
           items:
             - text:
                 en: "Play again to learn about encryption and Shor's Algorithm."
-                de: "Spiel noch einmal, um etwas über Verschlüsselung und Shors Algorithmus zu lernen."
+                de: "Spiel nochmal und lerne über Verschlüsselung und Shors Algorithmus."
         - cond: '^quest.delivery.done'
           type: sequence
           items:
             - text:
                 en: "Play again to learn about Grover's search and entanglement."
-                de: "Spiel noch einmal, um etwas über Grovers Suche und Verschränkung zu lernen."
+                de: "Spiel nochmal und lerne über Grovers Suche und Verschränkung."
         - cond: '^quest.simulation.done'
           type: sequence
           items:
             - text:
                 en: "Play again to learn how classical and quantum computers differ."
-                de: "Spiel noch einmal, um zu lernen, wie sich klassische und Quantencomputer unterscheiden."
+                de: "Spiel nochmal und lerne über klassische und Quantencomputer."
         - cond: '^quest.computer.done'
           type: sequence
           items:
             - text:
                 en: "Play again to learn about how quantum computers process information."
-                de: "Spiel noch einmal, um zu lernen, wie Quantencomputer Informationen verarbeiten."
+                de: "Spiel nochnmal und lerne mehr über Quantencomputer."
